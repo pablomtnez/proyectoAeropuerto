@@ -1,7 +1,11 @@
 es\deusto\spq\server\jdo\User.class
-es\deusto\spq\server\jdo\Message.class
-es\deusto\spq\server\Resource.class
 es\deusto\spq\client\ExampleClient.class
 es\deusto\spq\pojo\DirectMessage.class
-es\deusto\spq\pojo\MessageData.class
+es\deusto\spq\client\gui\VentanaLogin$2.class
 es\deusto\spq\pojo\UserData.class
+es\deusto\spq\client\gui\VentanaLogin$3.class
+es\deusto\spq\server\jdo\Message.class
+es\deusto\spq\server\Resource.class
+es\deusto\spq\pojo\MessageData.class
+es\deusto\spq\client\gui\VentanaLogin$1.class
+es\deusto\spq\client\gui\VentanaLogin.class
