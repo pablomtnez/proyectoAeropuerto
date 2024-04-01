@@ -116,10 +116,12 @@ public class VentanaLogin extends JFrame{
         botonRegistro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                setVisible(false); // Oculta la ventana de login
                 VentanaRegistro ventanaregistro = new VentanaRegistro();
+                ventanaregistro.setVisible(true); // Añade esta línea para mostrar la ventana de registro
             }
         });
+        
 
     }
 
