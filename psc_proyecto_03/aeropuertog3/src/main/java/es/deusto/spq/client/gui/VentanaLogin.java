@@ -104,6 +104,7 @@ public class VentanaLogin extends JFrame{
         botonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //hacer que funcione solo si los textfield de la contraseña y la confirmacion son iguales
                 // TODO Auto-generated method stub
                 throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
             }
@@ -115,8 +116,8 @@ public class VentanaLogin extends JFrame{
         botonRegistro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                setVisible(false);
+                VentanaRegistro ventanaregistro = new VentanaRegistro();
             }
         });
 

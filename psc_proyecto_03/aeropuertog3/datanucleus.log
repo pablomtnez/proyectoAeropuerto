@@ -1214,3 +1214,871 @@ Caused by: java.sql.SQLException: Access denied for user 'spq'@'localhost' (usin
 	at org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl.getConnection(ConnectionFactoryImpl.java:501) ~[datanucleus-rdbms-6.0.7.jar:?]
 	... 106 more
 19:15:50,241 (qtp1821989981-26) ERROR [DataNucleus.Datastore] - Exception thrown creating StoreManager : Access denied for user 'spq'@'localhost' (using password: YES)
+12:21:19,904 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+12:21:19,916 (main) DEBUG [DataNucleus.General] - Registering bundle org.eclipse.sisu.inject version 0.3.4 at URL file:/C:/Users/erlan/.m2/repository/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.4/org.eclipse.sisu.inject-0.3.4.jar.
+12:21:19,928 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.4/org.eclipse.sisu.inject-0.3.4.jar!/plugin.xml.
+12:21:19,930 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 6.0.7 at URL file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-core/6.0.7/datanucleus-core-6.0.7.jar.
+12:21:19,932 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-core/6.0.7/datanucleus-core-6.0.7.jar!/plugin.xml.
+12:21:19,937 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 6.0.2 at URL file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-api-jdo/6.0.2/datanucleus-api-jdo-6.0.2.jar.
+12:21:19,940 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-api-jdo/6.0.2/datanucleus-api-jdo-6.0.2.jar!/plugin.xml.
+12:21:19,943 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 6.0.7 at URL file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-rdbms/6.0.7/datanucleus-rdbms-6.0.7.jar.
+12:21:19,944 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-rdbms/6.0.7/datanucleus-rdbms-6.0.7.jar!/plugin.xml.
+12:21:19,965 (main) DEBUG [DataNucleus.Persistence] - Tipos de Java inicializando ...
+12:21:19,979 (main) DEBUG [DataNucleus.Persistence] - Soporte para tipos de Java listo : tipos soportados = [B, [C, [D, [F, [I, [J, [Ljava.lang.Boolean;, [Ljava.lang.Byte;, [Ljava.lang.Character;, [Ljava.lang.Double;, [Ljava.lang.Enum;, [Ljava.lang.Float;, [Ljava.lang.Integer;, [Ljava.lang.Long;, [Ljava.lang.Number;, [Ljava.lang.Object;, [Ljava.lang.Short;, [Ljava.lang.String;, [Ljava.math.BigDecimal;, [Ljava.math.BigInteger;, [Ljava.util.Date;, [Ljava.util.Locale;, [S, [Z, boolean, byte, char, double, float, int, java.awt.Color, java.awt.image.BufferedImage, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Class, java.lang.Double, java.lang.Enum, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Number, java.lang.Short, java.lang.String, java.lang.StringBuffer, java.lang.StringBuilder, java.math.BigDecimal, java.math.BigInteger, java.net.URI, java.net.URL, java.sql.Date, java.sql.Time, java.sql.Timestamp, java.time.Duration, java.time.Instant, java.time.LocalDate, java.time.LocalDateTime, java.time.LocalTime, java.time.MonthDay, java.time.OffsetDateTime, java.time.OffsetTime, java.time.Period, java.time.Year, java.time.YearMonth, java.time.ZonedDateTime, java.time.ZoneId, java.time.ZoneOffset, java.util.ArrayList, java.util.Arrays$ArrayList, java.util.BitSet, java.util.Calendar, java.util.Collection, java.util.Currency, java.util.Date, java.util.GregorianCalendar, java.util.HashMap, java.util.HashSet, java.util.Hashtable, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.LinkedList, java.util.List, java.util.Locale, java.util.Map, java.util.Optional, java.util.PriorityQueue, java.util.Properties, java.util.Queue, java.util.Set, java.util.SortedMap, java.util.SortedSet, java.util.Stack, java.util.TimeZone, java.util.TreeMap, java.util.TreeSet, java.util.UUID, java.util.Vector, long, short
+12:21:19,979 (main) DEBUG [DataNucleus.Persistence] - Inicializando TypeConverters ...
+12:21:19,991 (main) DEBUG [DataNucleus.Persistence] - TypeConverters listo
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for byte[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for char[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for double[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for float[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for int[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for long[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigDecimal; to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigInteger; to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for short[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for boolean[] to : java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.Color to : java.lang.String,int[]
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.image.BufferedImage to : byte[],java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.io.Serializable to : java.lang.String,byte[],java.nio.ByteBuffer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Boolean to : java.lang.Character,java.lang.Integer
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Character to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Class to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Integer to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Long to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuffer to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuilder to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigDecimal to : java.lang.String,java.lang.Double
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigInteger to : java.lang.Long,java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URI to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URL to : java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Date to : java.lang.Long,java.util.Date,java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Time to : java.lang.Long,java.util.Date,java.lang.String
+12:21:19,992 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Timestamp to : java.lang.Long,java.util.Date,java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Duration to : java.lang.Long,java.lang.String,java.lang.Double
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Instant to : java.util.Date,java.lang.Long,java.lang.String,java.sql.Timestamp
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDate to : java.util.Date,java.sql.Date,java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDateTime to : java.util.Date,java.lang.String,java.sql.Timestamp
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalTime to : java.util.Date,java.lang.Long,java.lang.String,java.sql.Time
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.MonthDay to : java.util.Date,java.sql.Date,java.lang.String,int[]
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetDateTime to : java.util.Date,java.lang.String,java.sql.Timestamp
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetTime to : java.lang.Long,java.lang.String,java.sql.Time
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Period to : java.lang.String,int[]
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Year to : java.lang.String,java.lang.Integer
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.YearMonth to : java.util.Date,java.sql.Date,java.lang.String,int[]
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZonedDateTime to : java.lang.String,java.sql.Timestamp
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneId to : java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneOffset to : java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.BitSet to : java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Calendar to : java.util.Date,[Ljava.lang.Object;,java.lang.String,java.sql.Timestamp
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Currency to : java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Date to : java.lang.Long,java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Locale to : java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.TimeZone to : java.lang.String
+12:21:19,993 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.UUID to : java.lang.String
+12:21:19,999 (main) DEBUG [DataNucleus.MetaData] - MetaDataManager : Input=(XML,Annotations), XML-Validation=false, XML-Suffices=(persistence=*.jdo, orm=orm, query=*.jdoquery), JDO-listener=false
+12:21:20,000 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer (versión 6.0.7) para el API "JDO" utilizando el JRE "{2}"
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - DataNucleus Enhancer : Classpath
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-maven-plugin\6.0.0-release\datanucleus-maven-plugin-6.0.0-release.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-utils\3.3.0\plexus-utils-3.3.0.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\maven\maven-artifact\3.8.1\maven-artifact-3.8.1.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\commons\commons-lang3\3.8.1\commons-lang3-3.8.1.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\maven\maven-plugin-api\3.8.1\maven-plugin-api-3.8.1.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\maven\maven-model\3.8.1\maven-model-3.8.1.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\eclipse\sisu\org.eclipse.sisu.plexus\0.3.4\org.eclipse.sisu.plexus-0.3.4.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\enterprise\cdi-api\1.0\cdi-api-1.0.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\annotation\jsr250-api\1.0\jsr250-api-1.0.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\eclipse\sisu\org.eclipse.sisu.inject\0.3.4\org.eclipse.sisu.inject-0.3.4.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-component-annotations\1.5.5\plexus-component-annotations-1.5.5.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-classworlds\2.6.0\plexus-classworlds-2.6.0.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-container-default\2.1.0\plexus-container-default-2.1.0.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\xbean\xbean-reflect\3.7\xbean-reflect-3.7.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\google\collections\google-collections\1.0\google-collections-1.0.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\Documents\GitHub\proyectoAeropuerto\psc_proyecto_03\aeropuertog3\target\classes
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\javax.jdo\3.2.1\javax.jdo-3.2.1.jar
+12:21:20,000 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\transaction\javax.transaction-api\1.3\javax.transaction-api-1.3.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\corba\glassfish-corba-omgapi\4.2.2\glassfish-corba-omgapi-4.2.2.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-core\6.0.7\datanucleus-core-6.0.7.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-api-jdo\6.0.2\datanucleus-api-jdo-6.0.2.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-rdbms\6.0.7\datanucleus-rdbms-6.0.7.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\mysql\mysql-connector-java\8.0.29\mysql-connector-java-8.0.29.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\google\protobuf\protobuf-java\3.19.4\protobuf-java-3.19.4.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\containers\jersey-container-servlet-core\2.35\jersey-container-servlet-core-2.35.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\external\jakarta.inject\2.6.1\jakarta.inject-2.6.1.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\core\jersey-common\2.35\jersey-common-2.35.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\osgi-resource-locator\1.0.3\osgi-resource-locator-1.0.3.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\core\jersey-server\2.35\jersey-server-2.35.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\core\jersey-client\2.35\jersey-client-2.35.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\validation\jakarta.validation-api\2.0.2\jakarta.validation-api-2.0.2.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\2.1.6\jakarta.ws.rs-api-2.1.6.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\inject\jersey-hk2\2.35\jersey-hk2-2.35.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\hk2-locator\2.6.1\hk2-locator-2.6.1.jar
+12:21:20,001 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\external\aopalliance-repackaged\2.6.1\aopalliance-repackaged-2.6.1.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\hk2-api\2.6.1\hk2-api-2.6.1.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\hk2-utils\2.6.1\hk2-utils-2.6.1.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\javassist\javassist\3.25.0-GA\javassist-3.25.0-GA.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\media\jersey-media-json-jackson\2.35\jersey-media-json-jackson-2.35.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\ext\jersey-entity-filtering\2.35\jersey-entity-filtering-2.35.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.12.2\jackson-annotations-2.12.2.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.12.2\jackson-databind-2.12.2.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.12.2\jackson-core-2.12.2.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\module\jackson-module-jaxb-annotations\2.12.2\jackson-module-jaxb-annotations-2.12.2.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\2.3.2\jakarta.xml.bind-api-2.3.2.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\activation\jakarta.activation-api\1.2.1\jakarta.activation-api-1.2.1.jar
+12:21:20,002 (main) DEBUG [DataNucleus.Enhancer] - Reading fileListFile: C:\Users\erlan\AppData\Local\Temp\enhancer-4179543446050398664.flf
+12:21:20,003 (main) DEBUG [DataNucleus.Enhancer] - Enhancing classes
+12:21:20,008 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata de las clases "[es.deusto.spq.client.ExampleClient, es.deusto.spq.client.gui.VentanaLogin$1, es.deusto.spq.client.gui.VentanaLogin$2, es.deusto.spq.client.gui.VentanaLogin$3, es.deusto.spq.client.gui.VentanaLogin, es.deusto.spq.pojo.DirectMessage, es.deusto.spq.pojo.MessageData, es.deusto.spq.pojo.UserData, es.deusto.spq.server.jdo.Message, es.deusto.spq.server.jdo.User, es.deusto.spq.server.Resource]" ...
+12:21:20,010 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /META-INF/package.jdo
+12:21:20,011 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /WEB-INF/package.jdo
+12:21:20,011 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /package.jdo
+12:21:20,011 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/package.jdo
+12:21:20,011 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/package.jdo
+12:21:20,012 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/spq/package.jdo
+12:21:20,012 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/spq/client/package.jdo
+12:21:20,012 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/spq/client/ExampleClient.jdo
+12:21:20,012 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient"
+12:21:20,012 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.ExampleClient" no tener Meta-Data
+12:21:20,013 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.ExampleClient" no tiene MetaData o annotaciones.
+12:21:20,014 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /META-INF/package.jdo
+12:21:20,014 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /WEB-INF/package.jdo
+12:21:20,014 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /package.jdo
+12:21:20,014 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/package.jdo
+12:21:20,014 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/package.jdo
+12:21:20,015 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/package.jdo
+12:21:20,015 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/client/package.jdo
+12:21:20,015 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/client/gui/package.jdo
+12:21:20,015 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/client/gui/VentanaLogin$1.jdo
+12:21:20,015 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1"
+12:21:20,015 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin$1" no tener Meta-Data
+12:21:20,015 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin$1" no tiene MetaData o annotaciones.
+12:21:20,016 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /META-INF/package.jdo
+12:21:20,016 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /WEB-INF/package.jdo
+12:21:20,016 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /package.jdo
+12:21:20,016 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/package.jdo
+12:21:20,016 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/package.jdo
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/package.jdo
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/client/package.jdo
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/client/gui/package.jdo
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/client/gui/VentanaLogin$2.jdo
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2"
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin$2" no tener Meta-Data
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin$2" no tiene MetaData o annotaciones.
+12:21:20,017 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /META-INF/package.jdo
+12:21:20,018 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /WEB-INF/package.jdo
+12:21:20,018 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /package.jdo
+12:21:20,018 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/package.jdo
+12:21:20,018 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/package.jdo
+12:21:20,018 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/package.jdo
+12:21:20,018 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/client/package.jdo
+12:21:20,019 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/client/gui/package.jdo
+12:21:20,019 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/client/gui/VentanaLogin$3.jdo
+12:21:20,019 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3"
+12:21:20,019 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin$3" no tener Meta-Data
+12:21:20,019 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin$3" no tiene MetaData o annotaciones.
+12:21:20,022 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /META-INF/package.jdo
+12:21:20,022 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /WEB-INF/package.jdo
+12:21:20,022 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /package.jdo
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/package.jdo
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/package.jdo
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/package.jdo
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/client/package.jdo
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/client/gui/package.jdo
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/client/gui/VentanaLogin.jdo
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin"
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin" no tener Meta-Data
+12:21:20,023 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin" no tiene MetaData o annotaciones.
+12:21:20,024 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /META-INF/package.jdo
+12:21:20,024 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /WEB-INF/package.jdo
+12:21:20,024 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /package.jdo
+12:21:20,024 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/package.jdo
+12:21:20,024 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/package.jdo
+12:21:20,024 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/spq/package.jdo
+12:21:20,025 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/spq/pojo/package.jdo
+12:21:20,025 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/spq/pojo/DirectMessage.jdo
+12:21:20,025 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage"
+12:21:20,025 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.pojo.DirectMessage" no tener Meta-Data
+12:21:20,025 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.pojo.DirectMessage" no tiene MetaData o annotaciones.
+12:21:20,025 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /META-INF/package.jdo
+12:21:20,025 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /WEB-INF/package.jdo
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /package.jdo
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/package.jdo
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/package.jdo
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/spq/package.jdo
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/spq/pojo/package.jdo
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/spq/pojo/MessageData.jdo
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData"
+12:21:20,026 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.pojo.MessageData" no tener Meta-Data
+12:21:20,027 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.pojo.MessageData" no tiene MetaData o annotaciones.
+12:21:20,027 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /META-INF/package.jdo
+12:21:20,027 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /WEB-INF/package.jdo
+12:21:20,027 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /package.jdo
+12:21:20,027 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/package.jdo
+12:21:20,027 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/package.jdo
+12:21:20,028 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/spq/package.jdo
+12:21:20,028 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/spq/pojo/package.jdo
+12:21:20,028 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/spq/pojo/UserData.jdo
+12:21:20,028 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData"
+12:21:20,028 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.pojo.UserData" no tener Meta-Data
+12:21:20,028 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.pojo.UserData" no tiene MetaData o annotaciones.
+12:21:20,041 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" tiene anotaciones de JDO y vamos a usarlas.
+12:21:20,042 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" tiene anotaciones de JDO y vamos a usarlas.
+12:21:20,050 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.Resource" tiene anotaciones pero no hay ningún AnnotationReader registrado para este tipo de anotaciones. Por favor compruebe el CLASSPATH y las anotaciones para validez.
+12:21:20,051 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /META-INF/package.jdo
+12:21:20,051 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /WEB-INF/package.jdo
+12:21:20,051 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /package.jdo
+12:21:20,051 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/package.jdo
+12:21:20,051 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/package.jdo
+12:21:20,051 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/spq/package.jdo
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/spq/server/package.jdo
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/spq/server/Resource.jdo
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource"
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.Resource" tiene anotaciones pero no hay ningún AnnotationReader registrado para este tipo de anotaciones. Por favor compruebe el CLASSPATH y las anotaciones para validez.
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.server.Resource" no tener Meta-Data
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.server.Resource" no tiene MetaData o annotaciones.
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - Populación del MetaData ...
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" : Populando Meta-Data
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" campo "user" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" campo "text" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:20,052 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" campo "timestamp" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:20,053 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" : Populando Meta-Data
+12:21:20,053 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" campo "password" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:20,053 (main) DEBUG [DataNucleus.MetaData] - Inicialisación del MetaData ...
+12:21:20,054 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" : Inicializando Meta-Data
+12:21:20,054 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" : Inicializando Meta-Data
+12:21:20,054 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata ya ha terminado
+12:21:20,056 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.Message" empezando ...
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no implementa el interfaz "org.datanucleus.enhancement.Persistable"!
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnStateManager" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnInheritedFieldCount" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnFlags" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnFieldNames" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceField" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetStateManager" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsTransactional" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewInstance" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewInstance" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnProvideFields" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "___dn$loadClass" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetManagedFieldCount" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsDirty" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceStateManager" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceFlags" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsDetached" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnMakeDirty" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsDeleted" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnProvideField" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnPreSerialize" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetObjectId" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetVersion" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetTransactionalObjectId" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsNew" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyField" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetExecutionContext" pero lo necesita
+12:21:20,061 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyFields" pero lo necesita
+12:21:20,062 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "__dnGetInheritedFieldCount" pero lo necesita
+12:21:20,062 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:20,062 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:20,062 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsPersistent" pero lo necesita
+12:21:20,062 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceFields" pero lo necesita
+12:21:20,062 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "__dnFieldNamesInit" pero lo necesita
+12:21:20,066 (main) DEBUG [DataNucleus.Enhancer] - Agregando el interfaz: org.datanucleus.enhancement.Persistable
+12:21:20,067 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.user"
+12:21:20,067 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.text"
+12:21:20,067 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.text"
+12:21:20,068 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.timestamp"
+12:21:20,069 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.getUser, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.user" para utilizar "dnGetuser()"
+12:21:20,069 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.setUser, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.user" para utilizar "dnSetuser()"
+12:21:20,069 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.text" para utilizar "dnGettext()"
+12:21:20,069 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.timestamp" para utilizar "dnGettimestamp()"
+12:21:20,069 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "org.datanucleus.enhancement.StateManager dnStateManager"
+12:21:20,069 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "byte dnFlags"
+12:21:20,070 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "[Ljava.lang.String; dnFieldNames"
+12:21:20,070 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "int dnInheritedFieldCount"
+12:21:20,070 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void <clinit>()"
+12:21:20,070 (main) DEBUG [DataNucleus.Enhancer] - Agregando el constructor "es.deusto.spq.server.jdo.Message()"
+12:21:20,071 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldConsumer fc, java.lang.Object oid)"
+12:21:20,071 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(java.lang.Object oid)"
+12:21:20,071 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(java.lang.Object oid)"
+12:21:20,071 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldSupplier fs, java.lang.Object oid)"
+12:21:20,072 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetObjectId()"
+12:21:20,072 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetVersion()"
+12:21:20,072 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnPreSerialize()"
+12:21:20,072 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.ExecutionContextReference dnGetExecutionContext()"
+12:21:20,072 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.StateManager dnGetStateManager()"
+12:21:20,072 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetTransactionalObjectId()"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDeleted()"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDirty()"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsNew()"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsPersistent()"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsTransactional()"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnMakeDirty(java.lang.String fieldName)"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance()"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance(java.lang.Object key)"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideFields([I indices)"
+12:21:20,073 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFields([I indices)"
+12:21:20,074 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFlags()"
+12:21:20,074 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceStateManager(org.datanucleus.enhancement.StateManager sm)"
+12:21:20,074 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDetached()"
+12:21:20,074 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm)"
+12:21:20,074 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm, java.lang.Object obj)"
+12:21:20,074 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceField(int index)"
+12:21:20,075 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideField(int index)"
+12:21:20,075 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyField(es.deusto.spq.server.jdo.Message obj, int index)"
+12:21:20,075 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyFields(java.lang.Object obj, [I indices)"
+12:21:20,075 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "[Ljava.lang.String; __dnFieldNamesInit()"
+12:21:20,075 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int __dnGetInheritedFieldCount()"
+12:21:20,075 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int dnGetManagedFieldCount()"
+12:21:20,075 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Class ___dn$loadClass(java.lang.String className)"
+12:21:20,076 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.String dnGettext(es.deusto.spq.server.jdo.Message objPC)"
+12:21:20,076 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSettext(es.deusto.spq.server.jdo.Message objPC, java.lang.String val)"
+12:21:20,077 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "long dnGettimestamp(es.deusto.spq.server.jdo.Message objPC)"
+12:21:20,077 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSettimestamp(es.deusto.spq.server.jdo.Message objPC, long val)"
+12:21:20,077 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "es.deusto.spq.server.jdo.User dnGetuser(es.deusto.spq.server.jdo.Message objPC)"
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetuser(es.deusto.spq.server.jdo.Message objPC, es.deusto.spq.server.jdo.User val)"
+12:21:20,078 (main) INFO  [DataNucleus.Enhancer] - Escribiendo el archivo de clase "C:\Users\erlan\Documents\GitHub\proyectoAeropuerto\psc_proyecto_03\aeropuertog3\target\classes\es\deusto\spq\server\jdo\Message.class" con definición enhanced
+12:21:20,078 (main) INFO  [DataNucleus.Enhancer] - ENHANCED (Persistable) : es.deusto.spq.server.jdo.Message
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.Message" ha terminado
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.User" empezando ...
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no implementa el interfaz "org.datanucleus.enhancement.Persistable"!
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnStateManager" pero lo necesita
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnInheritedFieldCount" pero lo necesita
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnFlags" pero lo necesita
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnFieldNames" pero lo necesita
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceField" pero lo necesita
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetStateManager" pero lo necesita
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsTransactional" pero lo necesita
+12:21:20,078 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewInstance" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewInstance" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnProvideFields" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "___dn$loadClass" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetManagedFieldCount" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsDirty" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceStateManager" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceFlags" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsDetached" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnMakeDirty" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsDeleted" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnProvideField" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnPreSerialize" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetObjectId" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetVersion" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetTransactionalObjectId" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsNew" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyField" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetExecutionContext" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyFields" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "__dnGetInheritedFieldCount" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsPersistent" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceFields" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "__dnFieldNamesInit" pero lo necesita
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - Agregando el interfaz: org.datanucleus.enhancement.Persistable
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.login"
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.password"
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.messages"
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.login"
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.password"
+12:21:20,079 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.addMessage, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.removeMessage, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.getLogin, cambiando el uso del campo "es.deusto.spq.server.jdo.User.login" para utilizar "dnGetlogin()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.getPassword, cambiando el uso del campo "es.deusto.spq.server.jdo.User.password" para utilizar "dnGetpassword()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.setPassword, cambiando el uso del campo "es.deusto.spq.server.jdo.User.password" para utilizar "dnSetpassword()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.getMessages, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.User.login" para utilizar "dnGetlogin()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.User.password" para utilizar "dnGetpassword()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "org.datanucleus.enhancement.StateManager dnStateManager"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "byte dnFlags"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "[Ljava.lang.String; dnFieldNames"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "int dnInheritedFieldCount"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void <clinit>()"
+12:21:20,080 (main) DEBUG [DataNucleus.Enhancer] - Agregando el constructor "es.deusto.spq.server.jdo.User()"
+12:21:20,081 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldConsumer fc, java.lang.Object oid)"
+12:21:20,081 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(java.lang.Object oid)"
+12:21:20,081 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(java.lang.Object oid)"
+12:21:20,081 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldSupplier fs, java.lang.Object oid)"
+12:21:20,081 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetObjectId()"
+12:21:20,081 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetVersion()"
+12:21:20,081 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnPreSerialize()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.ExecutionContextReference dnGetExecutionContext()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.StateManager dnGetStateManager()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetTransactionalObjectId()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDeleted()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDirty()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsNew()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsPersistent()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsTransactional()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnMakeDirty(java.lang.String fieldName)"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance()"
+12:21:20,082 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance(java.lang.Object key)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideFields([I indices)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFields([I indices)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFlags()"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceStateManager(org.datanucleus.enhancement.StateManager sm)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDetached()"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm, java.lang.Object obj)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceField(int index)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideField(int index)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyField(es.deusto.spq.server.jdo.User obj, int index)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyFields(java.lang.Object obj, [I indices)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "[Ljava.lang.String; __dnFieldNamesInit()"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int __dnGetInheritedFieldCount()"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int dnGetManagedFieldCount()"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Class ___dn$loadClass(java.lang.String className)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.String dnGetlogin(es.deusto.spq.server.jdo.User objPC)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetlogin(es.deusto.spq.server.jdo.User objPC, java.lang.String val)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.util.Set dnGetmessages(es.deusto.spq.server.jdo.User objPC)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetmessages(es.deusto.spq.server.jdo.User objPC, java.util.Set val)"
+12:21:20,083 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.String dnGetpassword(es.deusto.spq.server.jdo.User objPC)"
+12:21:20,084 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetpassword(es.deusto.spq.server.jdo.User objPC, java.lang.String val)"
+12:21:20,084 (main) INFO  [DataNucleus.Enhancer] - Escribiendo el archivo de clase "C:\Users\erlan\Documents\GitHub\proyectoAeropuerto\psc_proyecto_03\aeropuertog3\target\classes\es\deusto\spq\server\jdo\User.class" con definición enhanced
+12:21:20,084 (main) INFO  [DataNucleus.Enhancer] - ENHANCED (Persistable) : es.deusto.spq.server.jdo.User
+12:21:20,084 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.User" ha terminado
+12:21:20,085 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 2 clases. Tiempos : input=51 ms, enhance=30 ms, total=81 ms. Compruebe el LOG para los detalles
+12:21:28,333 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+12:21:28,346 (main) DEBUG [DataNucleus.General] - Registering bundle org.eclipse.sisu.inject version 0.3.4 at URL file:/C:/Users/erlan/.m2/repository/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.4/org.eclipse.sisu.inject-0.3.4.jar.
+12:21:28,357 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.4/org.eclipse.sisu.inject-0.3.4.jar!/plugin.xml.
+12:21:28,359 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 6.0.7 at URL file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-core/6.0.7/datanucleus-core-6.0.7.jar.
+12:21:28,362 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-core/6.0.7/datanucleus-core-6.0.7.jar!/plugin.xml.
+12:21:28,368 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 6.0.2 at URL file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-api-jdo/6.0.2/datanucleus-api-jdo-6.0.2.jar.
+12:21:28,372 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-api-jdo/6.0.2/datanucleus-api-jdo-6.0.2.jar!/plugin.xml.
+12:21:28,373 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 6.0.7 at URL file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-rdbms/6.0.7/datanucleus-rdbms-6.0.7.jar.
+12:21:28,375 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/erlan/.m2/repository/org/datanucleus/datanucleus-rdbms/6.0.7/datanucleus-rdbms-6.0.7.jar!/plugin.xml.
+12:21:28,394 (main) DEBUG [DataNucleus.Persistence] - Tipos de Java inicializando ...
+12:21:28,410 (main) DEBUG [DataNucleus.Persistence] - Soporte para tipos de Java listo : tipos soportados = [B, [C, [D, [F, [I, [J, [Ljava.lang.Boolean;, [Ljava.lang.Byte;, [Ljava.lang.Character;, [Ljava.lang.Double;, [Ljava.lang.Enum;, [Ljava.lang.Float;, [Ljava.lang.Integer;, [Ljava.lang.Long;, [Ljava.lang.Number;, [Ljava.lang.Object;, [Ljava.lang.Short;, [Ljava.lang.String;, [Ljava.math.BigDecimal;, [Ljava.math.BigInteger;, [Ljava.util.Date;, [Ljava.util.Locale;, [S, [Z, boolean, byte, char, double, float, int, java.awt.Color, java.awt.image.BufferedImage, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Class, java.lang.Double, java.lang.Enum, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Number, java.lang.Short, java.lang.String, java.lang.StringBuffer, java.lang.StringBuilder, java.math.BigDecimal, java.math.BigInteger, java.net.URI, java.net.URL, java.sql.Date, java.sql.Time, java.sql.Timestamp, java.time.Duration, java.time.Instant, java.time.LocalDate, java.time.LocalDateTime, java.time.LocalTime, java.time.MonthDay, java.time.OffsetDateTime, java.time.OffsetTime, java.time.Period, java.time.Year, java.time.YearMonth, java.time.ZonedDateTime, java.time.ZoneId, java.time.ZoneOffset, java.util.ArrayList, java.util.Arrays$ArrayList, java.util.BitSet, java.util.Calendar, java.util.Collection, java.util.Currency, java.util.Date, java.util.GregorianCalendar, java.util.HashMap, java.util.HashSet, java.util.Hashtable, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.LinkedList, java.util.List, java.util.Locale, java.util.Map, java.util.Optional, java.util.PriorityQueue, java.util.Properties, java.util.Queue, java.util.Set, java.util.SortedMap, java.util.SortedSet, java.util.Stack, java.util.TimeZone, java.util.TreeMap, java.util.TreeSet, java.util.UUID, java.util.Vector, long, short
+12:21:28,410 (main) DEBUG [DataNucleus.Persistence] - Inicializando TypeConverters ...
+12:21:28,422 (main) DEBUG [DataNucleus.Persistence] - TypeConverters listo
+12:21:28,422 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for byte[] to : java.nio.ByteBuffer
+12:21:28,422 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for char[] to : java.nio.ByteBuffer
+12:21:28,422 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for double[] to : java.nio.ByteBuffer
+12:21:28,422 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for float[] to : java.nio.ByteBuffer
+12:21:28,422 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for int[] to : java.nio.ByteBuffer
+12:21:28,422 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for long[] to : java.nio.ByteBuffer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigDecimal; to : java.nio.ByteBuffer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigInteger; to : java.nio.ByteBuffer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for short[] to : java.nio.ByteBuffer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for boolean[] to : java.nio.ByteBuffer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.Color to : java.lang.String,int[]
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.image.BufferedImage to : byte[],java.nio.ByteBuffer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.io.Serializable to : java.lang.String,byte[],java.nio.ByteBuffer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Boolean to : java.lang.Character,java.lang.Integer
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Character to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Class to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Integer to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Long to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuffer to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuilder to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigDecimal to : java.lang.String,java.lang.Double
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigInteger to : java.lang.Long,java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URI to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URL to : java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Date to : java.lang.Long,java.util.Date,java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Time to : java.lang.Long,java.util.Date,java.lang.String
+12:21:28,423 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Timestamp to : java.lang.Long,java.util.Date,java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Duration to : java.lang.Long,java.lang.String,java.lang.Double
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Instant to : java.util.Date,java.lang.Long,java.lang.String,java.sql.Timestamp
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDate to : java.util.Date,java.sql.Date,java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDateTime to : java.util.Date,java.lang.String,java.sql.Timestamp
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalTime to : java.util.Date,java.lang.Long,java.lang.String,java.sql.Time
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.MonthDay to : java.util.Date,java.sql.Date,java.lang.String,int[]
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetDateTime to : java.util.Date,java.lang.String,java.sql.Timestamp
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetTime to : java.lang.Long,java.lang.String,java.sql.Time
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Period to : java.lang.String,int[]
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Year to : java.lang.String,java.lang.Integer
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.YearMonth to : java.util.Date,java.sql.Date,java.lang.String,int[]
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZonedDateTime to : java.lang.String,java.sql.Timestamp
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneId to : java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneOffset to : java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.BitSet to : java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Calendar to : java.util.Date,[Ljava.lang.Object;,java.lang.String,java.sql.Timestamp
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Currency to : java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Date to : java.lang.Long,java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Locale to : java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.TimeZone to : java.lang.String
+12:21:28,424 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.UUID to : java.lang.String
+12:21:28,430 (main) DEBUG [DataNucleus.MetaData] - MetaDataManager : Input=(XML,Annotations), XML-Validation=false, XML-Suffices=(persistence=*.jdo, orm=orm, query=*.jdoquery), JDO-listener=false
+12:21:28,430 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer (versión 6.0.7) para el API "JDO" utilizando el JRE "{2}"
+12:21:28,430 (main) DEBUG [DataNucleus.Enhancer] - DataNucleus Enhancer : Classpath
+12:21:28,431 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-maven-plugin\6.0.0-release\datanucleus-maven-plugin-6.0.0-release.jar
+12:21:28,431 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-utils\3.3.0\plexus-utils-3.3.0.jar
+12:21:28,431 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\maven\maven-artifact\3.8.1\maven-artifact-3.8.1.jar
+12:21:28,431 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\commons\commons-lang3\3.8.1\commons-lang3-3.8.1.jar
+12:21:28,431 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\maven\maven-plugin-api\3.8.1\maven-plugin-api-3.8.1.jar
+12:21:28,431 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\maven\maven-model\3.8.1\maven-model-3.8.1.jar
+12:21:28,431 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\eclipse\sisu\org.eclipse.sisu.plexus\0.3.4\org.eclipse.sisu.plexus-0.3.4.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\enterprise\cdi-api\1.0\cdi-api-1.0.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\annotation\jsr250-api\1.0\jsr250-api-1.0.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\eclipse\sisu\org.eclipse.sisu.inject\0.3.4\org.eclipse.sisu.inject-0.3.4.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-component-annotations\1.5.5\plexus-component-annotations-1.5.5.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-classworlds\2.6.0\plexus-classworlds-2.6.0.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\codehaus\plexus\plexus-container-default\2.1.0\plexus-container-default-2.1.0.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\xbean\xbean-reflect\3.7\xbean-reflect-3.7.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\google\collections\google-collections\1.0\google-collections-1.0.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\Documents\GitHub\proyectoAeropuerto\psc_proyecto_03\aeropuertog3\target\classes
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\javax.jdo\3.2.1\javax.jdo-3.2.1.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\javax\transaction\javax.transaction-api\1.3\javax.transaction-api-1.3.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\corba\glassfish-corba-omgapi\4.2.2\glassfish-corba-omgapi-4.2.2.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-core\6.0.7\datanucleus-core-6.0.7.jar
+12:21:28,432 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-api-jdo\6.0.2\datanucleus-api-jdo-6.0.2.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\datanucleus\datanucleus-rdbms\6.0.7\datanucleus-rdbms-6.0.7.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\mysql\mysql-connector-java\8.0.29\mysql-connector-java-8.0.29.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\google\protobuf\protobuf-java\3.19.4\protobuf-java-3.19.4.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\containers\jersey-container-servlet-core\2.35\jersey-container-servlet-core-2.35.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\external\jakarta.inject\2.6.1\jakarta.inject-2.6.1.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\core\jersey-common\2.35\jersey-common-2.35.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\osgi-resource-locator\1.0.3\osgi-resource-locator-1.0.3.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\core\jersey-server\2.35\jersey-server-2.35.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\core\jersey-client\2.35\jersey-client-2.35.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\validation\jakarta.validation-api\2.0.2\jakarta.validation-api-2.0.2.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\2.1.6\jakarta.ws.rs-api-2.1.6.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\inject\jersey-hk2\2.35\jersey-hk2-2.35.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\hk2-locator\2.6.1\hk2-locator-2.6.1.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\external\aopalliance-repackaged\2.6.1\aopalliance-repackaged-2.6.1.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\hk2-api\2.6.1\hk2-api-2.6.1.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\hk2\hk2-utils\2.6.1\hk2-utils-2.6.1.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\javassist\javassist\3.25.0-GA\javassist-3.25.0-GA.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\media\jersey-media-json-jackson\2.35\jersey-media-json-jackson-2.35.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\org\glassfish\jersey\ext\jersey-entity-filtering\2.35\jersey-entity-filtering-2.35.jar
+12:21:28,433 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.12.2\jackson-annotations-2.12.2.jar
+12:21:28,434 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.12.2\jackson-databind-2.12.2.jar
+12:21:28,434 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.12.2\jackson-core-2.12.2.jar
+12:21:28,434 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\com\fasterxml\jackson\module\jackson-module-jaxb-annotations\2.12.2\jackson-module-jaxb-annotations-2.12.2.jar
+12:21:28,434 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\2.3.2\jakarta.xml.bind-api-2.3.2.jar
+12:21:28,434 (main) DEBUG [DataNucleus.Enhancer] - >>  C:\Users\erlan\.m2\repository\jakarta\activation\jakarta.activation-api\1.2.1\jakarta.activation-api-1.2.1.jar
+12:21:28,434 (main) DEBUG [DataNucleus.Enhancer] - Reading fileListFile: C:\Users\erlan\AppData\Local\Temp\enhancer-1733352892845770967.flf
+12:21:28,435 (main) DEBUG [DataNucleus.Enhancer] - Enhancing classes
+12:21:28,440 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata de las clases "[es.deusto.spq.client.ExampleClient, es.deusto.spq.client.gui.VentanaLogin$1, es.deusto.spq.client.gui.VentanaLogin$2, es.deusto.spq.client.gui.VentanaLogin$3, es.deusto.spq.client.gui.VentanaLogin, es.deusto.spq.pojo.DirectMessage, es.deusto.spq.pojo.MessageData, es.deusto.spq.pojo.UserData, es.deusto.spq.server.jdo.Message, es.deusto.spq.server.jdo.User, es.deusto.spq.server.Resource]" ...
+12:21:28,442 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /META-INF/package.jdo
+12:21:28,442 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /WEB-INF/package.jdo
+12:21:28,442 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /package.jdo
+12:21:28,443 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/package.jdo
+12:21:28,443 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/package.jdo
+12:21:28,443 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/spq/package.jdo
+12:21:28,443 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/spq/client/package.jdo
+12:21:28,443 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient" en /es/deusto/spq/client/ExampleClient.jdo
+12:21:28,443 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.ExampleClient"
+12:21:28,443 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.ExampleClient" no tener Meta-Data
+12:21:28,444 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.ExampleClient" no tiene MetaData o annotaciones.
+12:21:28,445 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /META-INF/package.jdo
+12:21:28,445 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /WEB-INF/package.jdo
+12:21:28,445 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /package.jdo
+12:21:28,445 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/package.jdo
+12:21:28,445 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/package.jdo
+12:21:28,445 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/package.jdo
+12:21:28,445 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/client/package.jdo
+12:21:28,446 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/client/gui/package.jdo
+12:21:28,446 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1" en /es/deusto/spq/client/gui/VentanaLogin$1.jdo
+12:21:28,446 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$1"
+12:21:28,446 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin$1" no tener Meta-Data
+12:21:28,446 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin$1" no tiene MetaData o annotaciones.
+12:21:28,446 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /META-INF/package.jdo
+12:21:28,446 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /WEB-INF/package.jdo
+12:21:28,447 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /package.jdo
+12:21:28,447 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/package.jdo
+12:21:28,447 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/package.jdo
+12:21:28,447 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/package.jdo
+12:21:28,447 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/client/package.jdo
+12:21:28,448 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/client/gui/package.jdo
+12:21:28,448 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2" en /es/deusto/spq/client/gui/VentanaLogin$2.jdo
+12:21:28,448 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$2"
+12:21:28,448 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin$2" no tener Meta-Data
+12:21:28,448 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin$2" no tiene MetaData o annotaciones.
+12:21:28,449 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /META-INF/package.jdo
+12:21:28,449 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /WEB-INF/package.jdo
+12:21:28,449 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /package.jdo
+12:21:28,449 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/package.jdo
+12:21:28,449 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/package.jdo
+12:21:28,449 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/package.jdo
+12:21:28,449 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/client/package.jdo
+12:21:28,450 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/client/gui/package.jdo
+12:21:28,450 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3" en /es/deusto/spq/client/gui/VentanaLogin$3.jdo
+12:21:28,450 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin$3"
+12:21:28,450 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin$3" no tener Meta-Data
+12:21:28,450 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin$3" no tiene MetaData o annotaciones.
+12:21:28,454 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /META-INF/package.jdo
+12:21:28,454 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /WEB-INF/package.jdo
+12:21:28,454 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /package.jdo
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/package.jdo
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/package.jdo
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/package.jdo
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/client/package.jdo
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/client/gui/package.jdo
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin" en /es/deusto/spq/client/gui/VentanaLogin.jdo
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.client.gui.VentanaLogin"
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.client.gui.VentanaLogin" no tener Meta-Data
+12:21:28,455 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.client.gui.VentanaLogin" no tiene MetaData o annotaciones.
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /META-INF/package.jdo
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /WEB-INF/package.jdo
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /package.jdo
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/package.jdo
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/package.jdo
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/spq/package.jdo
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/spq/pojo/package.jdo
+12:21:28,456 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage" en /es/deusto/spq/pojo/DirectMessage.jdo
+12:21:28,457 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.DirectMessage"
+12:21:28,457 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.pojo.DirectMessage" no tener Meta-Data
+12:21:28,457 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.pojo.DirectMessage" no tiene MetaData o annotaciones.
+12:21:28,457 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /META-INF/package.jdo
+12:21:28,457 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /WEB-INF/package.jdo
+12:21:28,457 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /package.jdo
+12:21:28,457 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/package.jdo
+12:21:28,458 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/package.jdo
+12:21:28,458 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/spq/package.jdo
+12:21:28,458 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/spq/pojo/package.jdo
+12:21:28,458 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData" en /es/deusto/spq/pojo/MessageData.jdo
+12:21:28,458 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.MessageData"
+12:21:28,458 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.pojo.MessageData" no tener Meta-Data
+12:21:28,458 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.pojo.MessageData" no tiene MetaData o annotaciones.
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /META-INF/package.jdo
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /WEB-INF/package.jdo
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /package.jdo
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/package.jdo
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/package.jdo
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/spq/package.jdo
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/spq/pojo/package.jdo
+12:21:28,459 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData" en /es/deusto/spq/pojo/UserData.jdo
+12:21:28,460 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.pojo.UserData"
+12:21:28,460 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.pojo.UserData" no tener Meta-Data
+12:21:28,460 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.pojo.UserData" no tiene MetaData o annotaciones.
+12:21:28,472 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" tiene anotaciones de JDO y vamos a usarlas.
+12:21:28,473 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" tiene anotaciones de JDO y vamos a usarlas.
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.Resource" tiene anotaciones pero no hay ningún AnnotationReader registrado para este tipo de anotaciones. Por favor compruebe el CLASSPATH y las anotaciones para validez.
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /META-INF/package.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /WEB-INF/package.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /package.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/package.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/package.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/spq/package.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/spq/server/package.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No encontramos el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource" en /es/deusto/spq/server/Resource.jdo
+12:21:28,482 (main) DEBUG [DataNucleus.MetaData] - No hemos encontrado el MetaData del tipo "jdo" por la clase "es.deusto.spq.server.Resource"
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.Resource" tiene anotaciones pero no hay ningún AnnotationReader registrado para este tipo de anotaciones. Por favor compruebe el CLASSPATH y las anotaciones para validez.
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - Registrando la clase "es.deusto.spq.server.Resource" no tener Meta-Data
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - La clase "es.deusto.spq.server.Resource" no tiene MetaData o annotaciones.
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - Populación del MetaData ...
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" : Populando Meta-Data
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" campo "user" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" campo "text" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:28,483 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" campo "timestamp" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:28,484 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" : Populando Meta-Data
+12:21:28,484 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" campo "password" : añadiendo el Meta-Data por el campo como no estaba en la definición de Meta-Data.
+12:21:28,484 (main) DEBUG [DataNucleus.MetaData] - Inicialisación del MetaData ...
+12:21:28,484 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.Message" : Inicializando Meta-Data
+12:21:28,485 (main) DEBUG [DataNucleus.MetaData] - Clase "es.deusto.spq.server.jdo.User" : Inicializando Meta-Data
+12:21:28,486 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata ya ha terminado
+12:21:28,487 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.Message" empezando ...
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no implementa el interfaz "org.datanucleus.enhancement.Persistable"!
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnStateManager" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnInheritedFieldCount" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnFlags" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el campo "dnFieldNames" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceField" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetStateManager" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsTransactional" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewInstance" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewInstance" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnProvideFields" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "___dn$loadClass" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetManagedFieldCount" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsDirty" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceStateManager" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceFlags" pero lo necesita
+12:21:28,492 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsDetached" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnMakeDirty" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsDeleted" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnProvideField" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnPreSerialize" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetObjectId" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetVersion" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetTransactionalObjectId" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsNew" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyField" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnGetExecutionContext" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnCopyFields" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "__dnGetInheritedFieldCount" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnIsPersistent" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "dnReplaceFields" pero lo necesita
+12:21:28,493 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.Message" no tiene el método "__dnFieldNamesInit" pero lo necesita
+12:21:28,498 (main) DEBUG [DataNucleus.Enhancer] - Agregando el interfaz: org.datanucleus.enhancement.Persistable
+12:21:28,499 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.user"
+12:21:28,499 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.text"
+12:21:28,499 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.text"
+12:21:28,500 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.Message.timestamp"
+12:21:28,501 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.getUser, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.user" para utilizar "dnGetuser()"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.setUser, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.user" para utilizar "dnSetuser()"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.text" para utilizar "dnGettext()"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.Message.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.Message.timestamp" para utilizar "dnGettimestamp()"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "org.datanucleus.enhancement.StateManager dnStateManager"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "byte dnFlags"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "[Ljava.lang.String; dnFieldNames"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "int dnInheritedFieldCount"
+12:21:28,502 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void <clinit>()"
+12:21:28,503 (main) DEBUG [DataNucleus.Enhancer] - Agregando el constructor "es.deusto.spq.server.jdo.Message()"
+12:21:28,503 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldConsumer fc, java.lang.Object oid)"
+12:21:28,503 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(java.lang.Object oid)"
+12:21:28,503 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(java.lang.Object oid)"
+12:21:28,504 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldSupplier fs, java.lang.Object oid)"
+12:21:28,504 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetObjectId()"
+12:21:28,504 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetVersion()"
+12:21:28,504 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnPreSerialize()"
+12:21:28,504 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.ExecutionContextReference dnGetExecutionContext()"
+12:21:28,504 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.StateManager dnGetStateManager()"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetTransactionalObjectId()"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDeleted()"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDirty()"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsNew()"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsPersistent()"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsTransactional()"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnMakeDirty(java.lang.String fieldName)"
+12:21:28,505 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance()"
+12:21:28,506 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance(java.lang.Object key)"
+12:21:28,506 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideFields([I indices)"
+12:21:28,506 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFields([I indices)"
+12:21:28,506 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFlags()"
+12:21:28,506 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceStateManager(org.datanucleus.enhancement.StateManager sm)"
+12:21:28,507 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDetached()"
+12:21:28,507 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm)"
+12:21:28,507 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm, java.lang.Object obj)"
+12:21:28,507 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceField(int index)"
+12:21:28,508 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideField(int index)"
+12:21:28,508 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyField(es.deusto.spq.server.jdo.Message obj, int index)"
+12:21:28,508 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyFields(java.lang.Object obj, [I indices)"
+12:21:28,508 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "[Ljava.lang.String; __dnFieldNamesInit()"
+12:21:28,508 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int __dnGetInheritedFieldCount()"
+12:21:28,508 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int dnGetManagedFieldCount()"
+12:21:28,509 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Class ___dn$loadClass(java.lang.String className)"
+12:21:28,509 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.String dnGettext(es.deusto.spq.server.jdo.Message objPC)"
+12:21:28,510 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSettext(es.deusto.spq.server.jdo.Message objPC, java.lang.String val)"
+12:21:28,510 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "long dnGettimestamp(es.deusto.spq.server.jdo.Message objPC)"
+12:21:28,510 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSettimestamp(es.deusto.spq.server.jdo.Message objPC, long val)"
+12:21:28,510 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "es.deusto.spq.server.jdo.User dnGetuser(es.deusto.spq.server.jdo.Message objPC)"
+12:21:28,510 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetuser(es.deusto.spq.server.jdo.Message objPC, es.deusto.spq.server.jdo.User val)"
+12:21:28,511 (main) INFO  [DataNucleus.Enhancer] - Escribiendo el archivo de clase "C:\Users\erlan\Documents\GitHub\proyectoAeropuerto\psc_proyecto_03\aeropuertog3\target\classes\es\deusto\spq\server\jdo\Message.class" con definición enhanced
+12:21:28,511 (main) INFO  [DataNucleus.Enhancer] - ENHANCED (Persistable) : es.deusto.spq.server.jdo.Message
+12:21:28,511 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.Message" ha terminado
+12:21:28,511 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.User" empezando ...
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no implementa el interfaz "org.datanucleus.enhancement.Persistable"!
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnStateManager" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnInheritedFieldCount" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnFlags" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el campo "dnFieldNames" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceField" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetStateManager" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsTransactional" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewInstance" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewInstance" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnProvideFields" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "___dn$loadClass" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetManagedFieldCount" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsDirty" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceStateManager" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceFlags" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsDetached" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnMakeDirty" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsDeleted" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnProvideField" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnPreSerialize" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetObjectId" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetVersion" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetTransactionalObjectId" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsNew" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsToObjectId" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyField" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyKeyFieldsFromObjectId" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnGetExecutionContext" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnCopyFields" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "__dnGetInheritedFieldCount" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnNewObjectIdInstance" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnIsPersistent" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "dnReplaceFields" pero lo necesita
+12:21:28,512 (main) DEBUG [DataNucleus.Enhancer] - La clase "es.deusto.spq.server.jdo.User" no tiene el método "__dnFieldNamesInit" pero lo necesita
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Agregando el interfaz: org.datanucleus.enhancement.Persistable
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.login"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.password"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.messages"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.login"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.<init> : ignorando enhance de set del campo "es.deusto.spq.server.jdo.User.password"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.addMessage, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.removeMessage, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.getLogin, cambiando el uso del campo "es.deusto.spq.server.jdo.User.login" para utilizar "dnGetlogin()"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.getPassword, cambiando el uso del campo "es.deusto.spq.server.jdo.User.password" para utilizar "dnGetpassword()"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.setPassword, cambiando el uso del campo "es.deusto.spq.server.jdo.User.password" para utilizar "dnSetpassword()"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.getMessages, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.User.messages" para utilizar "dnGetmessages()"
+12:21:28,513 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.User.login" para utilizar "dnGetlogin()"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Enhancing método original es.deusto.spq.server.jdo.User.toString, cambiando el uso del campo "es.deusto.spq.server.jdo.User.password" para utilizar "dnGetpassword()"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "org.datanucleus.enhancement.StateManager dnStateManager"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "byte dnFlags"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "[Ljava.lang.String; dnFieldNames"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Agregando el campo "int dnInheritedFieldCount"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void <clinit>()"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Agregando el constructor "es.deusto.spq.server.jdo.User()"
+12:21:28,514 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldConsumer fc, java.lang.Object oid)"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsFromObjectId(java.lang.Object oid)"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(java.lang.Object oid)"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyKeyFieldsToObjectId(org.datanucleus.enhancement.Persistable$ObjectIdFieldSupplier fs, java.lang.Object oid)"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetObjectId()"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetVersion()"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnPreSerialize()"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.ExecutionContextReference dnGetExecutionContext()"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.StateManager dnGetStateManager()"
+12:21:28,515 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnGetTransactionalObjectId()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDeleted()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDirty()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsNew()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsPersistent()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsTransactional()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnMakeDirty(java.lang.String fieldName)"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Object dnNewObjectIdInstance(java.lang.Object key)"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideFields([I indices)"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFields([I indices)"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceFlags()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceStateManager(org.datanucleus.enhancement.StateManager sm)"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "boolean dnIsDetached()"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm)"
+12:21:28,516 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "org.datanucleus.enhancement.Persistable dnNewInstance(org.datanucleus.enhancement.StateManager sm, java.lang.Object obj)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnReplaceField(int index)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnProvideField(int index)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyField(es.deusto.spq.server.jdo.User obj, int index)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnCopyFields(java.lang.Object obj, [I indices)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "[Ljava.lang.String; __dnFieldNamesInit()"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int __dnGetInheritedFieldCount()"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "int dnGetManagedFieldCount()"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.Class ___dn$loadClass(java.lang.String className)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.String dnGetlogin(es.deusto.spq.server.jdo.User objPC)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetlogin(es.deusto.spq.server.jdo.User objPC, java.lang.String val)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.util.Set dnGetmessages(es.deusto.spq.server.jdo.User objPC)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetmessages(es.deusto.spq.server.jdo.User objPC, java.util.Set val)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "java.lang.String dnGetpassword(es.deusto.spq.server.jdo.User objPC)"
+12:21:28,517 (main) DEBUG [DataNucleus.Enhancer] - Agregando el método "void dnSetpassword(es.deusto.spq.server.jdo.User objPC, java.lang.String val)"
+12:21:28,518 (main) INFO  [DataNucleus.Enhancer] - Escribiendo el archivo de clase "C:\Users\erlan\Documents\GitHub\proyectoAeropuerto\psc_proyecto_03\aeropuertog3\target\classes\es\deusto\spq\server\jdo\User.class" con definición enhanced
+12:21:28,518 (main) INFO  [DataNucleus.Enhancer] - ENHANCED (Persistable) : es.deusto.spq.server.jdo.User
+12:21:28,518 (main) DEBUG [DataNucleus.Enhancer] - Enhance de la clase "es.deusto.spq.server.jdo.User" ha terminado
+12:21:28,519 (main) INFO  [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con exito para 2 clases. Tiempos : input=51 ms, enhance=32 ms, total=83 ms. Compruebe el LOG para los detalles
