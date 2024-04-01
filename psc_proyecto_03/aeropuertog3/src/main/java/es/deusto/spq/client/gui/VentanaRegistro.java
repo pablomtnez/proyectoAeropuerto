@@ -19,7 +19,7 @@ public class VentanaRegistro extends JFrame{
 
     private JPanel contentPane;
     private JButton botonEntrar, botonVolver;
-    private JTextField textFieldUsuario, textFieldPassword, textFieldConfirm;
+    private JTextField textFieldUsuario, textFieldApellido, textFieldDNI, textFieldFecha, textFieldCorreo, textFieldPassword, textFieldConfirm;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -62,12 +62,40 @@ public class VentanaRegistro extends JFrame{
         panelFormulario.setLayout(new GridLayout(2,2,10,10));
         panelPrincipal.add(panelFormulario);
 
-        JLabel lblUsuario = new JLabel("Usuario: ");
+        JLabel lblUsuario = new JLabel("Nombre: ");
         panelFormulario.add(lblUsuario);
 
         textFieldUsuario = new JTextField();
         panelFormulario.add(textFieldUsuario);
         textFieldUsuario.setColumns(50);
+
+        JLabel lblApellido = new JLabel("Apellido: ");
+        panelFormulario.add(lblApellido);
+
+        textFieldApellido = new JTextField();
+        panelFormulario.add(textFieldApellido);
+        textFieldApellido.setColumns(50);
+
+        JLabel lblDNI = new JLabel("DNI: ");
+        panelFormulario.add(lblDNI);
+
+        textFieldDNI = new JTextField();
+        panelFormulario.add(textFieldDNI);
+        textFieldDNI.setColumns(50);
+
+        JLabel lblFecha = new JLabel("Fecha de nacimiento: ");
+        panelFormulario.add(lblUsuario);
+
+        textFieldFecha = new JTextField();
+        panelFormulario.add(textFieldFecha);
+        textFieldFecha.setColumns(50);
+
+        JLabel lblcorreo = new JLabel("Correo electronico: ");
+        panelFormulario.add(lblcorreo);
+
+        textFieldCorreo = new JTextField();
+        panelFormulario.add(textFieldCorreo);
+        textFieldCorreo.setColumns(50);
 
         JLabel lblPassword = new JLabel("Contrasena: ");
         panelFormulario.add(lblPassword);
