@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -12,10 +14,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
-
 
 public class VentanaLogin extends JFrame{
     
@@ -25,14 +23,14 @@ public class VentanaLogin extends JFrame{
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            try {
-                VentanaLogin frame = new VentanaLogin();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
+            public void run() {
+                try {
+                    VentanaLogin frame = new VentanaLogin();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
         });
     }
 
@@ -41,7 +39,7 @@ public class VentanaLogin extends JFrame{
         //Ventana
 
         setTitle("Login");
-        setBounds(100, 100, 1100, 650);
+        setBounds(100, 100, 600, 400); // Tamaño más manejable
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentPane = new JPanel();
@@ -54,39 +52,39 @@ public class VentanaLogin extends JFrame{
         contentPane.add(panelNorte, BorderLayout.NORTH);
 
         JLabel lblTitulo = new JLabel("Login");
-        lblTitulo.setFont(new Font("Verdana Pro Cond Semibold", Font.PLAIN, 15));
+        lblTitulo.setFont(new Font("Verdana", Font.BOLD, 18)); // Fuente más grande y en negrita
         panelNorte.add(lblTitulo);
 
         //PanelCentro
         JPanel panelCentro = new JPanel();
         contentPane.add(panelCentro, BorderLayout.CENTER);
-        panelCentro.setLayout(new GridLayout(1, 2, 10, 10));
+        panelCentro.setLayout(new GridLayout(2, 2, 10, 10)); // Modificado para un mejor aspecto visual
 
         //PanelFormulario
         JPanel panelFormulario = new JPanel();
         panelFormulario.setLayout(new GridLayout(2,2,10,10));
         panelCentro.add(panelFormulario);
 
-        JLabel lblUsuario = new JLabel("Usuario");
+        JLabel lblUsuario = new JLabel("Usuario:");
         panelFormulario.add(lblUsuario);
 
         textFieldUsuario = new JTextField();
         panelFormulario.add(textFieldUsuario);
-        textFieldUsuario.setColumns(50);
+        textFieldUsuario.setColumns(20); // Ajustado el ancho del campo de texto
 
-        JLabel lblPassword = new JLabel("Contrasena");
+        JLabel lblPassword = new JLabel("Contraseña:");
         panelFormulario.add(lblPassword);
 
         textFieldPassword = new JTextField();
         panelFormulario.add(textFieldPassword);
-        textFieldPassword.setColumns(50);
+        textFieldPassword.setColumns(20); // Ajustado el ancho del campo de texto
 
         //Panel Imagen
         JPanel panelImagen = new JPanel();
         panelCentro.add(panelImagen);
 
         JLabel lblImagen = new JLabel();
-        ImageIcon icono = new ImageIcon("C:/Users/pablo/Documents/GitHub/proyectoAeropuerto/psc_proyecto_03/aeropuertog3/src/main/java/es/deusto/spq/client/utils/logo.jpg");
+        ImageIcon icono = new ImageIcon("ruta/a/tu/imagen/logo.jpg"); // Cambiar la ruta por la correcta
         lblImagen.setIcon(icono);
         panelImagen.add(lblImagen);
 
@@ -104,9 +102,7 @@ public class VentanaLogin extends JFrame{
         botonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //hacer que funcione solo si los textfield de la contraseña y la confirmacion son iguales
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                // TODO: Agregar lógica para el login
             }
         });
 
@@ -118,12 +114,9 @@ public class VentanaLogin extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 setVisible(false); // Oculta la ventana de login
                 VentanaRegistro ventanaregistro = new VentanaRegistro();
-                ventanaregistro.setVisible(true); // Añade esta línea para mostrar la ventana de registro
+                ventanaregistro.setVisible(true); // Muestra la ventana de registro
             }
         });
-        
-
-    }
-
-    
+    }  
 }
+
