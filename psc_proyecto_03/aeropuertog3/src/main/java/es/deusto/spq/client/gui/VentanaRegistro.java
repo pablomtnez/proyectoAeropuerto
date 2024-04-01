@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -12,32 +14,29 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
-
-public class VentanaRegistro extends JFrame{
+public class VentanaRegistro extends JFrame {
 
     private JPanel contentPane;
-    private JButton botonEntrar, botonVolver;
     private JTextField textFieldUsuario, textFieldApellido, textFieldDNI, textFieldFecha, textFieldCorreo, textFieldPassword, textFieldConfirm;
+    private JButton botonEntrar, botonVolver; // Declaramos los botones aquí
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            try {
-                VentanaRegistro frame = new VentanaRegistro();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
+            public void run() {
+                try {
+                    VentanaRegistro frame = new VentanaRegistro();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
         });
     }
-    
-    public VentanaRegistro(){
+
+    public VentanaRegistro() {
 
         setTitle("Registro");
-        setBounds(100, 100, 1100, 650);
+        setBounds(100, 100, 600, 400); // Cambié las dimensiones para que sea más manejable
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentPane = new JPanel();
@@ -45,103 +44,90 @@ public class VentanaRegistro extends JFrame{
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
-        //Panel de titulo
+        // Panel de titulo
         JPanel panelTitulo = new JPanel();
         contentPane.add(panelTitulo, BorderLayout.NORTH);
-        JLabel Titulo = new JLabel("Registro");
-        Titulo.setFont(new Font("Verdana Pro Cond Semibold", Font.PLAIN, 15));
-        panelTitulo.add(Titulo);
+        JLabel lblTitulo = new JLabel("Registro de Usuario"); // Cambié el nombre del título para hacerlo más descriptivo
+        lblTitulo.setFont(new Font("Verdana", Font.BOLD, 18)); // Cambié el estilo de la fuente para hacerla más llamativa
+        panelTitulo.add(lblTitulo);
 
-        //Panel principal
+        // Panel principal
         JPanel panelPrincipal = new JPanel();
         contentPane.add(panelPrincipal, BorderLayout.CENTER);
-        panelPrincipal.setLayout(new GridLayout(1, 2, 10, 10));
+        panelPrincipal.setLayout(new GridLayout(7, 2, 10, 10)); // Ajusté el diseño para acomodar todos los campos de entrada
 
-        //PanelFormulario
-        JPanel panelFormulario = new JPanel();
-        panelFormulario.setLayout(new GridLayout(2,2,10,10));
-        panelPrincipal.add(panelFormulario);
-
-        JLabel lblUsuario = new JLabel("Nombre: ");
-        panelFormulario.add(lblUsuario);
+        // Campos de formulario
+        JLabel lblUsuario = new JLabel("Nombre:");
+        panelPrincipal.add(lblUsuario);
 
         textFieldUsuario = new JTextField();
-        panelFormulario.add(textFieldUsuario);
-        textFieldUsuario.setColumns(50);
+        panelPrincipal.add(textFieldUsuario);
+        textFieldUsuario.setColumns(20);
 
-        JLabel lblApellido = new JLabel("Apellido: ");
-        panelFormulario.add(lblApellido);
+        JLabel lblApellido = new JLabel("Apellido:");
+        panelPrincipal.add(lblApellido);
 
         textFieldApellido = new JTextField();
-        panelFormulario.add(textFieldApellido);
-        textFieldApellido.setColumns(50);
+        panelPrincipal.add(textFieldApellido);
+        textFieldApellido.setColumns(20);
 
-        JLabel lblDNI = new JLabel("DNI: ");
-        panelFormulario.add(lblDNI);
+        JLabel lblDNI = new JLabel("DNI:");
+        panelPrincipal.add(lblDNI);
 
         textFieldDNI = new JTextField();
-        panelFormulario.add(textFieldDNI);
-        textFieldDNI.setColumns(50);
+        panelPrincipal.add(textFieldDNI);
+        textFieldDNI.setColumns(20);
 
-        JLabel lblFecha = new JLabel("Fecha de nacimiento: ");
-        panelFormulario.add(lblUsuario);
+        JLabel lblFecha = new JLabel("Fecha de nacimiento:");
+        panelPrincipal.add(lblFecha);
 
         textFieldFecha = new JTextField();
-        panelFormulario.add(textFieldFecha);
-        textFieldFecha.setColumns(50);
+        panelPrincipal.add(textFieldFecha);
+        textFieldFecha.setColumns(20);
 
-        JLabel lblcorreo = new JLabel("Correo electronico: ");
-        panelFormulario.add(lblcorreo);
+        JLabel lblCorreo = new JLabel("Correo electrónico:");
+        panelPrincipal.add(lblCorreo);
 
         textFieldCorreo = new JTextField();
-        panelFormulario.add(textFieldCorreo);
-        textFieldCorreo.setColumns(50);
+        panelPrincipal.add(textFieldCorreo);
+        textFieldCorreo.setColumns(20);
 
-        JLabel lblPassword = new JLabel("Contrasena: ");
-        panelFormulario.add(lblPassword);
+        JLabel lblPassword = new JLabel("Contraseña:");
+        panelPrincipal.add(lblPassword);
 
         textFieldPassword = new JTextField();
-        panelFormulario.add(textFieldPassword);
-        textFieldPassword.setColumns(50);
+        panelPrincipal.add(textFieldPassword);
+        textFieldPassword.setColumns(20);
 
-        JLabel lblConfirmar = new JLabel("Confirmar Contrasena: ");
-        panelFormulario.add(lblConfirmar);
+        JLabel lblConfirmar = new JLabel("Confirmar Contraseña:");
+        panelPrincipal.add(lblConfirmar);
 
         textFieldConfirm = new JTextField();
-        panelFormulario.add(textFieldConfirm);
-        textFieldConfirm.setColumns(50);
+        panelPrincipal.add(textFieldConfirm);
+        textFieldConfirm.setColumns(20);
 
-        //Panel de botones
-        JPanel panelBoton= new JPanel();
+        // Panel de botones
+        JPanel panelBoton = new JPanel();
         contentPane.add(panelBoton, BorderLayout.SOUTH);
-        panelBoton.setLayout(new GridLayout(1,2,10,10));
-        
-        botonEntrar = new JButton("registrar usuario");
-        panelBoton.add(botonEntrar);
 
+        botonEntrar = new JButton("Registrar Usuario");
+        panelBoton.add(botonEntrar);
         botonEntrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                // TODO: Agregar la lógica para registrar al usuario
             }
         });
 
-        botonVolver = new JButton("atras");
+        botonVolver = new JButton("Atrás");
         panelBoton.add(botonVolver);
-
-        botonEntrar.addActionListener(new ActionListener() {
+        botonVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                VentanaLogin ventanalogin = new VentanaLogin();
+                VentanaLogin ventanaLogin = new VentanaLogin();
+                ventanaLogin.setVisible(true); // Agregué la visibilidad de la ventana de inicio de sesión al volver atrás
             }
         });
-
     }
-
-
-
 }
-
-
