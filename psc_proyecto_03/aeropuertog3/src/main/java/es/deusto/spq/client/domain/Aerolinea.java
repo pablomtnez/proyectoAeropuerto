@@ -67,19 +67,4 @@ public class Aerolinea implements Serializable {
 		return String.format("%s: %s [%s] (%s)", code, name, alliance, pais);
 	}
 	
-	/**
-	 * Crea un objeto Aerolinea a partir de una cadena de texto separada por comas ",".
-	 * @param data String con la cadena de texto separada por comas ",".
-	 * @return Aerolinea con el nuevo objeto creado.
-	 * @throws Exception Si se produce un error al generar el obejto Aerolinea.
-	 */
-	public static Aerolinea parseCSV(String data) throws Exception {
-		try {
-			String[] fields = data.split(",");
-			
-			return new Aerolinea(fields[0], fields[1], Pais.valueOf(fields[2]), AirAlliance.valueOf(fields[3]));			
-		} catch (Exception ex) {
-			throw new Exception(String.format("%s from CSV error: %s", Aerolinea.class, data));
-		}
-	}
 }

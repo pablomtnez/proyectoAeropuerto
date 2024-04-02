@@ -20,10 +20,10 @@ public class Vuelo {
     private String code;
 
     @Persistent
-    private Aeropuerto origin;
+    private Aeropuerto origen;
 
     @Persistent
-    private Aeropuerto destination;
+    private Aeropuerto destino;
 
     @Persistent
     private Aerolinea aerolinea;
@@ -35,13 +35,13 @@ public class Vuelo {
     private List<Reserva> reservas;
 
     @Persistent
-    private int duration;
+    private int duracion;
 
     @Persistent
     private int seats;
 
     @Persistent
-    private float price;
+    private float precio;
 
     @Persistent(mappedBy = "vuelo", dependentElement = "true")
     @Join
@@ -53,16 +53,16 @@ public class Vuelo {
     }
 
     // Constructor con todos los atributos
-    public Vuelo(String code, Aeropuerto origin, Aeropuerto destination, Aerolinea aerolinea, Avion avion, List<Reserva> reservas, int duration, int seats, float price) {
+    public Vuelo(String code, Aeropuerto origen, Aeropuerto destino, Aerolinea aerolinea, Avion avion, List<Reserva> reservas, int duracion, int seats, float precio) {
         this.code = code;
-        this.origin = origin;
-        this.destination = destination;
+        this.origen = origen;
+        this.destino = destino;
         this.aerolinea = aerolinea;
         this.avion = avion;
         this.reservas = reservas;
-        this.duration = duration;
+        this.duracion = duracion;
         this.seats = seats;
-        this.price = price;
+        this.precio = precio;
     }
 
     // Getters y Setters
@@ -74,20 +74,20 @@ public class Vuelo {
         this.code = code;
     }
 
-    public Aeropuerto getOrigin() {
-        return origin;
+    public Aeropuerto getOrigen() {
+        return origen;
     }
 
-    public void setOrigin(Aeropuerto origin) {
-        this.origin = origin;
+    public void setOrigen(Aeropuerto origen) {
+        this.origen = origen;
     }
 
-    public Aeropuerto getDestination() {
-        return destination;
+    public Aeropuerto getDestino() {
+        return destino;
     }
 
-    public void setDestination(Aeropuerto destination) {
-        this.destination = destination;
+    public void setDestino(Aeropuerto destino) {
+        this.destino = destino;
     }
 
     public Aerolinea getAerolinea() {
@@ -114,12 +114,12 @@ public class Vuelo {
         this.reservas = reservas;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getDuracion() {
+        return duracion;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
     public int getSeats() {
@@ -130,12 +130,12 @@ public class Vuelo {
         this.seats = seats;
     }
 
-    public float getPrice() {
-        return price;
+    public float getPrecio() {
+        return precio;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
     
     public void addMessage(Message message){
@@ -155,6 +155,6 @@ public class Vuelo {
        for(Message message : this.messages){
         messagesStr.append(message.toString() + " - ");
        }
-       return "Vuelo: Code --> " + this.code + ", Origen --> " + this.origin + ", Destino --> " + this.destination + ", Aerolinea --> " + this.aerolinea + ", Avion --> " + this.avion + ", Reservas --> " + this.reservas + ", Duracion --> " + this.duration + ", Asientos --> " + this.seats + ", Precio --> " + this.price +  ", messages --> [" + messagesStr + "]"; 
+       return "Vuelo: Code --> " + this.code + ", Origen --> " + this.origen + ", Destino --> " + this.destino + ", Aerolinea --> " + this.aerolinea + ", Avion --> " + this.avion + ", Reservas --> " + this.reservas + ", Duracion --> " + this.duracion + ", Asientos --> " + this.seats + ", Precio --> " + this.precio +  ", messages --> [" + messagesStr + "]"; 
     }
 }

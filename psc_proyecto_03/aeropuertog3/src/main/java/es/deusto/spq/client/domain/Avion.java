@@ -47,22 +47,4 @@ public class Avion implements Serializable {
 		return String.format("%s: %s (%d seats)", code, name, seats);
 	}
 	
-	/**
-	 * Crea un objeto Avion a partir de una cadena de texto separada por comas ",".
-	 * @param data String con la cadena de texto separada por comas ",".
-	 * @return Avion con el nuevo objeto creado.
-	 * @throws Exception Si se produce un error al generar el obejto Avion.
-	 */
-	public static Avion parseCSV(String data) throws Exception {
-		try {
-			String[] fields = data.split(",");
-			
-			return new Avion(fields[0], 
-							 fields[1],
-							 Integer.valueOf(fields[2]));			
-		} catch (Exception ex) {
-			throw new Exception(String.format("%s from CSV error: %s", 
-											Avion.class, data));
-		}
-	}
 }

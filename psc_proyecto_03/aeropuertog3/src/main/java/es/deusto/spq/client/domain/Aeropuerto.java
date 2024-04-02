@@ -52,22 +52,6 @@ public class Aeropuerto implements Comparable<Aeropuerto>, Serializable {
 	public String toString() {
 		return String.format("%s: %s, %s (%s)", code, name, city, pais);
 	}
-	
-	/**
-	 * Crea un objeto Aeropuerto a partir de una cadena de texto separada por comas ",".
-	 * @param data String con la cadena de texto separada por comas ",".
-	 * @return Aeropuerto con el nuevo objeto creado.
-	 * @throws Exception Si se produce un error al generar el obejto Aeropuerto.
-	 */
-	public static Aeropuerto parseCSV(String data) throws Exception {
-		try {
-			String[] fields = data.split(",");
-			
-			return new Aeropuerto(fields[0], fields[1], fields[2], Pais.valueOf(fields[3]));			
-		} catch (Exception ex) {
-			throw new Exception(String.format("%s from CSV error: %s", Aeropuerto.class, data));
-		}
-	}
 
 	@Override
 	public int compareTo(Aeropuerto o) {
