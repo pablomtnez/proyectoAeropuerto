@@ -18,7 +18,7 @@ public class Vuelo implements Comparable<Vuelo>, Serializable {
 	private int seats;
 	private float precio;
 	
-	public Vuelo(String code, Aeropuerto origen, Aeropuerto destino, Aerolinea aerolinea, Avion avion, int duracion, int seats, float precio, List<Reserva> reservas) {
+	public Vuelo(String code, Aeropuerto origen, Aeropuerto destino, Aerolinea aerolinea, Avion avion, List<Reserva> reservas, int duracion, int seats, float precio) {
 		this.code = code;
 		this.origen = origen;
 		this.destino = destino;

@@ -67,7 +67,7 @@ public class Reserva implements Serializable {
 			String[] fields = data.split("#");			
 			//El vuelo sólo tiene el código porque el resto de datos son desconocidos.
 			return new Reserva(fields[0], 
-								   new Vuelo(fields[1], null, null, null, null, 0, 0f), 
+								   new Vuelo(fields[1], null, null, null, null, null, 0, 0, 0f), 
 								   Long.valueOf(fields[2]), 
 								   Arrays.asList(fields[3].split(";")));			
 		} catch (Exception ex) {
