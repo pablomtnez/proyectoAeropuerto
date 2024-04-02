@@ -14,7 +14,7 @@ public class Usuario {
     private String dni;
 
     @Persistent
-    private String username;
+    private String apellido;
 
     @Persistent
     private String nombre;
@@ -35,22 +35,15 @@ public class Usuario {
     }
 
     // Constructor con todos los atributos
-    public Usuario(String username, String nombre, String email, String dni, String password) {
-        this.username = username;
+    public Usuario(String nombre, String apellido, String email, String dni, String password) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.email = email;
         this.dni = dni;
         this.password = password;
     }
 
     // Getters y Setters
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getNombre() {
         return nombre;
@@ -60,6 +53,14 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -101,6 +102,6 @@ public class Usuario {
        for(Message message : this.messages){
         messagesStr.append(message.toString() + " - ");
        }
-       return "User: Nombre --> " + this.nombre + ", DNI --> " + this.dni + ", Email --> " + this.email + ", Username --> " + this.username + ", Password --> " + this.password + ", messages --> [" + messagesStr + "]"; 
+       return "User: Nombre --> " + this.nombre + ", Apellido --> " + this.apellido + ", DNI --> " + this.dni + ", Email --> " + this.email  + ", Password --> " + this.password + ", messages --> [" + messagesStr + "]"; 
     }
 }

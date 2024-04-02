@@ -2,8 +2,8 @@ package es.deusto.spq.client.domain;
 
 public class Usuario {
 
-    private String username;
     private String nombre;
+    private String apellido;
     private String email;
     private String dni;
     private String password;
@@ -14,22 +14,14 @@ public class Usuario {
     }
 
 
-    public Usuario(String username, String nombre, String email, String dni, String password) {
-        this.username = username;
+    public Usuario(String nombre, String apellido, String email, String dni, String password) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.email = email;
         this.dni = dni;
         this.password = password;
     }
 
-    
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getNombre() {
         return nombre;
@@ -37,6 +29,14 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getUsername() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getEmail() {
@@ -66,8 +66,8 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "username='" + username + '\'' +
-                ", nombre='" + nombre + '\'' +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
                 ", dni='" + dni + '\'' +
                 '}';

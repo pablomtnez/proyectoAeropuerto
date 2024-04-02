@@ -9,24 +9,24 @@ public class Vuelo implements Comparable<Vuelo>, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String code;
-	private Aeropuerto origin;
-	private Aeropuerto destination;
+	private Aeropuerto origen;
+	private Aeropuerto destino;
 	private Aerolinea aerolinea;
 	private Avion avion;
 	private List<Reserva> reservas;
-	private int duration;
+	private int duracion;
 	private int seats;
-	private float price;
+	private float precio;
 	
-	public Vuelo(String code, Aeropuerto origin, Aeropuerto destination, Aerolinea aerolinea, Avion avion, int duration, float price) {
+	public Vuelo(String code, Aeropuerto origen, Aeropuerto destino, Aerolinea aerolinea, Avion avion, int duracion, int seats, float precio, List<Reserva> reservas) {
 		this.code = code;
-		this.origin = origin;
-		this.destination = destination;
+		this.origen = origen;
+		this.destino = destino;
 		this.aerolinea = aerolinea;
 		this.avion = avion;
-		this.duration = duration;		
+		this.duracion = duracion;		
 		this.seats = (avion == null) ? 0 : avion.getSeats();
-		this.price = price;
+		this.precio = precio;
 		this.reservas = new ArrayList<>();
 	}
 
@@ -34,12 +34,12 @@ public class Vuelo implements Comparable<Vuelo>, Serializable {
 		return code;
 	}
 
-	public Aeropuerto getOrigin() {
-		return origin;
+	public Aeropuerto getOrigen() {
+		return origen;
 	}
 
-	public Aeropuerto getDestination() {
-		return destination;
+	public Aeropuerto getDestino() {
+		return destino;
 	}
 
 	public Aerolinea getAerolinea() {
@@ -50,8 +50,8 @@ public class Vuelo implements Comparable<Vuelo>, Serializable {
 		return avion;
 	}
 
-	public int getDuration() {
-		return duration;
+	public int getDuracion() {
+		return duracion;
 	}
 
 	public int getSeats() {
@@ -68,8 +68,8 @@ public class Vuelo implements Comparable<Vuelo>, Serializable {
 		return (seats - occupied);
 	}
 	
-	public float getPrice() {
-		return price;
+	public float getPrecio() {
+		return precio;
 	}
 	
 	public List<Reserva> getReservas() {
@@ -103,7 +103,7 @@ public class Vuelo implements Comparable<Vuelo>, Serializable {
 	@Override
 	public String toString() {
 		return String.format("%s: %s -> %s (%04d min., %03d seats, %.2f€)", 
-			code, origin.getCode(), destination.getCode(), duration, (seats-reservas.size()), price);
+			code, origen.getCode(), destino.getCode(), duracion, (seats-reservas.size()), precio);
 	}
 
 	@Override

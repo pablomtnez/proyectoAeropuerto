@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 public class VentanaRegistro extends JFrame {
 
     private JPanel contentPane;
-    private JTextField textFieldUsuario, textFieldApellido, textFieldDNI, textFieldFecha, textFieldCorreo, textFieldPassword, textFieldConfirm;
+    private JTextField textFieldUsuario, textFieldApellido, textFieldDNI, textFieldCorreo, textFieldPassword, textFieldConfirm;
     private JButton botonEntrar, botonVolver; // Declaramos los botones aquí
 
     public static void main(String[] args) {
@@ -77,13 +77,6 @@ public class VentanaRegistro extends JFrame {
         textFieldDNI = new JTextField();
         panelPrincipal.add(textFieldDNI);
         textFieldDNI.setColumns(20);
-
-        JLabel lblFecha = new JLabel("Fecha de nacimiento:");
-        panelPrincipal.add(lblFecha);
-
-        textFieldFecha = new JTextField();
-        panelPrincipal.add(textFieldFecha);
-        textFieldFecha.setColumns(20);
 
         JLabel lblCorreo = new JLabel("Correo electrónico:");
         panelPrincipal.add(lblCorreo);
