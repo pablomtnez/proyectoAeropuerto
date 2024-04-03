@@ -128,10 +128,10 @@ public class Resource {
 	public Response loginUser(UserData userData) {
 		try {
 			tx.begin();
-			logger.info("Checking whether the user already exits or not: '{}'", userData.getLogin());
+			logger.info("Checking whether the user already exits or not: '{}'", userData.getMail());
 			Usuario usuario = null;
 			try {
-				usuario = pm.getObjectById(Usuario.class, userData.getLogin());
+				usuario = pm.getObjectById(Usuario.class, userData.getMail());
 			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
 				logger.info("Exception launched: {}", jonfe.getMessage());
 			}
