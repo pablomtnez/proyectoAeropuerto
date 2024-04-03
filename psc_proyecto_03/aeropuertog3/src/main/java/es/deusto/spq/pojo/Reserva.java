@@ -1,4 +1,4 @@
-package es.deusto.spq.client.domain;
+package es.deusto.spq.pojo;
 
 import java.io.Serializable;
 import java.util.List;

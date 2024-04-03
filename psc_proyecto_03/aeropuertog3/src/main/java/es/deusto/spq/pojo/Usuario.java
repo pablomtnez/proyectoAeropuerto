@@ -1,4 +1,4 @@
-package es.deusto.spq.client.domain;
+package es.deusto.spq.pojo;
 
 public class Usuario {
 

@@ -9,10 +9,10 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.client.domain.Aerolinea;
-import es.deusto.spq.client.domain.Aeropuerto;
-import es.deusto.spq.client.domain.Avion;
-import es.deusto.spq.client.domain.Reserva;
+import es.deusto.spq.pojo.Aerolinea;
+import es.deusto.spq.pojo.Aeropuerto;
+import es.deusto.spq.pojo.Avion;
+import es.deusto.spq.pojo.Reserva;
 
 @PersistenceCapable(detachable = "true")
 public class Vuelo {

@@ -11,6 +11,7 @@ import es.deusto.spq.server.jdo.Message;
 import es.deusto.spq.pojo.DirectMessage;
 import es.deusto.spq.pojo.MessageData;
 import es.deusto.spq.pojo.UserData;
+import es.deusto.spq.pojo.Usuario;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -39,7 +40,7 @@ public class Resource {
 		this.tx = pm.currentTransaction();
 	}
 
-	@POST
+	/* @POST
 	@Path("/sayMessage")
 	public Response sayMessage(DirectMessage directMessage) {
 		User user = null;
@@ -120,5 +121,35 @@ public class Resource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response sayHello() {
 		return Response.ok("Hello world!").build();
+	} */
+
+	@POST
+	@Path("/login")
+	public Response loginUser(UserData userData) {
+		try {
+			tx.begin();
+			logger.info("Checking whether the user already exits or not: '{}'", userData.getLogin());
+			Usuario usuario = null;
+			try {
+				usuario = pm.getObjectById(Usuario.class, userData.getLogin());
+			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+				logger.info("Exception launched: {}", jonfe.getMessage());
+			}
+			logger.info("Usuario: {}", usuario);
+			if(usuario != null) {
+				if(!usuario.getPassword().equals(userData.getPassword())) {
+					return Response.serverError().build();
+				}
+			}else{
+				return Response.serverError().build();
+			}
+			tx.commit();
+			return Response.ok().build();
+		} finally {
+			if(tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-}
+	}

@@ -12,12 +12,12 @@ import javax.jdo.annotations.PrimaryKey;
 public class Usuario {
     @PrimaryKey
     private String dni;
+    
+    @Persistent
+    private String nombre;
 
     @Persistent
     private String apellido;
-
-    @Persistent
-    private String nombre;
 
     @Persistent
     private String email;

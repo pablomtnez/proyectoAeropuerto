@@ -5,8 +5,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.client.domain.AirAlliance;
-import es.deusto.spq.client.domain.Pais;
+import es.deusto.spq.pojo.AirAlliance;
+import es.deusto.spq.pojo.Pais;
 
 @PersistenceCapable(detachable = "true")
 public class Aerolinea {
