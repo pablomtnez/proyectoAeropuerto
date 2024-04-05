@@ -6,10 +6,10 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import es.deusto.spq.pojo.AirAlliance;
-import es.deusto.spq.pojo.Pais;
+import es.deusto.spq.pojo.Country;
 
 @PersistenceCapable(detachable = "true")
-public class Aerolinea {
+public class Airline {
     @PrimaryKey
     private String code;
 
@@ -17,19 +17,19 @@ public class Aerolinea {
     private String name;
 
     @Persistent
-    private Pais pais;
+    private Country pais;
 
     @Persistent
     private AirAlliance alliance;
 
     @Persistent
-    private List<Vuelo> vuelos;
+    private List<Flight> vuelos;
 
-    public Aerolinea() {
+    public Airline() {
 
     }
 
-    public Aerolinea(String code, String name, Pais pais, AirAlliance alliance, List<Vuelo> vuelos) {
+    public Airline(String code, String name, Country pais, AirAlliance alliance, List<Flight> vuelos) {
         this.code = code;
         this.name = name;
         this.pais = pais;
@@ -53,11 +53,11 @@ public class Aerolinea {
         this.name = name;
     }
 
-    public Pais getPais() {
+    public Country getPais() {
         return pais;
     }
 
-    public void setPais(Pais pais) {
+    public void setPais(Country pais) {
         this.pais = pais;
     }
 
@@ -69,11 +69,11 @@ public class Aerolinea {
         this.alliance = alliance;
     }
 
-    public List<Vuelo> getVuelos() {
+    public List<Flight> getVuelos() {
         return vuelos;
     }
 
-    public void setVuelo(List<Vuelo> vuelos) {
+    public void setVuelo(List<Flight> vuelos) {
         this.vuelos = vuelos;
     }
 

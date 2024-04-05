@@ -8,8 +8,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
-import es.deusto.spq.pojo.Aerolinea;
-import es.deusto.spq.pojo.Aeropuerto;
+import es.deusto.spq.pojo.Airline;
+import es.deusto.spq.pojo.Airport;
 
 public class FlightRenderer implements TableCellRenderer{
 
@@ -22,9 +22,9 @@ public class FlightRenderer implements TableCellRenderer{
 		label.setHorizontalAlignment(JLabel.CENTER);
 
         //AEROLÍNEA se renderiza como un label con el logo de la aerolínea
-		if (value.getClass().equals(Aerolinea.class)) {
+		if (value.getClass().equals(Airline.class)) {
 			//label.setIcon(new ImageIcon(String.format("resources/images/%s.png", ((Airline)value).getCode())));
-			label.setToolTipText(((Aerolinea)value).getName());
+			label.setToolTipText(((Airline)value).getName());
 		}
 
         //El VUELO, RESERVAS y ASIENTOS LIBRES se renderizan como texto ce trado
@@ -33,9 +33,9 @@ public class FlightRenderer implements TableCellRenderer{
 		}
 
         //ORIGEN y DESTINO se redenrizan con el código de aeropuerto como texto centrado
-		if (value.getClass().equals(Aeropuerto.class)) {
-			label.setText(((Aeropuerto)value).getCode());
-			label.setToolTipText(((Aeropuerto)value).getName());
+		if (value.getClass().equals(Airport.class)) {
+			label.setText(((Airport)value).getCode());
+			label.setToolTipText(((Airport)value).getName());
 		}
 
         //DURACIÓN se alinea a la derecha y se añade "m."

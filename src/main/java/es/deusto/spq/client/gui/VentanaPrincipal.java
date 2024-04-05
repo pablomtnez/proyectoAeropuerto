@@ -26,9 +26,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import es.deusto.spq.pojo.Aeropuerto;
+import es.deusto.spq.pojo.Airport;
 import es.deusto.spq.pojo.AirAlliance;
-import es.deusto.spq.pojo.Vuelo;
+import es.deusto.spq.pojo.Flight;
 import es.deusto.spq.client.gui.FlightRenderer;
 
 public class VentanaPrincipal extends JFrame{
@@ -38,7 +38,7 @@ public class VentanaPrincipal extends JFrame{
 	private List<AirAlliance> airAllianceServices = new ArrayList<>();
 	
 	//Lista de vuelos que se está visualizando en la ventana
-	private List<Vuelo> flights = new ArrayList<>();
+	private List<Flight> flights = new ArrayList<>();
 	
 	//JTable de vuelos
 	private JTable jTableFlights = new JTable();	
@@ -62,9 +62,9 @@ public class VentanaPrincipal extends JFrame{
 				final String origin = fromItem.toString().substring(0, fromItem.toString().indexOf(" - "));
 
                 if (!origin.isEmpty()) {
-					Set<Aeropuerto> destinations = new HashSet<>();					
+					Set<Airport> destinations = new HashSet<>();					
 					airAllianceServices.forEach(a -> destinations.addAll(a.getDestino(origin)));					
-					updateDestinations(new ArrayList<Aeropuerto>(destinations));
+					updateDestinations(new ArrayList<Airport>(destinations));
 				} else {
 					jComboDestination.removeAllItems();
 				}								
@@ -73,9 +73,9 @@ public class VentanaPrincipal extends JFrame{
 			jLabelInfo.setText("Selecciona un aeropuerto origen");
 		});
         
-        Set<Aeropuerto> origins = new HashSet<>();
-		airAllianceServices.forEach(a -> origins.addAll(a.getOrigins()));
-		updateOrigins(new ArrayList<Aeropuerto>(origins));
+        Set<Airport> origins = new HashSet<>();
+		airAllianceServices.forEach(a -> origins.addAll(a.getOrigin()));
+		updateOrigins(new ArrayList<Airport>(origins));
 
         jComboDestination.setPrototypeDisplayValue("Seleccione el nombre del aeropuerto destino");
 		jComboDestination.addActionListener((e) -> {
@@ -126,28 +126,28 @@ public class VentanaPrincipal extends JFrame{
 		setVisible(true);
     }
 
-    private void updateOrigins(List<Aeropuerto> airports) {		
+    private void updateOrigins(List<Airport> airports) {		
 		this.jComboOrigin.removeAllItems();
 		this.jComboOrigin.addItem("");		
 		Collections.sort(airports);
 		airports.forEach(a -> jComboOrigin.addItem(String.format("%s - %s (%s)", 
-				a.getCode(), a.getName(), a.getPais().getName())));		
+				a.getCode(), a.getName(), a.getCountry().getName())));		
 	}
 
-    private void updateDestinations(List<Aeropuerto> airports) {		
+    private void updateDestinations(List<Airport> airports) {		
 		this.jComboDestination.removeAllItems();
 		this.jComboDestination.addItem("");
 		Collections.sort(airports);
 		airports.forEach(a -> jComboDestination.addItem(String.format("%s - %s (%s)", 
-				a.getCode(), a.getName(), a.getPais().getName())));		
+				a.getCode(), a.getName(), a.getCountry().getName())));		
 	
     
     }
 
     public void updateFlights() {
 		//Se crea un comparador para ordenar los itinerarios por número de vuelos				
-		Comparator<Vuelo> priceComparator = (f1, f2) -> {
-			return Float.compare(f1.getPrecio(), f2.getPrecio());
+		Comparator<Flight> priceComparator = (f1, f2) -> {
+			return Float.compare(f1.getPrice(), f2.getPrice());
 		};
 		//Se ordenan los vuelos por precio
 		Collections.sort(flights, priceComparator);

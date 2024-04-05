@@ -3,19 +3,17 @@ package es.deusto.spq.pojo;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Aeropuerto implements Comparable<Aeropuerto>, Serializable {
+public class Plane implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private String code;
 	private String name;
-	private String city;
-	private Pais pais;
+	private int seats;
 	
-	public Aeropuerto(String code, String name, String city, Pais pais) {
+	public Plane(String code, String name, int seats) {
 		this.code = code;
 		this.name = name;
-		this.city = city;
-		this.pais = pais;
+		this.seats = seats;
 	}
 
 	public String getCode() {
@@ -26,12 +24,8 @@ public class Aeropuerto implements Comparable<Aeropuerto>, Serializable {
 		return name;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public Pais getPais() {
-		return pais;
+	public int getSeats() {
+		return seats;
 	}
 
 	@Override
@@ -42,7 +36,7 @@ public class Aeropuerto implements Comparable<Aeropuerto>, Serializable {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj != null && getClass() == obj.getClass()) {
-			return ((Aeropuerto) obj).code.equals(this.code);
+			return ((Plane) obj).code.equals(this.code);
 		} else {
 			return false;
 		}
@@ -50,11 +44,7 @@ public class Aeropuerto implements Comparable<Aeropuerto>, Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%s: %s, %s (%s)", code, name, city, pais);
+		return String.format("%s: %s (%d seats)", code, name, seats);
 	}
 
-	@Override
-	public int compareTo(Aeropuerto o) {
-		return this.getCode().compareTo(o.getCode());
-	}
 }

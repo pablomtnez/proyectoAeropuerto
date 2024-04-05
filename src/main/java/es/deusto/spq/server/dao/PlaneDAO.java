@@ -8,41 +8,41 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
-import es.deusto.spq.server.jdo.Avion;
+import es.deusto.spq.server.jdo.Plane;
 
-public class AvionDAO extends DataAccessObjectBase implements IDataAccessObject<Avion> {
+public class PlaneDAO extends DataAccessObjectBase implements IDataAccessObject<Plane> {
 
-    private static AvionDAO instance;
+    private static PlaneDAO instance;
 
-    private AvionDAO(){}
+    private PlaneDAO(){}
 
-    public static AvionDAO getInstance(){
+    public static PlaneDAO getInstance(){
         if (instance == null){
-            instance = new AvionDAO();
+            instance = new PlaneDAO();
         }
         return instance;
     }
 
     @Override
-    public void save(Avion object) {
+    public void save(Plane object) {
         super.saveObject(object);
     }
 
     @Override
-    public void delete(Avion object) {
+    public void delete(Plane object) {
         super.deleteObject(object);
     }
 
     @Override
-    public List<Avion> getAll() {
+    public List<Plane> getAll() {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        List<Avion> Aviones = new ArrayList<>();
+        List<Plane> Aviones = new ArrayList<>();
         try {
             tx.begin();
-            Extent<Avion> extent = pm.getExtent(Avion.class, true);
-            for (Avion category : extent){
+            Extent<Plane> extent = pm.getExtent(Plane.class, true);
+            for (Plane category : extent){
                 Aviones.add(category);
             }
             tx.commit();
@@ -59,18 +59,18 @@ public class AvionDAO extends DataAccessObjectBase implements IDataAccessObject<
     }
 
     @Override
-    public Avion find(String param) {
+    public Plane find(String param) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        Avion result = null;
+        Plane result = null;
 
         try {
             tx.begin();
 
-            Query query = pm.newQuery("SELECT FROM " + Avion.class.getName() + " WHERE code == '" + param+"'");
+            Query query = pm.newQuery("SELECT FROM " + Plane.class.getName() + " WHERE code == '" + param+"'");
             query.setUnique(true);
-            result = (Avion) query.execute();
+            result = (Plane) query.execute();
         } catch (Exception ex) {
             System.out.println("  $ Error querying an Avion: " + ex.getMessage());
         }finally {

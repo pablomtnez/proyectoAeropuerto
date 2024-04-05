@@ -5,13 +5,13 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import es.deusto.spq.pojo.Vuelo;
+import es.deusto.spq.pojo.Flight;
 
 public class FlightsTableModel extends DefaultTableModel{
 
     private static final long serialVersionUID = 1L;
 	
-	private List<Vuelo> flights;
+	private List<Flight> flights;
 	private final List<String> headers = Arrays.asList(
 			"AEROLÍNEA", 
 			"VUELO", 
@@ -24,7 +24,7 @@ public class FlightsTableModel extends DefaultTableModel{
 			"DISPONIBILIDAD", //Columna para la disponibilidad
 			"RESERVAR");
 
-	public FlightsTableModel(List<Vuelo> flights) {
+	public FlightsTableModel(List<Flight> flights) {
 		this.flights = flights;
 	}
 	
@@ -59,16 +59,16 @@ public class FlightsTableModel extends DefaultTableModel{
 	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Vuelo flight = flights.get(rowIndex);
+		Flight flight = flights.get(rowIndex);
 		
 		switch (columnIndex) {
-			case 0: return flight.getAerolinea();
+			case 0: return flight.getAirline();
 			case 1: return flight.getCode();
-			case 2: return flight.getOrigen();
-			case 3: return flight.getDestino();
-			case 4: return Integer.valueOf(flight.getDuracion());
-			case 5: return Float.valueOf(flight.getPrecio());
-			case 6: return Integer.valueOf(flight.getReservas().size());
+			case 2: return flight.getOrigin();
+			case 3: return flight.getDestination();
+			case 4: return Integer.valueOf(flight.getDuration());
+			case 5: return Float.valueOf(flight.getPrice());
+			case 6: return Integer.valueOf(flight.getReservations().size());
 			case 7: return Integer.valueOf(flight.getRemainingSeats());
 			//La disponibilidad se calcula como el cociente entre RemainingSeats y Seats
 			case 8: return Float.valueOf( 1.0f * flight.getRemainingSeats() / flight.getSeats() );

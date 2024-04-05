@@ -3,17 +3,19 @@ package es.deusto.spq.pojo;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Avion implements Serializable {
+public class Airport implements Comparable<Airport>, Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private String code;
 	private String name;
-	private int seats;
+	private String city;
+	private Country country;
 	
-	public Avion(String code, String name, int seats) {
+	public Airport(String code, String name, String city, Country country) {
 		this.code = code;
 		this.name = name;
-		this.seats = seats;
+		this.city = city;
+		this.country = country;
 	}
 
 	public String getCode() {
@@ -24,8 +26,12 @@ public class Avion implements Serializable {
 		return name;
 	}
 
-	public int getSeats() {
-		return seats;
+	public String getCity() {
+		return city;
+	}
+
+	public Country getCountry() {
+		return country;
 	}
 
 	@Override
@@ -36,7 +42,7 @@ public class Avion implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj != null && getClass() == obj.getClass()) {
-			return ((Avion) obj).code.equals(this.code);
+			return ((Airport) obj).code.equals(this.code);
 		} else {
 			return false;
 		}
@@ -44,7 +50,11 @@ public class Avion implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%s: %s (%d seats)", code, name, seats);
+		return String.format("%s: %s, %s (%s)", code, name, city, country);
 	}
-	
+
+	@Override
+	public int compareTo(Airport o) {
+		return this.getCode().compareTo(o.getCode());
+	}
 }

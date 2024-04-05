@@ -1,8 +1,6 @@
 package es.deusto.spq.pojo;
 
-import java.io.Serializable;
-
-public enum Pais implements Serializable {
+public enum Country {
 	AE("United Arab Emirates"),
 	AN("Netherlands Antilles"),
 	AO("Angola"),
@@ -83,7 +81,7 @@ public enum Pais implements Serializable {
 	
 	private String name;
 	
-	Pais(String name) {
+	Country(String name) {
 		this.name = name;
 	}
 	

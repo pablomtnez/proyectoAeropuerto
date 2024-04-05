@@ -8,43 +8,43 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
-import es.deusto.spq.server.jdo.Vuelo;
+import es.deusto.spq.server.jdo.Flight;
 
-public class VueloDAO extends DataAccessObjectBase implements IDataAccessObject<Vuelo>{
+public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject<Flight>{
 
-    private static VueloDAO instance;
+    private static FlightDAO instance;
 
-    private VueloDAO(){}
+    private FlightDAO(){}
 
-    public static VueloDAO getInstance(){
+    public static FlightDAO getInstance(){
         if (instance == null){
-            instance = new VueloDAO();
+            instance = new FlightDAO();
         }
         return instance;
     }
 
     @Override
-    public void save(Vuelo object) {
+    public void save(Flight object) {
         super.saveObject(object);
     }
 
     @Override
-    public void delete(Vuelo object) {
+    public void delete(Flight object) {
         super.deleteObject(object);
     }
 
     @Override
-    public List<Vuelo> getAll() {
+    public List<Flight> getAll() {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        List<Vuelo> Vuelos = new ArrayList<>();
+        List<Flight> Vuelos = new ArrayList<>();
 
         try {
             tx.begin();
 
-            Extent<Vuelo> extent = pm.getExtent(Vuelo.class, true);
-            for(Vuelo category : extent){
+            Extent<Flight> extent = pm.getExtent(Flight.class, true);
+            for(Flight category : extent){
                 Vuelos.add(category);
             }
             tx.commit();
@@ -60,17 +60,17 @@ public class VueloDAO extends DataAccessObjectBase implements IDataAccessObject<
     }
 
     @Override
-    public Vuelo find(String param) {
+    public Flight find(String param) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        Vuelo result = null;
+        Flight result = null;
 
         try {
             tx.begin();
-            Query query = pm.newQuery("SELECT FROM " + Vuelo.class.getName() + " WHERE code == '" + param+"'");
+            Query query = pm.newQuery("SELECT FROM " + Flight.class.getName() + " WHERE code == '" + param+"'");
             query.setUnique(true);
-            result = (Vuelo)query.execute();
+            result = (Flight)query.execute();
             tx.commit();
         } catch (Exception ex) {
             System.out.println("  $ Error querying an Vuelo: " + ex.getMessage());

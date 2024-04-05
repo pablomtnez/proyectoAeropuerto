@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Aerolinea implements Serializable {
+public class Airline implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private String code;
 	private String name;
-	private Pais pais;
+	private Country country;
 	private AirAlliance alliance;
-	private List<Vuelo> vuelos;
+	private List<Flight> flights;
 	
-	public Aerolinea(String code, String name, Pais pais, AirAlliance alliance) {
+	public Airline(String code, String name, Country country, AirAlliance alliance) {
 		this.code = code;
 		this.name = name;
-		this.pais = pais;
+		this.country = country;
 		this.alliance = alliance;
-		this.vuelos = new ArrayList<>();
+		this.flights = new ArrayList<>();
 	}
 
 	public String getCode() {
@@ -30,21 +30,21 @@ public class Aerolinea implements Serializable {
 		return name;
 	}
 
-	public Pais getPais() {
-		return pais;
+	public Country getCountry() {
+		return country;
 	}
 	
 	public AirAlliance getAlliance() {
 		return alliance;
 	}
 	
-	public List<Vuelo> getVuelos() {
-		return vuelos;
+	public List<Flight> getFlights() {
+		return flights;
 	}
 
-	public void addVuelo(Vuelo vuelo) {
-		if (vuelo !=null && !vuelos.contains(vuelo)) {
-			vuelos.add(vuelo);
+	public void addFlight(Flight flight) {
+		if (flight !=null && !flights.contains(flight)) {
+			flights.add(flight);
 		}
 	}
 
@@ -56,7 +56,7 @@ public class Aerolinea implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj != null && getClass() == obj.getClass()) {
-			return ((Aerolinea) obj).code.equals(code);
+			return ((Airline) obj).code.equals(code);
 		} else {
 			return false;
 		}
@@ -64,7 +64,7 @@ public class Aerolinea implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%s: %s [%s] (%s)", code, name, alliance, pais);
+		return String.format("%s: %s [%s] (%s)", code, name, alliance, country);
 	}
 	
 }

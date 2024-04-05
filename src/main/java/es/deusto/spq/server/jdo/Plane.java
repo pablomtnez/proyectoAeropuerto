@@ -5,7 +5,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(detachable = "true")
-public class Avion {
+public class Plane {
 
     @PrimaryKey
     private String code;
@@ -16,10 +16,10 @@ public class Avion {
     @Persistent
     private int seats;
 
-    public Avion() {
+    public Plane() {
     }
 
-    public Avion(String code, String name, int seats) {
+    public Plane(String code, String name, int seats) {
         this.code = code;
         this.name = name;
         this.seats = seats;

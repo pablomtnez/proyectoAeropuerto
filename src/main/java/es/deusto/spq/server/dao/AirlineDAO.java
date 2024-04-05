@@ -8,44 +8,44 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
-import es.deusto.spq.server.jdo.Aerolinea;
+import es.deusto.spq.server.jdo.Airline;
 
-public class AerolineaDAO extends DataAccessObjectBase implements IDataAccessObject<Aerolinea> {
+public class AirlineDAO extends DataAccessObjectBase implements IDataAccessObject<Airline> {
 
-    private static AerolineaDAO instance;
+    private static AirlineDAO instance;
 
-    private AerolineaDAO(){
+    private AirlineDAO(){
         
     }
 
-    public static AerolineaDAO getInstance() {
+    public static AirlineDAO getInstance() {
         if(instance == null) {
-            instance = new AerolineaDAO();
+            instance = new AirlineDAO();
         }
         return instance;
     }
 
     @Override
-    public void save(Aerolinea object) {
+    public void save(Airline object) {
        super.saveObject(object);
     }
 
     @Override
-    public void delete(Aerolinea object) {
+    public void delete(Airline object) {
         super.deleteObject(object);
     }
 
     @Override
-    public List<Aerolinea> getAll() {
+    public List<Airline> getAll() {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        List<Aerolinea> Aerolineas = new ArrayList<>();
+        List<Airline> Aerolineas = new ArrayList<>();
 
         try {
             tx.begin();
-            Extent<Aerolinea> extent = pm.getExtent(Aerolinea.class, true);
-            for(Aerolinea category : extent){
+            Extent<Airline> extent = pm.getExtent(Airline.class, true);
+            for(Airline category : extent){
                 Aerolineas.add(category);
             }
             tx.commit();
@@ -61,18 +61,18 @@ public class AerolineaDAO extends DataAccessObjectBase implements IDataAccessObj
     }
 
     @Override
-    public Aerolinea find(String param) {
+    public Airline find(String param) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        Aerolinea result = null;
+        Airline result = null;
 
         try {
             tx.begin();
 
-            Query query = pm.newQuery("SELECT FROM " + Aerolinea.class.getName() + " WHERE code == '" + param+"'");
+            Query query = pm.newQuery("SELECT FROM " + Airline.class.getName() + " WHERE code == '" + param +"'");
             query.setUnique(true);
-            result = (Aerolinea) query.execute();
+            result = (Airline) query.execute();
 
             tx.commit();
         } catch (Exception ex) {

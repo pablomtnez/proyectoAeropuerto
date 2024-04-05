@@ -8,42 +8,42 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
-import es.deusto.spq.server.jdo.Aeropuerto;
+import es.deusto.spq.server.jdo.Airport;
 
-public class AeropuertoDAO extends DataAccessObjectBase implements IDataAccessObject<Aeropuerto>{
+public class AirportDAO extends DataAccessObjectBase implements IDataAccessObject<Airport>{
 
-    private static AeropuertoDAO instance;
+    private static AirportDAO instance;
 
-    private AeropuertoDAO(){}
+    private AirportDAO(){}
 
-    public static AeropuertoDAO getInstance(){
+    public static AirportDAO getInstance(){
         if(instance==null){
-            instance = new AeropuertoDAO();
+            instance = new AirportDAO();
         }
         return instance;
     }
 
     @Override
-    public void save(Aeropuerto object) {
+    public void save(Airport object) {
         super.saveObject(object);
     }
 
     @Override
-    public void delete(Aeropuerto object) {
+    public void delete(Airport object) {
         super.deleteObject(object);
     }
 
     @Override
-    public List<Aeropuerto> getAll() {
+    public List<Airport> getAll() {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        List<Aeropuerto> Aeropuertos = new ArrayList<>();
+        List<Airport> Aeropuertos = new ArrayList<>();
 
         try {
             tx.begin();
-            Extent<Aeropuerto> extent = pm.getExtent(Aeropuerto.class, true);
-            for(Aeropuerto category : extent){
+            Extent<Airport> extent = pm.getExtent(Airport.class, true);
+            for(Airport category : extent){
                 Aeropuertos.add(category);
             }
             tx.commit();
@@ -59,16 +59,16 @@ public class AeropuertoDAO extends DataAccessObjectBase implements IDataAccessOb
     }
 
     @Override
-    public Aeropuerto find(String param) {
+    public Airport find(String param) {
        PersistenceManager pm = pmf.getPersistenceManager();
        Transaction tx = pm.currentTransaction();
 
-       Aeropuerto result = null;
+       Airport result = null;
        try {
             tx.begin();
-            Query query = pm.newQuery("SELECT FROM " + Aeropuerto.class.getName() + " WHERE code == '" + param+"'");
+            Query query = pm.newQuery("SELECT FROM " + Airport.class.getName() + " WHERE code == '" + param+"'");
             query.setUnique(true);
-            result = (Aeropuerto) query.execute();
+            result = (Airport) query.execute();
        } catch (Exception ex) {
             System.out.println("  $ Error querying an Aeropuerto: " + ex.getMessage());
        }finally{

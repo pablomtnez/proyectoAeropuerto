@@ -9,30 +9,30 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.pojo.Aerolinea;
-import es.deusto.spq.pojo.Aeropuerto;
-import es.deusto.spq.pojo.Avion;
-import es.deusto.spq.pojo.Reserva;
+import es.deusto.spq.pojo.Airline;
+import es.deusto.spq.pojo.Airport;
+import es.deusto.spq.pojo.Plane;
+import es.deusto.spq.pojo.Reservation;
 
 @PersistenceCapable(detachable = "true")
-public class Vuelo {
+public class Flight {
     @PrimaryKey
     private String code;
 
     @Persistent
-    private Aeropuerto origen;
+    private Airport origen;
 
     @Persistent
-    private Aeropuerto destino;
+    private Airport destino;
 
     @Persistent
-    private Aerolinea aerolinea;
+    private Airline aerolinea;
 
     @Persistent
-    private Avion avion;
+    private Plane avion;
 
     @Persistent
-    private List<Reserva> reservas;
+    private List<Reservation> reservas;
 
     @Persistent
     private int duracion;
@@ -48,12 +48,12 @@ public class Vuelo {
     Set<Message> messages = new HashSet<>();
 
     // Constructor sin argumentos
-    public Vuelo() {
+    public Flight() {
 
     }
 
     // Constructor con todos los atributos
-    public Vuelo(String code, Aeropuerto origen, Aeropuerto destino, Aerolinea aerolinea, Avion avion, List<Reserva> reservas, int duracion, int seats, float precio) {
+    public Flight(String code, Airport origen, Airport destino, Airline aerolinea, Plane avion, List<Reservation> reservas, int duracion, int seats, float precio) {
         this.code = code;
         this.origen = origen;
         this.destino = destino;
@@ -74,43 +74,43 @@ public class Vuelo {
         this.code = code;
     }
 
-    public Aeropuerto getOrigen() {
+    public Airport getOrigen() {
         return origen;
     }
 
-    public void setOrigen(Aeropuerto origen) {
+    public void setOrigen(Airport origen) {
         this.origen = origen;
     }
 
-    public Aeropuerto getDestino() {
+    public Airport getDestino() {
         return destino;
     }
 
-    public void setDestino(Aeropuerto destino) {
+    public void setDestino(Airport destino) {
         this.destino = destino;
     }
 
-    public Aerolinea getAerolinea() {
+    public Airline getAerolinea() {
         return aerolinea;
     }
 
-    public void setAerolinea(Aerolinea aerolinea) {
+    public void setAerolinea(Airline aerolinea) {
         this.aerolinea = aerolinea;
     }    
     
-    public Avion getAvion() {
+    public Plane getAvion() {
         return avion;
     }
 
-    public void setAvion(Avion avion) {
+    public void setAvion(Plane avion) {
         this.avion = avion;
     }
     
-    public List<Reserva> getReservas() {
+    public List<Reservation> getReservas() {
         return reservas;
     }
 
-    public void setReservas(List<Reserva> reservas) {
+    public void setReservas(List<Reservation> reservas) {
         this.reservas = reservas;
     }
 

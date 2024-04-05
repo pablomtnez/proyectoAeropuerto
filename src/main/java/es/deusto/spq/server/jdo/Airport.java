@@ -8,10 +8,10 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.pojo.Pais;
+import es.deusto.spq.pojo.Country;
 
 @PersistenceCapable(detachable = "true")
-public class Aeropuerto {
+public class Airport {
     @PrimaryKey
     private String code;
 
@@ -22,19 +22,19 @@ public class Aeropuerto {
     private String city;
 
     @Persistent
-    private Pais pais;
+    private Country pais;
 
     @Persistent(mappedBy = "aeropuerto", dependentElement = "true")
     @Join
     Set<Message> messages = new HashSet<>();
 
     // Constructor sin argumentos
-    public Aeropuerto() {
+    public Airport() {
 
     }
 
     // Constructor con todos los atributos
-    public Aeropuerto(String code, String name, String city, Pais pais) {
+    public Airport(String code, String name, String city, Country pais) {
         this.code = code;
         this.name = name;
         this.city = city;
@@ -67,11 +67,11 @@ public class Aeropuerto {
         this.city = city;
     }
 
-    public Pais getPais() {
+    public Country getPais() {
         return pais;
     }
 
-    public void setPais(Pais pais) {
+    public void setPais(Country pais) {
         this.pais = pais;
     }
 
