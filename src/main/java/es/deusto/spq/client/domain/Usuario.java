@@ -1,11 +1,10 @@
-package es.deusto.spq.pojo;
+package es.deusto.spq.client.domain;
 
 public class Usuario {
 
     private String nombre;
     private String apellido;
     private String email;
-    private String dni;
     private String password;
 
   
@@ -14,11 +13,10 @@ public class Usuario {
     }
 
 
-    public Usuario(String nombre, String apellido, String email, String dni, String password) {
+    public Usuario(String nombre, String apellido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.dni = dni;
         this.password = password;
     }
 
@@ -47,14 +45,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public String getPassword(){
         return password;
     }
@@ -69,7 +59,6 @@ public class Usuario {
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
-                ", dni='" + dni + '\'' +
                 '}';
     }
 }

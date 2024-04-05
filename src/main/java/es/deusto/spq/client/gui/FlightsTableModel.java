@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import es.deusto.spq.pojo.Flight;
+import es.deusto.spq.client.domain.Flight;
 
 public class FlightsTableModel extends DefaultTableModel{
 

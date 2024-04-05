@@ -8,7 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.pojo.Country;
+import es.deusto.spq.client.domain.Country;
 
 @PersistenceCapable(detachable = "true")
 public class Airport {

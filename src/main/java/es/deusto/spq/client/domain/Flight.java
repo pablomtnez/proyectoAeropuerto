@@ -1,9 +1,12 @@
-package es.deusto.spq.pojo;
+package es.deusto.spq.client.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import es.deusto.spq.client.domain.Airline;
+import es.deusto.spq.client.domain.Airport;
 
 public class Flight implements Serializable{
 

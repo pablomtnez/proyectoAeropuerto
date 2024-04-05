@@ -8,8 +8,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
-import es.deusto.spq.pojo.Airline;
-import es.deusto.spq.pojo.Airport;
+import es.deusto.spq.client.domain.Airline;
+import es.deusto.spq.client.domain.Airport;
 
 public class FlightRenderer implements TableCellRenderer{
 

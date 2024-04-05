@@ -10,8 +10,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(detachable = "true")
 public class Usuario {
-    @PrimaryKey
-    private String dni;
     
     @Persistent
     private String nombre;
@@ -19,7 +17,7 @@ public class Usuario {
     @Persistent
     private String apellido;
 
-    @Persistent
+    @PrimaryKey
     private String email;
 
     @Persistent
@@ -35,11 +33,10 @@ public class Usuario {
     }
 
     // Constructor con todos los atributos
-    public Usuario(String nombre, String apellido, String email, String dni, String password) {
+    public Usuario(String nombre, String apellido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.dni = dni;
         this.password = password;
     }
 
@@ -69,14 +66,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -102,6 +91,6 @@ public class Usuario {
        for(Message message : this.messages){
         messagesStr.append(message.toString() + " - ");
        }
-       return "User: Nombre --> " + this.nombre + ", Apellido --> " + this.apellido + ", DNI --> " + this.dni + ", Email --> " + this.email  + ", Password --> " + this.password + ", messages --> [" + messagesStr + "]"; 
+       return "User: Nombre --> " + this.nombre + ", Apellido --> " + this.apellido + ", Email --> " + this.email  + ", Password --> " + this.password + ", messages --> [" + messagesStr + "]"; 
     }
 }

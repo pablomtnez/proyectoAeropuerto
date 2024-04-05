@@ -1,4 +1,4 @@
-package es.deusto.spq.pojo;
+package es.deusto.spq.client.domain;
 
 public enum Country {
 	AE("United Arab Emirates"),

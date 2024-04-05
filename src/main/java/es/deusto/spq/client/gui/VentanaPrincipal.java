@@ -26,9 +26,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import es.deusto.spq.pojo.Airport;
-import es.deusto.spq.pojo.AirAlliance;
-import es.deusto.spq.pojo.Flight;
+import es.deusto.spq.client.domain.AirAlliance;
+import es.deusto.spq.client.domain.Airport;
+import es.deusto.spq.client.domain.Flight;
 import es.deusto.spq.client.gui.FlightRenderer;
 
 public class VentanaPrincipal extends JFrame{
