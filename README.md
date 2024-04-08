@@ -9,11 +9,11 @@ Run the following command to build everything and enhance the DB classes:
 
 Make sure that the database was correctly configured. Use the contents of the file create-message.sql to create the database and grant privileges. For example,
 
-      mysql –u root -p < sql/create-messages.sql
+      mysql -u root -p > sql/messagesDB.sql
 
 Ejecute el siguiente comando para crear el enhance de base de datos para esta muestra.
 
-      nucleus:enhance
+      mvn datanucleus:enhance
 
 
 Run the following command to see ig th db works correctly.
