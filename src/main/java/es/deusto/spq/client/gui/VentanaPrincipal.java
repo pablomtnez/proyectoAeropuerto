@@ -29,6 +29,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import es.deusto.spq.client.domain.AirAlliance;
 import es.deusto.spq.client.domain.Airport;
 import es.deusto.spq.client.domain.Flight;
+import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.FlightRenderer;
 
 public class VentanaPrincipal extends JFrame{
@@ -48,10 +49,14 @@ public class VentanaPrincipal extends JFrame{
 	private JComboBox<String> jComboOrigin = new JComboBox<>();
 	private JComboBox<String> jComboDestination = new JComboBox<>();
 
+	public static Usuario logged;
+
     public VentanaPrincipal(){
         //airAllianceServices.add(new ONE_WORLD());
         //airAllianceServices.add(new SKY_TIME());
 		//airAllianceServices.add(new STAR_ALLIENCE());
+
+		logged = null;
 
         jComboOrigin.setPrototypeDisplayValue("Seleccione el nombre del aeropuerto origen");		
 		jComboOrigin.addActionListener((e) -> {
@@ -63,7 +68,7 @@ public class VentanaPrincipal extends JFrame{
 
                 if (!origin.isEmpty()) {
 					Set<Airport> destinations = new HashSet<>();					
-					airAllianceServices.forEach(a -> destinations.addAll(a.getDestino(origin)));					
+					//airAllianceServices.forEach(a -> destinations.addAll(a.getDestino(origin)));					
 					updateDestinations(new ArrayList<Airport>(destinations));
 				} else {
 					jComboDestination.removeAllItems();
@@ -74,7 +79,7 @@ public class VentanaPrincipal extends JFrame{
 		});
         
         Set<Airport> origins = new HashSet<>();
-		airAllianceServices.forEach(a -> origins.addAll(a.getOrigin()));
+		//airAllianceServices.forEach(a -> origins.addAll(a.getOrigin()));
 		updateOrigins(new ArrayList<Airport>(origins));
 
         jComboDestination.setPrototypeDisplayValue("Seleccione el nombre del aeropuerto destino");
@@ -88,7 +93,7 @@ public class VentanaPrincipal extends JFrame{
 				if (!destination.isEmpty() && jComboOrigin.getSelectedIndex() > 0) {
 					Object fromItem = jComboOrigin.getSelectedItem();
 					final String origin = fromItem.toString().substring(0, fromItem.toString().indexOf(" - "));
-					airAllianceServices.forEach(a -> flights.addAll(a.search(origin, destination)));				
+					//airAllianceServices.forEach(a -> flights.addAll(a.search(origin, destination)));				
 				}
 			}
 			

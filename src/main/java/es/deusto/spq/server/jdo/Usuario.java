@@ -7,9 +7,10 @@ import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import java.io.Serializable;
 
 @PersistenceCapable(detachable = "true")
-public class Usuario {
+public class Usuario implements Serializable{
     
     @Persistent
     private String nombre;

@@ -13,44 +13,50 @@ import org.apache.logging.log4j.LogManager;
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)
 public class ResourceServer {
-	protected static final Logger logger = LogManager.getLogger();
+    protected static final Logger logger = LogManager.getLogger();
 
-	public ResourceServer() {}
+    public ResourceServer() {}
 
-	@POST
-	@Path("/login")
-	public Response loginUser(Usuario user){
-		try {
-			Usuario u = UsuarioDAO.getInstance().find(user.getEmail());
-			if(user.getPassword().equals(u.getPassword())) {
-				logger.info("Login succeded");
-				System.out.println("Login succeded");
-				return Response.ok(u, MediaType.APPLICATION_JSON).build();
-			} else {
-				logger.error("Login failed");
-				System.out.println("Login failed");
-				return Response.serverError().build();
-			}
-		} catch (Exception e) {
-			logger.error("Login failed");
-			System.out.println("Login failed");
-			return Response.serverError().build();
-		}
-	}
+    @POST
+    @Path("/login")
+    public static Response login(Usuario user){
+        try {
+            // Validación básica de la entrada
+            if(user.getEmail() == null || user.getPassword() == null) {
+                logger.error("Login failed: Email or password is null");
+                return Response.status(Response.Status.BAD_REQUEST).entity("Email or password cannot be null").build();
+            }
 
-	@POST
-	@Path("/register")
-	public Response registerUser(Usuario user){
-		try {
-			UsuarioDAO.getInstance().save(user);
-			logger.info("Usuario successfully registered");
-			System.out.println("Usuario successfully registered");
-			return Response.ok().build();
-		} catch (Exception e) {
-			logger.info("Register failed");
-			System.out.println("Register failed");
-			return Response.serverError().build();
-		}
-	}
+            Usuario u = UsuarioDAO.getInstance().find(user.getEmail());
+            if(u != null && user.getPassword().equals(u.getPassword())) {
+                logger.info("Login succeeded");
+                return Response.ok(u, MediaType.APPLICATION_JSON).build();
+            } else {
+                logger.error("Login failed: Invalid credentials");
+                return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email or password").build();
+            }
+        } catch (Exception e) {
+            logger.error("Login failed", e);
+            return Response.serverError().entity("An unexpected error occurred").build();
+        }
+    }
 
+    @POST
+    @Path("/register")
+    public static Response register(Usuario user){
+        try {
+            // Validación básica de la entrada
+            if(user.getEmail() == null || user.getPassword() == null || user.getNombre() == null || user.getApellido() == null) {
+                logger.error("Register failed: One or more fields are null");
+                return Response.status(Response.Status.BAD_REQUEST).entity("All fields are required").build();
+            }
+
+            UsuarioDAO.getInstance().save(user);
+            logger.info("Usuario successfully registered");
+            return Response.ok().entity("Usuario successfully registered").build();
+        } catch (Exception e) {
+            logger.error("Register failed", e);
+            return Response.serverError().entity("An unexpected error occurred").build();
+        }
+    }
 }

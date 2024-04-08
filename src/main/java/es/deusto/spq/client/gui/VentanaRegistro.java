@@ -5,7 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
+
+import es.deusto.spq.client.ResourceClient;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -20,7 +23,7 @@ public class VentanaRegistro extends JFrame {
     private JTextField textFieldUsuario, textFieldApellido, textFieldCorreo, textFieldPassword, textFieldConfirm;
     private JButton botonEntrar, botonVolver; // Declaramos los botones aquí
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -32,6 +35,7 @@ public class VentanaRegistro extends JFrame {
             }
         });
     }
+    */
 
     public VentanaRegistro() {
 
@@ -98,12 +102,21 @@ public class VentanaRegistro extends JFrame {
 
         botonEntrar = new JButton("Registrar Usuario");
         panelBoton.add(botonEntrar);
-        botonEntrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO: Agregar la lógica para registrar al usuario
-            }
-        });
+                botonEntrar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(ResourceClient.register(textFieldUsuario.getText(), textFieldApellido.getText(), textFieldCorreo.getText(), textFieldPassword.getText())){
+                            System.out.println("Usuario registrado correctamente");
+                            // Agregué un mensaje de confirmación al registrar un usuario
+                            VentanaLogin  VentanaLogin = new VentanaLogin();
+                            VentanaLogin.setVisible(true);
+                            setVisible(false);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Usuario ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
+        					System.out.println("Error while registering new user");
+                        }
+                    }
+                });
 
         botonVolver = new JButton("Atrás");
         panelBoton.add(botonVolver);

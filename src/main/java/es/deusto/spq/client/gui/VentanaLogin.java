@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
+
+import es.deusto.spq.client.ResourceClient;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -21,7 +24,7 @@ public class VentanaLogin extends JFrame{
     private JTextField textFieldUsuario, textFieldPassword;
     private JButton botonLogin, botonRegistro;
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -33,7 +36,7 @@ public class VentanaLogin extends JFrame{
             }
         });
     }
-
+    */
     public VentanaLogin(){
         
         //Ventana
@@ -102,7 +105,15 @@ public class VentanaLogin extends JFrame{
         botonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Agregar lógica para el login
+                try {
+                    if(ResourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText())){
+                        setVisible(false); // Oculta la ventana de login
+                        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+                        ventanaPrincipal.setVisible(true); // Muestra la ventana principal
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error al iniciar sesión", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 

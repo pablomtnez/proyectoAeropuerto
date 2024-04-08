@@ -13,13 +13,12 @@ Make sure that the database was correctly configured. Use the contents of the fi
 
 Ejecute el siguiente comando para crear el enhance de base de datos para esta muestra.
 
-      mvn datanucleus:enhance
+      nucleus:enhance
 
 
 Run the following command to see ig th db works correctly.
 
       mvn datanucleus:schema-create
-SI SE HA HECHO EL ENHANCE NO HAY QUE HAY QUE HACER EL CREATE
 
 
 To launch the server run the command

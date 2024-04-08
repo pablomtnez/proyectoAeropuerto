@@ -9,9 +9,9 @@
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Jersey + Datanucleus + MySQL</name>
-
+	<url>http://maven.apache.org</url>
 	<properties>
-		<maven.compiler.release>8</maven.compiler.release>
+		<maven.compiler.release>12</maven.compiler.release>
 		<config.files.dir>${basedir}/src/main/resources</config.files.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jersey.version>2.35</jersey.version>
@@ -35,22 +35,22 @@
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>javax.jdo</artifactId>
-			<version>[3.2.0-release, )</version>
+			<version>[3.2.0-release, ]</version>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
-			<version>[6.0.0-m1, 6.9)</version>
+			<version>[6.0.0-m1, 6.9]</version>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-api-jdo</artifactId>
-			<version>[6.0.0-m1, 6.9)</version>
+			<version>[6.0.0-m1, 6.9]</version>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-rdbms</artifactId>
-			<version>[6.0.0-m1, 6.9)</version>
+			<version>[6.0.0-m1, 6.9]</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -194,7 +194,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <mainClass>es.deusto.spq.client.ExampleClient</mainClass>
+                            <mainClass>es.deusto.spq.client.app.App</mainClass>
 							<arguments>
 								<argument>${server.hostname}</argument>
 								<argument>${server.port}</argument>

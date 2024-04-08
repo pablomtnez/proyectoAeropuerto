@@ -6,16 +6,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.client.Invocation;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.VentanaPrincipal;
-
-import java.lang.constant.ConstantDesc;;
 
 public class ResourceClient {
     protected static final Logger logger = LogManager.getLogger();
@@ -27,39 +22,36 @@ public class ResourceClient {
         webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
     }
 
-    public static boolean loginUser(String email, String password){
+    public static boolean login(String email, String password){
         WebTarget loginUserWebTarget = webTarget.path("login");
-        Invocation.Builder invocationBuilder = loginUserWebTarget.request(MediaType.APPLICATION_JSON);
         Usuario user = new Usuario(null, null, email, password);
-        Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        Usuario u = response.readEntity(Usuario.class);
-        VentanaPrincipal.logged = u;
-        System.out.println(u.getEmail());
-        if(response.getStatus() != Status.OK.getStatusCode()){
-            logger.error("Error connecting with the server. Code: {}", response.getStatus());
-            System.out.println("Error connecting with the server");
-            return false;
-        }else{
+        Response response = loginUserWebTarget.request(MediaType.APPLICATION_JSON)
+                                  .post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
+        if(response.getStatus() == Response.Status.OK.getStatusCode()){
+            Usuario u = response.readEntity(Usuario.class);
             logger.info("User correctly logged in");
-            System.out.println("User correctly logged in");
+            VentanaPrincipal vp = new VentanaPrincipal();
+            vp.setVisible(true);
             return true;
+        } else {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+            return false;
         }
     }
 
-    public static boolean registerUser(String nombre, String apellido, String email, String password){
+    public static boolean register(String nombre, String apellido, String email, String password){
         WebTarget registerUserWebTarget = webTarget.path("register");
-        Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
         Usuario user = new Usuario(nombre, apellido, email, password);
-        Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        if(response.getStatus() != Status.OK.getStatusCode()){
-            logger.error("Error connecting with the server. Code: {}", response.getStatus());
-            System.out.println("Error connecting with the server");
-            return false;
-        }else{
+        Response response = registerUserWebTarget.request(MediaType.APPLICATION_JSON)
+                                    .post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
+        if(response.getStatus() == Response.Status.OK.getStatusCode()){
             logger.info("User correctly registered");
-            System.out.println("User correctly registered");
             return true;
+        } else {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+            return false;
         }
     }
-    
 }
