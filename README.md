@@ -9,7 +9,7 @@ Run the following command to build everything and enhance the DB classes:
 
 Make sure that the database was correctly configured. Use the contents of the file create-message.sql to create the database and grant privileges. For example,
 
-      mysql -u root -p > sql/messagesDB.sql
+      Get-Content sql/messagesDB.sql | mysql -u root -p messagesDB
 
 Ejecute el siguiente comando para crear el enhance de base de datos para esta muestra.
 
