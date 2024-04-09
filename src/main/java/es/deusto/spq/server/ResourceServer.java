@@ -16,19 +16,20 @@ public class ResourceServer {
     protected static final Logger logger = LogManager.getLogger();
 
     public ResourceServer() {}
-
-    @POST
+    
+    
     @Path("/login")
+    @POST
     public Response login(Usuario user) {
         try {
-            if(user.getEmail() == null || user.getPassword() == null) {
+            if (user == null || user.getEmail() == null || user.getPassword() == null) {
                 logger.error("Login failed: Email or password is null");
                 return Response.status(Response.Status.BAD_REQUEST).entity("Email or password cannot be null").build();
             }
-
+    
             UsuarioDAO dao = UsuarioDAO.getInstance();
             Usuario u = dao.find(user.getEmail());
-            if(u != null && u.getPassword().equals(user.getPassword())) {
+            if (u != null && u.getPassword() != null && u.getPassword().equals(user.getPassword())) {
                 logger.info("Login succeeded");
                 return Response.ok(u, MediaType.APPLICATION_JSON).build();
             } else {
@@ -40,6 +41,8 @@ public class ResourceServer {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    
 
     @POST
     @Path("/register")
