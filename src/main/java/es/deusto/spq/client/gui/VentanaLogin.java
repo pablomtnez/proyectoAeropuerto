@@ -106,11 +106,7 @@ public class VentanaLogin extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if(ResourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText())){
-                        setVisible(false); // Oculta la ventana de login
-                        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-                        ventanaPrincipal.setVisible(true); // Muestra la ventana principal
-                    }
+                    ResourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText());
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Error al iniciar sesión", "Error", JOptionPane.ERROR_MESSAGE);
                 }

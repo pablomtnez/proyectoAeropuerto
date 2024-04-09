@@ -36,7 +36,7 @@ public class VentanaPrincipal extends JFrame{
     private static final long serialVersionUID = 1L;
 	
 	//Servicios de aerolíneas
-	private List<AirAlliance> airAllianceServices = new ArrayList<>();
+	//private List<AirAlliance> airAllianceServices = new ArrayList<>();
 	
 	//Lista de vuelos que se está visualizando en la ventana
 	private List<Flight> flights = new ArrayList<>();
