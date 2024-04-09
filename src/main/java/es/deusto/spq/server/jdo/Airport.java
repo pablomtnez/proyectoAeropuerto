@@ -1,9 +1,10 @@
 package es.deusto.spq.server.jdo;
-
+/* 
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.jdo.annotations.Join;
+*/
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -24,9 +25,9 @@ public class Airport {
     @Persistent
     private Country pais;
 
-    @Persistent(mappedBy = "aeropuerto", dependentElement = "true")
-    @Join
-    Set<Message> messages = new HashSet<>();
+    //@Persistent(mappedBy = "aeropuerto", dependentElement = "true")
+    //@Join
+    //Set<Message> messages = new HashSet<>();
 
     // Constructor sin argumentos
     public Airport() {
@@ -74,7 +75,7 @@ public class Airport {
     public void setPais(Country pais) {
         this.pais = pais;
     }
-
+/* 
     public void addMessage(Message message){
         messages.add(message);
     }
@@ -94,4 +95,5 @@ public class Airport {
        }
        return "Aeropuerto: Code --> " + this.code + ", Nombre --> " + this.name + ", Pais --> " + this.pais + ", Ciudad --> " + this.city  + ", messages --> [" + messagesStr + "]"; 
     }
+    */
 }

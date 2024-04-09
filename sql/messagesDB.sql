@@ -1,11 +1,13 @@
-/* DELETE 'messagesDB' database*/
-DROP SCHEMA IF EXISTS messagesDB;
-/* DELETE USER 'spq' AT LOCAL SERVER*/
-DROP USER IF EXISTS 'root'@'localhost';
+/* ELIMINAR la base de datos 'messagesDB' si existe */
+DROP DATABASE IF EXISTS messagesDB;
 
-/* CREATE 'messagesDB' DATABASE */
-CREATE SCHEMA messagesDB;
-/* CREATE THE USER 'spq' AT LOCAL SERVER WITH PASSWORD 'spq' */
-CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY 'root';
+/* CREAR la base de datos 'messagesDB' */
+CREATE DATABASE messagesDB;
 
-GRANT ALL ON messagesDB.* TO 'root'@'localhost';
+/* CREAR un NUEVO USUARIO (si pretendías crear 'spq' en lugar de usar 'root') */
+CREATE USER IF NOT EXISTS 'root´'@'localhost' IDENTIFIED BY 'root';
+
+/*  TODOS LOS PRIVILEGIOS sobre 'messagesDB' AL NUEVO USUARIO */
+GRANT ALL PRIVILEGES ON messagesDB.* TO 'root´'@'localhost';
+
+FLUSH PRIVILEGES;

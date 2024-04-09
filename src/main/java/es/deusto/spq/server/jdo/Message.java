@@ -5,22 +5,21 @@ import java.util.Date;
 
 @PersistenceCapable
 public class Message {
-	User user=null;
-	String text=null;
-	long timestamp;
-	
+    Usuario usuario = null;
+    String text = null;
+    long timestamp;
 
     public Message(String text) {
         this.text = text;
-		this.timestamp = System.currentTimeMillis();
+        this.timestamp = System.currentTimeMillis();
     }
 
-	public User getUser() {
-        return user;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String toString() {

@@ -1,10 +1,10 @@
 package es.deusto.spq.server.jdo;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+//import java.util.Set;
 
-import javax.jdo.annotations.Join;
+//import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -42,11 +42,11 @@ public class Flight {
 
     @Persistent
     private float precio;
-
-    @Persistent(mappedBy = "vuelo", dependentElement = "true")
+/* 
+    @Persistent(mappedBy = "flight", dependentElement = "true")
     @Join
     Set<Message> messages = new HashSet<>();
-
+*/
     // Constructor sin argumentos
     public Flight() {
 
@@ -137,7 +137,7 @@ public class Flight {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-    
+    /* 
     public void addMessage(Message message){
         messages.add(message);
     }
@@ -157,4 +157,5 @@ public class Flight {
        }
        return "Vuelo: Code --> " + this.code + ", Origen --> " + this.origen + ", Destino --> " + this.destino + ", Aerolinea --> " + this.aerolinea + ", Avion --> " + this.avion + ", Reservas --> " + this.reservas + ", Duracion --> " + this.duracion + ", Asientos --> " + this.seats + ", Precio --> " + this.precio +  ", messages --> [" + messagesStr + "]"; 
     }
+    */
 }
