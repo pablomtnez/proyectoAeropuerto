@@ -2,19 +2,18 @@ package es.deusto.spq.client.domain;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
     private String nombre;
     private String apellido;
     private String email;
     private String password;
 
-  
+    // Constructor vacío necesario para la deserialización
     public Usuario() {
-        
     }
 
-
+    // Constructor completo para facilitar la creación de instancias
     public Usuario(String nombre, String apellido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -22,7 +21,7 @@ public class Usuario implements Serializable{
         this.password = password;
     }
 
-
+    // Getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -31,7 +30,7 @@ public class Usuario implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getUsername() {
+    public String getApellido() {
         return apellido;
     }
 
@@ -47,7 +46,7 @@ public class Usuario implements Serializable{
         this.email = email;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
@@ -61,6 +60,7 @@ public class Usuario implements Serializable{
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -20,17 +20,19 @@ public class ResourceClient {
     public ResourceClient(String hostname, String port){
         client = ClientBuilder.newClient();
         webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
+        logger.debug("ResourceClient initialized with hostname: {} and port: {}", hostname, port);
     }
 
     public static boolean login(String email, String password){
         WebTarget loginUserWebTarget = webTarget.path("login");
         Usuario user = new Usuario(null, null, email, password);
+        logger.debug("Attempting login with user: {}", user);
         Response response = loginUserWebTarget.request(MediaType.APPLICATION_JSON)
                                   .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
         if(response.getStatus() == Response.Status.OK.getStatusCode()){
             Usuario u = response.readEntity(Usuario.class);
-            logger.info("User correctly logged in");
+            logger.info("User correctly logged in: {}", u);
             VentanaPrincipal vp = new VentanaPrincipal();
             vp.setVisible(true);
             return true;
@@ -43,11 +45,12 @@ public class ResourceClient {
     public static boolean register(String nombre, String apellido, String email, String password){
         WebTarget registerUserWebTarget = webTarget.path("register");
         Usuario user = new Usuario(nombre, apellido, email, password);
+        logger.debug("Registering new user: {}", user);
         Response response = registerUserWebTarget.request(MediaType.APPLICATION_JSON)
                                     .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
         if(response.getStatus() == Response.Status.OK.getStatusCode()){
-            logger.info("User correctly registered");
+            logger.info("User correctly registered: {}", user);
             return true;
         } else {
             logger.error("Error connecting with the server. Code: {}", response.getStatus());

@@ -14,8 +14,18 @@ public class App {
         } catch (Exception ignored) {
             // TODO: handle exception
         }
-        res.register("Pablo", "Martinez", "pablo@gmail.com", "pablo1234");
+        
+        // Agregar registro de usuario
+        boolean registered = ResourceClient.register("Pablo", "Martinez", "pablo@gmail.com", "pablo1234");
+        if (registered) {
+            System.out.println("User registered successfully");
+        } else {
+            System.out.println("Failed to register user");
+        }
+        
+        // Mostrar ventana de inicio de sesión
         VentanaLogin login = new VentanaLogin();
         login.setVisible(true);
     }
 }
+

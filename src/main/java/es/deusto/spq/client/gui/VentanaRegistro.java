@@ -11,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 import es.deusto.spq.client.ResourceClient;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -21,26 +20,11 @@ public class VentanaRegistro extends JFrame {
 
     private JPanel contentPane;
     private JTextField textFieldUsuario, textFieldApellido, textFieldCorreo, textFieldPassword, textFieldConfirm;
-    private JButton botonEntrar, botonVolver; // Declaramos los botones aquí
-
-    /*public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    VentanaRegistro frame = new VentanaRegistro();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    */
+    private JButton botonEntrar, botonVolver;
 
     public VentanaRegistro() {
-
         setTitle("Registro");
-        setBounds(100, 100, 600, 400); // Cambié las dimensiones para que sea más manejable
+        setBounds(100, 100, 600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentPane = new JPanel();
@@ -48,19 +32,16 @@ public class VentanaRegistro extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
-        // Panel de titulo
         JPanel panelTitulo = new JPanel();
         contentPane.add(panelTitulo, BorderLayout.NORTH);
-        JLabel lblTitulo = new JLabel("Registro de Usuario"); // Cambié el nombre del título para hacerlo más descriptivo
-        lblTitulo.setFont(new Font("Verdana", Font.BOLD, 18)); // Cambié el estilo de la fuente para hacerla más llamativa
+        JLabel lblTitulo = new JLabel("Registro de Usuario");
+        lblTitulo.setFont(new Font("Verdana", Font.BOLD, 18));
         panelTitulo.add(lblTitulo);
 
-        // Panel principal
         JPanel panelPrincipal = new JPanel();
         contentPane.add(panelPrincipal, BorderLayout.CENTER);
-        panelPrincipal.setLayout(new GridLayout(7, 2, 10, 10)); // Ajusté el diseño para acomodar todos los campos de entrada
+        panelPrincipal.setLayout(new GridLayout(7, 2, 10, 10));
 
-        // Campos de formulario
         JLabel lblUsuario = new JLabel("Nombre:");
         panelPrincipal.add(lblUsuario);
 
@@ -96,27 +77,40 @@ public class VentanaRegistro extends JFrame {
         panelPrincipal.add(textFieldConfirm);
         textFieldConfirm.setColumns(20);
 
-        // Panel de botones
         JPanel panelBoton = new JPanel();
         contentPane.add(panelBoton, BorderLayout.SOUTH);
 
         botonEntrar = new JButton("Registrar Usuario");
         panelBoton.add(botonEntrar);
-                botonEntrar.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if(ResourceClient.register(textFieldUsuario.getText(), textFieldApellido.getText(), textFieldCorreo.getText(), textFieldPassword.getText())){
-                            System.out.println("Usuario registrado correctamente");
-                            // Agregué un mensaje de confirmación al registrar un usuario
-                            VentanaLogin  VentanaLogin = new VentanaLogin();
-                            VentanaLogin.setVisible(true);
-                            setVisible(false);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Usuario ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
-        					System.out.println("Error while registering new user");
-                        }
-                    }
-                });
+        botonEntrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(textFieldUsuario.getText().isEmpty() || textFieldApellido.getText().isEmpty() || textFieldCorreo.getText().isEmpty() || textFieldPassword.getText().isEmpty() || textFieldConfirm.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+                String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+                if(!textFieldCorreo.getText().matches(emailPattern)){
+                    JOptionPane.showMessageDialog(null, "Introduce un correo electrónico válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if(!textFieldPassword.getText().equals(textFieldConfirm.getText())){
+                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if(ResourceClient.register(textFieldUsuario.getText(), textFieldApellido.getText(), textFieldCorreo.getText(), textFieldPassword.getText())){
+                    JOptionPane.showMessageDialog(null, "Usuario registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    VentanaLogin VentanaLogin = new VentanaLogin();
+                    VentanaLogin.setVisible(true);
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar al usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
 
         botonVolver = new JButton("Atrás");
         panelBoton.add(botonVolver);
@@ -125,7 +119,7 @@ public class VentanaRegistro extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 VentanaLogin ventanaLogin = new VentanaLogin();
-                ventanaLogin.setVisible(true); // Agregué la visibilidad de la ventana de inicio de sesión al volver atrás
+                ventanaLogin.setVisible(true);
             }
         });
     }

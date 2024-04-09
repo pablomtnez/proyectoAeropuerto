@@ -16,8 +16,7 @@ public class ResourceServer {
     protected static final Logger logger = LogManager.getLogger();
 
     public ResourceServer() {}
-    
-    
+
     @Path("/login")
     @POST
     public Response login(Usuario user) {
@@ -41,25 +40,28 @@ public class ResourceServer {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
-    
 
     @POST
     @Path("/register")
     public Response register(Usuario user) {
         UsuarioDAO dao = UsuarioDAO.getInstance();
         try {
-            if(user.getEmail() == null || user.getPassword() == null) {
+            if (user.getEmail() == null || user.getPassword() == null) {
                 logger.error("Registration failed: Email or password is null");
                 return Response.status(Response.Status.BAD_REQUEST).entity("Email or password cannot be null").build();
             }
-
+            
+            if (!isEmailValid(user.getEmail())) {
+                logger.error("Registration failed: Invalid email format");
+                return Response.status(Response.Status.BAD_REQUEST).entity("Invalid email format").build();
+            }
+            
             Usuario existingUser = dao.find(user.getEmail());
-            if(existingUser != null) {
+            if (existingUser != null) {
                 logger.error("Registration failed: User already exists");
                 return Response.status(Response.Status.CONFLICT).entity("User already exists").build();
             }
-
+            
             dao.save(user); // Guardar el nuevo usuario
             logger.info("Registration succeeded");
             return Response.ok().build();
@@ -67,5 +69,11 @@ public class ResourceServer {
             logger.error("Registration failed: " + e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    // Método auxiliar para validar el formato del correo electrónico
+    private boolean isEmailValid(String email) {
+        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailPattern);
     }
 }
