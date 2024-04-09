@@ -19,44 +19,50 @@ public class ResourceServer {
 
     @POST
     @Path("/login")
-    public static Response login(Usuario user){
+    public Response login(Usuario user) {
         try {
-            // Validación básica de la entrada
             if(user.getEmail() == null || user.getPassword() == null) {
                 logger.error("Login failed: Email or password is null");
                 return Response.status(Response.Status.BAD_REQUEST).entity("Email or password cannot be null").build();
             }
 
-            Usuario u = UsuarioDAO.getInstance().find(user.getEmail());
-            if(u != null && user.getPassword().equals(u.getPassword())) {
+            UsuarioDAO dao = UsuarioDAO.getInstance();
+            Usuario u = dao.find(user.getEmail());
+            if(u != null && u.getPassword().equals(user.getPassword())) {
                 logger.info("Login succeeded");
                 return Response.ok(u, MediaType.APPLICATION_JSON).build();
             } else {
                 logger.error("Login failed: Invalid credentials");
-                return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email or password").build();
+                return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid credentials").build();
             }
         } catch (Exception e) {
-            logger.error("Login failed", e);
-            return Response.serverError().entity("An unexpected error occurred").build();
+            logger.error("Login failed: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @POST
     @Path("/register")
-    public static Response register(Usuario user){
+    public Response register(Usuario user) {
+        UsuarioDAO dao = UsuarioDAO.getInstance();
         try {
-            // Validación básica de la entrada
-            if(user.getEmail() == null || user.getPassword() == null || user.getNombre() == null || user.getApellido() == null) {
-                logger.error("Register failed: One or more fields are null");
-                return Response.status(Response.Status.BAD_REQUEST).entity("All fields are required").build();
+            if(user.getEmail() == null || user.getPassword() == null) {
+                logger.error("Registration failed: Email or password is null");
+                return Response.status(Response.Status.BAD_REQUEST).entity("Email or password cannot be null").build();
             }
 
-            UsuarioDAO.getInstance().save(user);
-            logger.info("Usuario successfully registered");
-            return Response.ok().entity("Usuario successfully registered").build();
+            Usuario existingUser = dao.find(user.getEmail());
+            if(existingUser != null) {
+                logger.error("Registration failed: User already exists");
+                return Response.status(Response.Status.CONFLICT).entity("User already exists").build();
+            }
+
+            dao.save(user); // Guardar el nuevo usuario
+            logger.info("Registration succeeded");
+            return Response.ok().build();
         } catch (Exception e) {
-            logger.error("Register failed", e);
-            return Response.serverError().entity("An unexpected error occurred").build();
+            logger.error("Registration failed: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

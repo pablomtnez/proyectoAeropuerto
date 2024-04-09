@@ -67,11 +67,12 @@ public class UsuarioDAO extends DataAccessObjectBase implements IDataAccessObjec
             tx.begin();
             Query<Usuario> query = pm.newQuery(Usuario.class);
             query.setFilter("email == :param");
+            query.setUnique(true);
             result = (Usuario) query.execute(param);
             tx.commit();
         } catch (Exception ex) {
             System.out.println("  $ Error querying an Usuario: " + ex.getMessage());
-        }finally {
+        } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
