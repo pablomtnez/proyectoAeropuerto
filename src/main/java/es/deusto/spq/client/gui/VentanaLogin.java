@@ -18,6 +18,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.ProcessingException;
+
 public class VentanaLogin extends JFrame{
     
     private JPanel contentPane;
@@ -107,11 +110,24 @@ public class VentanaLogin extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 try {
                     ResourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText());
+                } catch (javax.ws.rs.WebApplicationException webEx) {
+                    // Captura excepciones específicas para respuestas HTTP de error
+                    if (webEx.getResponse().getStatus() == 401) {
+                        JOptionPane.showMessageDialog(null, "Credenciales inválidas. Por favor, intenta nuevamente.", "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        // Maneja otros códigos de estado HTTP aquí según sea necesario
+                        JOptionPane.showMessageDialog(null, "Error de conexión con el servidor. Por favor, intenta más tarde.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (javax.ws.rs.ProcessingException connEx) {
+                    // Captura excepciones específicas para errores de conexión
+                    JOptionPane.showMessageDialog(null, "No se pudo conectar con el servidor. Verifica tu conexión a Internet.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Error al iniciar sesión", "Error", JOptionPane.ERROR_MESSAGE);
+                    // Captura cualquier otra excepción no esperada
+                    JOptionPane.showMessageDialog(null, "Error al iniciar sesión: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
+        
 
         botonRegistro = new JButton("Registro");
         panelBoton.add(botonRegistro);

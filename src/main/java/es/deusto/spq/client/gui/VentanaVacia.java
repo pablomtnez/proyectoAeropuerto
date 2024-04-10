@@ -1,8 +1,11 @@
 package es.deusto.spq.client.gui;
 
 import javax.swing.JFrame;
+import es.deusto.spq.client.domain.Usuario;
+
 
 public class VentanaVacia extends JFrame {
+    public static Usuario logged = null;
 
     public VentanaVacia() {
         // Establece el título de la ventana
