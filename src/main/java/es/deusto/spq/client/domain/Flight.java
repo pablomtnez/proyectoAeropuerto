@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Date;
 
 import es.deusto.spq.client.domain.Airline;
 import es.deusto.spq.client.domain.Airport;
@@ -20,9 +21,10 @@ public class Flight implements Serializable{
 	private int duration;
 	private int seats;
 	private float price;
+	private Date fecha;
 	
 	public Flight(String code, Airport origin, Airport destination,
-				  Airline airline, Plane plane, int duration, float price) {
+				  Airline airline, Plane plane, int duration, float price, Date fecha) {
 		this.code = code;
 		this.origin = origin;
 		this.destination = destination;
@@ -31,6 +33,7 @@ public class Flight implements Serializable{
 		this.duration = duration;		
 		this.seats = (plane == null) ? 0 : plane.getSeats();
 		this.price = price;
+		this.fecha = fecha;
 		this.reservations = new ArrayList<>();
 	}
 
@@ -74,6 +77,10 @@ public class Flight implements Serializable{
 	
 	public float getPrice() {
 		return price;
+	}
+
+	public Date getFecha() {
+		return fecha;
 	}
 	
 	public List<Reservation> getReservations() {

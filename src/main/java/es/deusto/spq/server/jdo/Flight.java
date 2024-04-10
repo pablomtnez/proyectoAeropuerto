@@ -8,6 +8,7 @@ import java.util.List;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import java.util.Date;
 
 import es.deusto.spq.client.domain.Airline;
 import es.deusto.spq.client.domain.Airport;
@@ -42,6 +43,9 @@ public class Flight {
 
     @Persistent
     private float precio;
+
+    @Persistent
+    private Date fecha;
 /* 
     @Persistent(mappedBy = "flight", dependentElement = "true")
     @Join
@@ -53,7 +57,7 @@ public class Flight {
     }
 
     // Constructor con todos los atributos
-    public Flight(String code, Airport origen, Airport destino, Airline aerolinea, Plane avion, List<Reservation> reservas, int duracion, int seats, float precio) {
+    public Flight(String code, Airport origen, Airport destino, Airline aerolinea, Plane avion, List<Reservation> reservas, int duracion, int seats, float precio, Date fecha) {
         this.code = code;
         this.origen = origen;
         this.destino = destino;
@@ -63,6 +67,7 @@ public class Flight {
         this.duracion = duracion;
         this.seats = seats;
         this.precio = precio;
+        this.fecha = fecha;
     }
 
     // Getters y Setters
@@ -136,6 +141,14 @@ public class Flight {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     /* 
     public void addMessage(Message message){

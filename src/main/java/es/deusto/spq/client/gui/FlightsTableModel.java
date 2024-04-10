@@ -16,7 +16,8 @@ public class FlightsTableModel extends DefaultTableModel{
 			"AEROLÍNEA", 
 			"VUELO", 
 			"ORIGEN", 
-			"DESTINO", 
+			"DESTINO",
+			"FECHA", 
 			"DURACIÓN", 
 			"PRECIO", 
 			"RESERVAS",
@@ -66,13 +67,14 @@ public class FlightsTableModel extends DefaultTableModel{
 			case 1: return flight.getCode();
 			case 2: return flight.getOrigin();
 			case 3: return flight.getDestination();
-			case 4: return Integer.valueOf(flight.getDuration());
-			case 5: return Float.valueOf(flight.getPrice());
-			case 6: return Integer.valueOf(flight.getReservations().size());
-			case 7: return Integer.valueOf(flight.getRemainingSeats());
+			case 4: return flight.getFecha();
+			case 5: return Integer.valueOf(flight.getDuration());
+			case 6: return Float.valueOf(flight.getPrice());
+			case 7: return Integer.valueOf(flight.getReservations().size());
+			case 8: return Integer.valueOf(flight.getRemainingSeats());
 			//La disponibilidad se calcula como el cociente entre RemainingSeats y Seats
-			case 8: return Float.valueOf( 1.0f * flight.getRemainingSeats() / flight.getSeats() );
-			case 9: return flight;
+			case 9: return Float.valueOf( 1.0f * flight.getRemainingSeats() / flight.getSeats() );
+			case 10: return flight;
 			default: return null;
 		}
 	}
