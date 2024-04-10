@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.VentanaPrincipal;
-import es.deusto.spq.client.gui.VentanaVacia;
 
 public class ResourceClient {
     protected static final Logger logger = LogManager.getLogger();
@@ -73,7 +72,7 @@ public class ResourceClient {
     
     
     private static void mostrarVentanaPrincipal(Usuario usuario) {
-        VentanaVacia vp = new VentanaVacia();
+        VentanaPrincipal vp = new VentanaPrincipal();
         vp.setVisible(true);
         logger.info("Mostrando la Ventana Principal para el usuario: {}", usuario.getEmail());
     }
