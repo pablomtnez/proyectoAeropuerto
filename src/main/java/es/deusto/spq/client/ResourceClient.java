@@ -1,6 +1,8 @@
 package es.deusto.spq.client;
 
 import javax.swing.JOptionPane;
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -24,26 +26,51 @@ public class ResourceClient {
         logger.debug("ResourceClient initialized with hostname: {} and port: {}", hostname, port);
     }
 
-    public static boolean login(String email, String password){
+    public static boolean login(String email, String password) {
         WebTarget loginUserWebTarget = webTarget.path("login");
-        Usuario user = new Usuario(null, null, email, password); // Consider removing nulls if not needed
+        Usuario user = new Usuario(null, null, email, password);
         logger.debug("Attempting login with user: Email={}, Password=[PROTECTED]", email);
-        Response response = loginUserWebTarget.request(MediaType.APPLICATION_JSON)
-                                  .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-
-        switch (response.getStatus()) {
-            case 200: // Response.Status.OK.getStatusCode()
-                Usuario u = response.readEntity(Usuario.class);
-                mostrarVentanaPrincipal(u);
-                return true;
-            case 401: // Response.Status.UNAUTHORIZED.getStatusCode()
-                mostrarMensajeError("Credenciales inválidas. Por favor, intenta nuevamente.");
-                return false;
-            default:
-                mostrarMensajeError("Error de conexión con el servidor. Por favor, intenta más tarde.");
-                return false;
+        try {
+            Response response = loginUserWebTarget.request(MediaType.APPLICATION_JSON)
+                                          .post(Entity.entity(user, MediaType.APPLICATION_JSON));
+    
+            switch (response.getStatus()) {
+                case 200: // OK
+                    Usuario u = response.readEntity(Usuario.class);
+                    mostrarVentanaPrincipal(u);
+                    return true;
+                case 401: // Unauthorized
+                    mostrarMensajeError("Credenciales inválidas. Por favor, intenta nuevamente.");
+                    return false;
+                case 403: // Forbidden
+                    mostrarMensajeError("Acceso prohibido. No tienes permiso para acceder al recurso solicitado.");
+                    return false;
+                case 404: // Not Found
+                    mostrarMensajeError("Recurso no encontrado. Verifica la URL del servidor.");
+                    return false;
+                case 500: // Internal Server Error
+                    mostrarMensajeError("Error interno del servidor. Intenta de nuevo más tarde.");
+                    return false;
+                // Agrega otros códigos de estado específicos si es necesario
+                default:
+                    mostrarMensajeError("Error de conexión con el servidor. Código de estado: " + response.getStatus());
+                    return false;
+            }
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            logger.error("Error de procesamiento: ", e);
+            return false;
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            logger.error("Error de aplicación web: ", e);
+            return false;
+        } catch (Exception e) {
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error desconocido: ", e);
+            return false;
         }
     }
+    
     
     private static void mostrarVentanaPrincipal(Usuario usuario) {
         VentanaVacia vp = new VentanaVacia();
