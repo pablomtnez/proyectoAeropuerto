@@ -101,10 +101,9 @@ public class ResourceClient {
         }
     }
 
-    public static boolean createFlights(String code, Airport origin, Airport destination, Date fecha,
-            Airline airline, Plane plane, int duration, float price) {
+    public static boolean createFlights(String code, Airport origin, Airport destination, Airline airline, Plane plane, int duration, float price) {
         WebTarget registerUserWebTarget = webTarget.path("create");
-        Flight flight = new Flight(code, origin, destination, fecha, airline, plane, duration, price);
+        Flight flight = new Flight(code, origin, destination, airline, plane, duration, price);
         logger.debug("create new Flight: {}", flight);
         Response response = registerUserWebTarget.request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(flight, MediaType.APPLICATION_JSON));
