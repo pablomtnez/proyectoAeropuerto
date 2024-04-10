@@ -1,7 +1,9 @@
 package es.deusto.spq.client.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Usuario implements Serializable {
 
     private String nombre;
