@@ -12,124 +12,126 @@ import javax.swing.border.EmptyBorder;
 import es.deusto.spq.client.ResourceClient;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.ProcessingException;
 
-public class VentanaLogin extends JFrame{
+public class VentanaLogin extends JFrame {
     
     private JPanel contentPane;
     private JTextField textFieldUsuario, textFieldPassword;
     private JButton botonLogin, botonRegistro;
 
-    /*public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    VentanaLogin frame = new VentanaLogin();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    */
-    public VentanaLogin(){
+    public VentanaLogin() {
         
-        //Ventana
-
+        // Configuración básica de la ventana
         setTitle("Login");
-        setBounds(100, 100, 600, 400); // Tamaño más manejable
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(600, 400)); // Tamaño preferido de la ventana
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // La aplicación se cierra al cerrar la ventana
 
+        // Creación del panel principal
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBorder(new EmptyBorder(10, 10, 10, 10)); // Espacios en blanco alrededor del panel
         setContentPane(contentPane);
-        contentPane.setLayout(new BorderLayout(0, 0));
+        contentPane.setLayout(new BorderLayout()); // Diseño de la ventana
 
-        //Panel Norte
+        // Panel Norte - Título
         JPanel panelNorte = new JPanel();
         contentPane.add(panelNorte, BorderLayout.NORTH);
 
         JLabel lblTitulo = new JLabel("Login");
-        lblTitulo.setFont(new Font("Verdana", Font.BOLD, 18)); // Fuente más grande y en negrita
+        lblTitulo.setFont(new Font("Verdana", Font.BOLD, 24)); // Fuente más grande y en negrita
         panelNorte.add(lblTitulo);
 
-        //PanelCentro
-        JPanel panelCentro = new JPanel();
+        // Panel Centro - Formulario de Login
+        JPanel panelCentro = new JPanel(new GridBagLayout());
         contentPane.add(panelCentro, BorderLayout.CENTER);
-        panelCentro.setLayout(new GridLayout(2, 2, 10, 10)); // Modificado para un mejor aspecto visual
 
-        //PanelFormulario
-        JPanel panelFormulario = new JPanel();
-        panelFormulario.setLayout(new GridLayout(2,2,10,10));
-        panelCentro.add(panelFormulario);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5); // Espacios entre componentes
+        gbc.anchor = GridBagConstraints.WEST; // Alineación de los componentes a la izquierda
 
-        JLabel lblUsuario = new JLabel("Gmail:");
-        panelFormulario.add(lblUsuario);
+        // Campo de usuario
+        JLabel lblUsuario = new JLabel("Email:");
+        gbc.gridx = 0; // Columna
+        gbc.gridy = 0; // Fila
+        panelCentro.add(lblUsuario, gbc);
 
-        textFieldUsuario = new JTextField();
-        panelFormulario.add(textFieldUsuario);
-        textFieldUsuario.setColumns(20); // Ajustado el ancho del campo de texto
+        textFieldUsuario = new JTextField(20); // Ancho del campo de texto
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        panelCentro.add(textFieldUsuario, gbc);
 
+        // Campo de contraseña
         JLabel lblPassword = new JLabel("Contraseña:");
-        panelFormulario.add(lblPassword);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panelCentro.add(lblPassword, gbc);
 
-        textFieldPassword = new JTextField();
-        panelFormulario.add(textFieldPassword);
-        textFieldPassword.setColumns(20); // Ajustado el ancho del campo de texto
+        textFieldPassword = new JTextField(20);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panelCentro.add(textFieldPassword, gbc);
 
-        //Panel Imagen
+        // Panel Este - Imagen
         JPanel panelImagen = new JPanel();
-        panelCentro.add(panelImagen);
+        contentPane.add(panelImagen, BorderLayout.EAST);
 
         JLabel lblImagen = new JLabel();
-        ImageIcon icono = new ImageIcon("ruta/a/tu/imagen/logo.jpg"); // Cambiar la ruta por la correcta
+        ImageIcon icono = new ImageIcon("ruta/a/tu/imagen/logo.jpg"); // Ruta de la imagen
         lblImagen.setIcon(icono);
         panelImagen.add(lblImagen);
 
-        //Panel Sur
+        // Panel Sur - Botones de Login y Registro
         JPanel panelSur = new JPanel();
         contentPane.add(panelSur, BorderLayout.SOUTH);
-        panelSur.setLayout(new GridLayout(1, 1, 0, 0));
 
-        JPanel panelBoton= new JPanel();
-        panelBoton.setLayout(new GridLayout(1,2,10,10));
-        panelSur.add(panelBoton);
         botonLogin = new JButton("Login");
-        panelBoton.add(botonLogin);
+        panelSur.add(botonLogin);
 
+        // Acción del botón de login
         botonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean loggedIn = ResourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText());
                 if (loggedIn) {
-                    // Aquí podrías cerrar la ventana de login y mostrar la ventana principal de tu aplicación.
+                    // Si el login es exitoso, muestra un mensaje informativo
                     JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso.", "Sesión Iniciada", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    // Si el login falla, muestra un mensaje de error
+                    JOptionPane.showMessageDialog(null, "Error al iniciar sesión.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                // No es necesario mostrar un mensaje de error aquí ya que se mostrará directamente desde ResourceClient
             }
         });
-        
-        
 
         botonRegistro = new JButton("Registro");
-        panelBoton.add(botonRegistro);
+        panelSur.add(botonRegistro);
 
+        // Acción del botón de registro
         botonRegistro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false); // Oculta la ventana de login
-                VentanaRegistro ventanaregistro = new VentanaRegistro();
-                ventanaregistro.setVisible(true); // Muestra la ventana de registro
+                // Oculta la ventana de login
+                setVisible(false);
+                // Muestra la ventana de registro
+                VentanaRegistro ventanaRegistro = new VentanaRegistro();
+                ventanaRegistro.setVisible(true);
             }
         });
-    }  
+
+        // Ajusta automáticamente el tamaño de la ventana según su contenido
+        pack();
+        // Centra la ventana en la pantalla
+        setLocationRelativeTo(null);
+    }
 }
+
 

@@ -26,6 +26,7 @@ public class VentanaRegistro extends JFrame {
         setTitle("Registro");
         setBounds(100, 100, 600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
