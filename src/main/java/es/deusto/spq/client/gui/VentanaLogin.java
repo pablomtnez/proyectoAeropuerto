@@ -71,7 +71,7 @@ public class VentanaLogin extends JFrame{
         panelFormulario.setLayout(new GridLayout(2,2,10,10));
         panelCentro.add(panelFormulario);
 
-        JLabel lblUsuario = new JLabel("Usuario:");
+        JLabel lblUsuario = new JLabel("Gmail:");
         panelFormulario.add(lblUsuario);
 
         textFieldUsuario = new JTextField();
