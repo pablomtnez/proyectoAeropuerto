@@ -10,22 +10,23 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.server.jdo.Flight;
 
-public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject<Flight>{
+public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject<Flight> {
 
     private static FlightDAO instance;
 
-    private FlightDAO(){}
+    private FlightDAO() {
+    }
 
-    public static FlightDAO getInstance(){
-        if (instance == null){
+    public static FlightDAO getInstance() {
+        if (instance == null) {
             instance = new FlightDAO();
         }
         return instance;
     }
 
     @Override
-    public void save(Flight object) {
-        super.saveObject(object);
+    public void save(Flight flight) {
+        super.saveObject(flight);
     }
 
     @Override
@@ -44,14 +45,14 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
             tx.begin();
 
             Extent<Flight> extent = pm.getExtent(Flight.class, true);
-            for(Flight category : extent){
+            for (Flight category : extent) {
                 Vuelos.add(category);
             }
             tx.commit();
         } catch (Exception ex) {
             System.out.println("  $ Error retrieving all the Vuelos: " + ex.getMessage());
-        }finally{
-            if(tx != null && tx.isActive()){
+        } finally {
+            if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
             pm.close();
@@ -68,20 +69,20 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
 
         try {
             tx.begin();
-            Query query = pm.newQuery("SELECT FROM " + Flight.class.getName() + " WHERE code == '" + param+"'");
+            Query query = pm.newQuery("SELECT FROM " + Flight.class.getName() + " WHERE code == '" + param + "'");
             query.setUnique(true);
-            result = (Flight)query.execute();
+            result = (Flight) query.execute();
             tx.commit();
         } catch (Exception ex) {
             System.out.println("  $ Error querying an Vuelo: " + ex.getMessage());
-        }finally {
+        } finally {
             if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
+                tx.rollback();
+            }
 
-			pm.close();
+            pm.close();
         }
         return result;
     }
-    
+
 }

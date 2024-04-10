@@ -12,6 +12,10 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import es.deusto.spq.client.domain.Airline;
+import es.deusto.spq.client.domain.Airport;
+import es.deusto.spq.client.domain.Flight;
+import es.deusto.spq.client.domain.Plane;
 import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.VentanaPrincipal;
 
@@ -20,7 +24,7 @@ public class ResourceClient {
     private static Client client = ClientBuilder.newClient();
     private static WebTarget webTarget;
 
-    public ResourceClient(String hostname, String port){
+    public ResourceClient(String hostname, String port) {
         webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
         logger.debug("ResourceClient initialized with hostname: {} and port: {}", hostname, port);
     }
@@ -31,8 +35,8 @@ public class ResourceClient {
         logger.debug("Attempting login with user: Email={}, Password=[PROTECTED]", email);
         try {
             Response response = loginUserWebTarget.request(MediaType.APPLICATION_JSON)
-                                          .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-    
+                    .post(Entity.entity(user, MediaType.APPLICATION_JSON));
+
             switch (response.getStatus()) {
                 case 200: // OK
                     Usuario u = response.readEntity(Usuario.class);
@@ -69,8 +73,7 @@ public class ResourceClient {
             return false;
         }
     }
-    
-    
+
     private static void mostrarVentanaPrincipal(Usuario usuario) {
         VentanaPrincipal vp = new VentanaPrincipal();
         vp.setVisible(true);
@@ -82,16 +85,32 @@ public class ResourceClient {
         logger.error(mensaje);
     }
 
-
-    public static boolean register(String nombre, String apellido, String email, String password){
+    public static boolean register(String nombre, String apellido, String email, String password) {
         WebTarget registerUserWebTarget = webTarget.path("register");
         Usuario user = new Usuario(nombre, apellido, email, password);
         logger.debug("Registering new user: {}", user);
         Response response = registerUserWebTarget.request(MediaType.APPLICATION_JSON)
-                                    .post(Entity.entity(user, MediaType.APPLICATION_JSON));
+                .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
-        if(response.getStatus() == Response.Status.OK.getStatusCode()){
+        if (response.getStatus() == Response.Status.OK.getStatusCode()) {
             logger.info("User correctly registered: {}", user);
+            return true;
+        } else {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+            return false;
+        }
+    }
+
+    public static boolean createFlights(String code, Airport origin, Airport destination,
+            Airline airline, Plane plane, int duration, float price) {
+        WebTarget registerUserWebTarget = webTarget.path("create");
+        Flight flight = new Flight(code, origin, destination, airline, plane, duration, price);
+        logger.debug("create new Flight: {}", flight);
+        Response response = registerUserWebTarget.request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(flight, MediaType.APPLICATION_JSON));
+
+        if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+            logger.info("flight inserted succesfully: {}", flight);
             return true;
         } else {
             logger.error("Error connecting with the server. Code: {}", response.getStatus());
