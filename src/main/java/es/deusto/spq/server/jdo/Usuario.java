@@ -24,10 +24,6 @@ public class Usuario implements Serializable {
     @Persistent
     private String password;
 
-    @Persistent(mappedBy = "usuario", dependentElement = "true")
-    @Join
-    Set<Message> messages = new HashSet<>();
-
     // Constructor sin argumentos
     public Usuario() {
 
@@ -73,25 +69,5 @@ public class Usuario implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void addMessage(Message message){
-        messages.add(message);
-    }
-
-    public void removeMessage(Message message){
-        messages.remove(message);
-    }
-
-    public Set<Message> getMessages(){
-        return this.messages;
-    }
-
-    public String toString() {
-       StringBuilder messagesStr = new StringBuilder();
-       for(Message message : this.messages){
-        messagesStr.append(message.toString() + " - ");
-       }
-       return "User: Nombre --> " + this.nombre + ", Apellido --> " + this.apellido + ", Email --> " + this.email  + ", Password --> " + this.password + ", messages --> [" + messagesStr + "]"; 
     }
 }

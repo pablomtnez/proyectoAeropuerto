@@ -43,11 +43,6 @@ public class Flight {
     @Persistent
     private float precio;
 
-/* 
-    @Persistent(mappedBy = "flight", dependentElement = "true")
-    @Join
-    Set<Message> messages = new HashSet<>();
-*/
     // Constructor sin argumentos
     public Flight() {
 
