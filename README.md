@@ -14,7 +14,7 @@ Elimina los archivos y carpetas generados por una compilación previa de un proy
 
 Para asegurarse de que la base de datos esté correctamente configurada, le guiaré a través de los pasos para utilizar los comandos SQL que se encuentran típicamente en el archivo messagesDB.sql para crear una base de datos y otorgar privilegios. Antes de ejecutar el siguiente comando es necesario tener la aplicación de la BBDD abierta y haber ejecutado en ella el archivo "messagesDB.sql".
 
-      Get-Content sql/messagesDB.sql | mysql -u root -p messagesDB
+      mysql -u usuario -p messagesDB
 
 Ejecute el siguiente comando para crear el enhance de base de datos para esta muestra.
 
