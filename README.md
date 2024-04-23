@@ -5,6 +5,10 @@ Este proyecto se basa en el complemento **DataNucleus** y  **Maven**. Compruebe 
 
 ## Ejecución
 
+Para realizar los test ejecute el siguiente comando:
+
+      mvn test
+
 Ejecute el siguiente comando para compilar todo y mejorar las clases de base de datos:
 
 	mvn clean
