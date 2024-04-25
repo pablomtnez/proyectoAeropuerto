@@ -1,3 +1,5 @@
+package es.deusto.spq.server.jdo;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
@@ -9,16 +11,13 @@ import org.junit.Test;
 
 public class AirlineTest {
 
-    private Airline airline;
+    Airline airline;
 
     @Before
     public void setUp() {
-        // Create mock objects for dependencies
         Country countryMock = mock(Country.class);
         AirAlliance allianceMock = mock(AirAlliance.class);
         List<Flight> flightsMock = new ArrayList<>();
-
-        // Create instance of Airline with mocked dependencies
         airline = new Airline("code", "name", countryMock, allianceMock, flightsMock);
     }
 
