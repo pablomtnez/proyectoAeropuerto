@@ -9,15 +9,21 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import es.deusto.spq.client.domain.AirAlliance;
+import es.deusto.spq.client.domain.Country;
+
 public class AirlineTest {
 
     Airline airline;
+    Country countryMock;
+    AirAlliance allianceMock;
+    List<Flight> flightsMock;
 
     @Before
     public void setUp() {
-        Country countryMock = mock(Country.class);
-        AirAlliance allianceMock = mock(AirAlliance.class);
-        List<Flight> flightsMock = new ArrayList<>();
+        countryMock = mock(Country.class);
+        allianceMock = mock(AirAlliance.class);
+        flightsMock = new ArrayList<>();
         airline = new Airline("code", "name", countryMock, allianceMock, flightsMock);
     }
 
@@ -53,7 +59,7 @@ public class AirlineTest {
 
     @Test
     public void testToString() {
-        String expectedToString = "code: name [null] (null)";
-        assertEquals(expectedToString, airline.toString());
+    String expectedToString = String.format("%s: %s [%s] (%s)", "code", "name", allianceMock, countryMock);
+    assertEquals(expectedToString, airline.toString());
     }
 }

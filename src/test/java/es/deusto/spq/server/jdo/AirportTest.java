@@ -6,14 +6,16 @@ import static org.mockito.Mockito.mock;
 import org.junit.Before;
 import org.junit.Test;
 
+import es.deusto.spq.client.domain.Country;
+
 public class AirportTest {
 
     Airport airport;
+    Country countryMock;
 
     @Before
     public void setUp() {
-        
-        Country countryMock = mock(Country.class);
+        countryMock = mock(Country.class);
         airport = new Airport("code", "name", "city", countryMock);
     }
 

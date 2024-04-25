@@ -9,17 +9,27 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import es.deusto.spq.client.domain.Reservation;
+import es.deusto.spq.client.domain.Airport;
+import es.deusto.spq.client.domain.Airline;
+import es.deusto.spq.client.domain.Plane;
+
 public class FlightTest {
 
     Flight flight;
+    Airport originMock;
+    Airport destinationMock;
+    Airline airlineMock;
+    Plane planeMock;
+    List<Reservation> reservationsMock;
 
     @Before
     public void setUp() {
-        Airport originMock = mock(Airport.class);
-        Airport destinationMock = mock(Airport.class);
-        Airline airlineMock = mock(Airline.class);
-        Plane planeMock = mock(Plane.class);
-        List<Reservation> reservationsMock = new ArrayList<>();
+        originMock = mock(Airport.class);
+        destinationMock = mock(Airport.class);
+        airlineMock = mock(Airline.class);
+        planeMock = mock(Plane.class);
+        reservationsMock = new ArrayList<>();
         flight = new Flight("code", originMock, destinationMock, airlineMock, planeMock, reservationsMock, 60, 150, 100.0f);
     }
 
