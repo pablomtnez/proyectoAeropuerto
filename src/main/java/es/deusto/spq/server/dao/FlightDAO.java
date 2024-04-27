@@ -14,7 +14,7 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
 
     private static FlightDAO instance;
 
-    private FlightDAO() {
+    public FlightDAO() {
     }
 
     public static FlightDAO getInstance() {
@@ -84,5 +84,43 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
         }
         return result;
     }
+
+    /**
+ * Saves or updates a flight in the database.
+ * @param flight The flight to be saved or updated.
+ */
+public void saveOrUpdateFlight(Flight flight) {
+    PersistenceManager pm = pmf.getPersistenceManager();
+    Transaction tx = pm.currentTransaction();
+    try {
+        tx.begin();
+        // Check if the flight already exists in the database
+        Flight existingFlight = pm.getObjectById(Flight.class, flight.getCode());
+        if (existingFlight == null) {
+            // If not, make it persistent (save)
+            pm.makePersistent(flight);
+        } else {
+            // If it exists, update the existing record
+            existingFlight.setOrigen(flight.getOrigen());
+            existingFlight.setDestino(flight.getDestino());
+            existingFlight.setAerolinea(flight.getAerolinea());
+            existingFlight.setAvion(flight.getAvion());
+            existingFlight.setReservas(flight.getReservas());
+            existingFlight.setDuracion(flight.getDuracion());
+            existingFlight.setSeats(flight.getSeats());
+            existingFlight.setPrecio(flight.getPrecio());
+        }
+        tx.commit();
+    } catch (Exception e) {
+        System.err.println("Error saving or updating the flight: " + flight.getCode());
+        e.printStackTrace();
+        if (tx.isActive()) {
+            tx.rollback();
+        }
+    } finally {
+        pm.close();
+    }
+}
+
 
 }

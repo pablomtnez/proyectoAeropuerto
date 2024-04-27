@@ -9,10 +9,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.deusto.spq.client.domain.Reservation;
-import es.deusto.spq.client.domain.Airport;
-import es.deusto.spq.client.domain.Airline;
-import es.deusto.spq.client.domain.Plane;
+import es.deusto.spq.server.jdo.Reservation;
+import es.deusto.spq.server.jdo.Airport;
+import es.deusto.spq.server.jdo.Airline;
+import es.deusto.spq.server.jdo.Plane;
 
 public class FlightTest {
 

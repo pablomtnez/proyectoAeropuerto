@@ -9,10 +9,10 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.client.domain.Airline;
-import es.deusto.spq.client.domain.Airport;
-import es.deusto.spq.client.domain.Plane;
-import es.deusto.spq.client.domain.Reservation;
+import es.deusto.spq.server.jdo.Airline;
+import es.deusto.spq.server.jdo.Airport;
+import es.deusto.spq.server.jdo.Plane;
+import es.deusto.spq.server.jdo.Reservation;
 
 @PersistenceCapable(detachable = "true")
 public class Flight {
@@ -41,12 +41,7 @@ public class Flight {
     private int seats;
 
     @Persistent
-    private float precio;
-
-    // Constructor sin argumentos
-    public Flight() {
-
-    }
+    private double precio;
 
     // Constructor con todos los atributos
     public Flight(String code, Airport origen, Airport destino, Airline aerolinea, Plane avion, List<Reservation> reservas, int duracion, int seats, float precio) {
@@ -59,6 +54,10 @@ public class Flight {
         this.duracion = duracion;
         this.seats = seats;
         this.precio = precio;
+    }
+
+    public Flight() {
+        //TODO Auto-generated constructor stub
     }
 
     // Getters y Setters
@@ -92,16 +91,16 @@ public class Flight {
 
     public void setAerolinea(Airline aerolinea) {
         this.aerolinea = aerolinea;
-    }    
+    }
     
     public Plane getAvion() {
         return avion;
     }
-
+    
     public void setAvion(Plane avion) {
         this.avion = avion;
     }
-    
+
     public List<Reservation> getReservas() {
         return reservas;
     }
@@ -126,33 +125,19 @@ public class Flight {
         this.seats = seats;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
-        this.precio = precio;
+    public void setPrecio(double d) {
+        this.precio = d;
     }
 
-    /* 
-    public void addMessage(Message message){
-        messages.add(message);
-    }
-
-    public void removeMessage(Message message){
-        messages.remove(message);
-    }
-
-    public Set<Message> getMessages(){
-        return this.messages;
-    }
-
+    @Override
     public String toString() {
-       StringBuilder messagesStr = new StringBuilder();
-       for(Message message : this.messages){
-        messagesStr.append(message.toString() + " - ");
-       }
-       return "Vuelo: Code --> " + this.code + ", Origen --> " + this.origen + ", Destino --> " + this.destino + ", Aerolinea --> " + this.aerolinea + ", Avion --> " + this.avion + ", Reservas --> " + this.reservas + ", Duracion --> " + this.duracion + ", Asientos --> " + this.seats + ", Precio --> " + this.precio +  ", messages --> [" + messagesStr + "]"; 
+        return "Flight [code=" + code + ", origen=" + origen + ", destino=" + destino + ", aerolinea=" + aerolinea
+                + ", avion=" + avion + ", reservas=" + reservas + ", duracion=" + duracion + ", seats=" + seats
+                + ", precio=" + precio + "]";
     }
-    */
+    
 }
