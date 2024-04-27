@@ -32,7 +32,7 @@ import es.deusto.spq.client.domain.Flight;
 import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.FlightRenderer;
 
-public class VentanaPrincipal extends JFrame{
+public class MainWindow extends JFrame{
     private static final long serialVersionUID = 1L;
 	
 	//Servicios de aerolíneas
@@ -51,7 +51,7 @@ public class VentanaPrincipal extends JFrame{
 
 	public static Usuario logged;
 
-    public VentanaPrincipal(){
+    public MainWindow(){
         //airAllianceServices.add(new ONE_WORLD());
         //airAllianceServices.add(new SKY_TIME());
 		//airAllianceServices.add(new STAR_ALLIENCE());
@@ -193,6 +193,6 @@ public class VentanaPrincipal extends JFrame{
 	 * @param args String[] con los argumentos.
 	 */
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new VentanaPrincipal());
+		SwingUtilities.invokeLater(() -> new MainWindow());
 	}
 }

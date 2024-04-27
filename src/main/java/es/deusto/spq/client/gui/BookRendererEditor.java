@@ -17,9 +17,9 @@ public class BookRendererEditor extends AbstractCellEditor implements TableCellE
     private static final long serialVersionUID = 1L;
 
 	private Flight flight;
-	private VentanaPrincipal mainWindow;
+	private MainWindow mainWindow;
 	
-	public BookRendererEditor(VentanaPrincipal mainWindow) {
+	public BookRendererEditor(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
 	}
 	

@@ -17,7 +17,7 @@ import es.deusto.spq.client.domain.Airport;
 import es.deusto.spq.client.domain.Flight;
 import es.deusto.spq.client.domain.Plane;
 import es.deusto.spq.client.domain.Usuario;
-import es.deusto.spq.client.gui.VentanaPrincipal;
+import es.deusto.spq.client.gui.MainWindow;
 
 public class ResourceClient {
     protected static final Logger logger = LogManager.getLogger();
@@ -75,7 +75,7 @@ public class ResourceClient {
     }
 
     private static void mostrarVentanaPrincipal(Usuario usuario) {
-        VentanaPrincipal vp = new VentanaPrincipal();
+        MainWindow vp = new MainWindow();
         vp.setVisible(true);
         logger.info("Mostrando la Ventana Principal para el usuario: {}", usuario.getEmail());
     }
