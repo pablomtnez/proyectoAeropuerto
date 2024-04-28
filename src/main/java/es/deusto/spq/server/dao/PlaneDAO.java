@@ -14,7 +14,7 @@ public class PlaneDAO extends DataAccessObjectBase implements IDataAccessObject<
 
     private static PlaneDAO instance;
 
-    private PlaneDAO(){}
+    public PlaneDAO(){}
 
     public static PlaneDAO getInstance(){
         if (instance == null){
@@ -80,5 +80,22 @@ public class PlaneDAO extends DataAccessObjectBase implements IDataAccessObject<
         }
         return result;
     }
+
+    public void saveOrUpdate(Plane plane) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        try {
+            tx.begin();
+            pm.makePersistent(plane);
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println("Error saving or updating a Plane: " + ex.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
+    }    
     
 }

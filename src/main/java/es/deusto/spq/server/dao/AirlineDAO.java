@@ -14,7 +14,7 @@ public class AirlineDAO extends DataAccessObjectBase implements IDataAccessObjec
 
     private static AirlineDAO instance;
 
-    private AirlineDAO(){
+    public AirlineDAO(){
         
     }
 
@@ -85,5 +85,52 @@ public class AirlineDAO extends DataAccessObjectBase implements IDataAccessObjec
         }
         return result;
     }
+
+    public Airline findByName(String name) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        Airline result = null;
+    
+        try {
+            tx.begin();
+            Query query = pm.newQuery(Airline.class, "name == nameParam");
+            query.declareParameters("String nameParam");
+            query.setUnique(true);
+            result = (Airline) query.execute(name);
+    
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println("  $ Error querying an Airline by name: " + ex.getMessage());
+        } finally {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            pm.close();
+        }
+        return result;
+    }
+
+    public void saveOrUpdate(Airline airline) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        try {
+            tx.begin();
+            if (airline.getCode() == null) { // Suponiendo que hay un método getId en la clase Airline
+                pm.makePersistent(airline);
+            } else {
+                pm.makePersistent(airline); // JDO automáticamente maneja las actualizaciones si el objeto ya está persistido
+            }
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println("Error saving or updating an Airline: " + ex.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
+    }
+    
+    
     
 }

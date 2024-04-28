@@ -14,7 +14,7 @@ public class AirportDAO extends DataAccessObjectBase implements IDataAccessObjec
 
     private static AirportDAO instance;
 
-    private AirportDAO(){}
+    public AirportDAO(){}
 
     public static AirportDAO getInstance(){
         if(instance==null){
@@ -80,4 +80,44 @@ public class AirportDAO extends DataAccessObjectBase implements IDataAccessObjec
        return result;
     }
 
+    @Override
+    public Airport findByName(String name) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+
+        Airport result = null;
+        try {
+            tx.begin();
+            Query query = pm.newQuery("SELECT FROM " + Airport.class.getName() + " WHERE name == '" + name + "'");
+            query.setUnique(true);
+            result = (Airport) query.execute();
+        } catch (Exception ex) {
+            System.out.println("  $ Error querying an Airport by name: " + ex.getMessage());
+        } finally {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            pm.close();
+        }
+        return result;
+    }   
+    
+    public void saveOrUpdate(Airport airport) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        try {
+            tx.begin();
+            // Si el aeropuerto ya tiene un ID, se actualizará; si no, se guardará como nuevo
+            pm.makePersistent(airport);
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println("Error saving or updating an Airport: " + ex.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
+    }
+    
 }

@@ -5,7 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
+import es.deusto.spq.server.dao.AirlineDAO;
+import es.deusto.spq.server.dao.AirportDAO;
 import es.deusto.spq.server.dao.FlightDAO;
+import es.deusto.spq.server.dao.PlaneDAO;
 import es.deusto.spq.server.jdo.Flight;
 import es.deusto.spq.server.jdo.Airport;
 import es.deusto.spq.server.jdo.Airline;
@@ -61,17 +64,42 @@ public class OneWorldService {
 
     // Example method stubs for finding or creating related entities
     private Airport findOrCreateAirport(String airportName) {
-        // Implement this method to find or create an Airport based on airportName
-        return new Airport();  // Placeholder
+        AirportDAO airportDao = new AirportDAO();  // Asegúrate de tener una instancia de AirportDAO
+        Airport airport = airportDao.findByName(airportName);
+        if (airport == null) {
+            airport = new Airport();
+            airport.setName(airportName);
+            // Configura otros atributos necesarios
+            airportDao.saveOrUpdate(airport);
+        }
+        return airport;
     }
+
 
     private Airline findOrCreateAirline(String airlineName) {
-        // Implement this method to find or create an Airline based on airlineName
-        return new Airline();  // Placeholder
+        AirlineDAO airlineDao = new AirlineDAO();  // Asegúrate de tener una instancia de AirlineDAO
+        Airline airline = airlineDao.findByName(airlineName);
+        if (airline == null) {
+            airline = new Airline();
+            airline.setName(airlineName);
+            // Configura otros atributos necesarios para la aerolínea
+            airlineDao.saveOrUpdate(airline);  // Guarda la nueva aerolínea en la base de datos
+        }
+        return airline;
     }
 
+
     private Plane findOrCreatePlane(String planeId) {
-        // Implement this method to find or create a Plane based on planeId
-        return new Plane();  // Placeholder
+        PlaneDAO planeDao = PlaneDAO.getInstance();  // Usando el patrón Singleton para obtener la instancia
+        Plane plane = planeDao.find(planeId);
+        if (plane == null) {
+            plane = new Plane();
+            plane.setCode(planeId);  // Utiliza setCode para configurar el ID
+            // Configura otros atributos necesarios para el avión
+            planeDao.saveOrUpdate(plane);  // Guarda el nuevo avión en la base de datos
+        }
+        return plane;
     }
+    
+
 }
