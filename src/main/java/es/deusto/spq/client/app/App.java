@@ -27,6 +27,7 @@ public class App {
         // 0, 0)
 
         // Mostrar ventana de inicio de sesión
+        ResourceClient.loadFlights();
         VentanaLogin login = new VentanaLogin();
         login.setVisible(true);
     }

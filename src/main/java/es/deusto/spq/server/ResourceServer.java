@@ -2,8 +2,11 @@ package es.deusto.spq.server;
 
 import es.deusto.spq.server.jdo.Flight;
 import es.deusto.spq.server.jdo.Usuario;
+import es.deusto.spq.server.services.OneWorldService;
 import es.deusto.spq.server.dao.FlightDAO;
 import es.deusto.spq.server.dao.UsuarioDAO;
+
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -98,4 +101,19 @@ public class ResourceServer {
         String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailPattern);
     }
+
+    @Path("/loadFlights")
+    @GET
+    public Response loadFlightsFromCSV() {
+        OneWorldService service = new OneWorldService();
+        try {
+            service.loadFlightsFromFile("src/main/resources/data/flights.csv"); // Asegúrate de especificar la ruta correcta del archivo CSV
+            logger.info("CSV file successfully loaded and flights have been updated.");
+            return Response.ok().build();
+        } catch (Exception e) {
+            logger.error("Error loading flights from CSV", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error loading flights: " + e.getMessage()).build();
+        }
+    }
+
 }

@@ -116,4 +116,19 @@ public class ResourceClient {
             return false;
         }
     }
+
+    public static void loadFlights() {
+        WebTarget loadFlightsTarget = webTarget.path("loadFlights");
+        try {
+            Response response = loadFlightsTarget.request().get();
+            if (response.getStatus() == 200) {
+                logger.info("Flights loaded successfully.");
+            } else {
+                logger.error("Failed to load flights. Status: " + response.getStatus());
+            }
+        } catch (ProcessingException | WebApplicationException e) {
+            logger.error("Communication error when trying to load flights", e);
+        }
+    }
+    
 }

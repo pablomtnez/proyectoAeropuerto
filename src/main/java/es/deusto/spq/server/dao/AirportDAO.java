@@ -80,7 +80,6 @@ public class AirportDAO extends DataAccessObjectBase implements IDataAccessObjec
        return result;
     }
 
-    @Override
     public Airport findByName(String name) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
