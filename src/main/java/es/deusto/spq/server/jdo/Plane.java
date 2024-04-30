@@ -8,7 +8,7 @@ import javax.jdo.annotations.PrimaryKey;
 public class Plane {
 
     @PrimaryKey
-    private String code;
+    private String iataCode;
 
     @Persistent
     private String name;
@@ -19,18 +19,18 @@ public class Plane {
     public Plane() {
     }
 
-    public Plane(String code, String name, int seats) {
-        this.code = code;
+    public Plane(String iataCode, String name, int seats) {
+        this.iataCode = iataCode;
         this.name = name;
         this.seats = seats;
     }
 
-    public String getCode() {
-        return code;
+    public String getIataCode() {
+        return iataCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setIataCode(String iataCode) {
+        this.iataCode = iataCode;
     }
 
     public String getName() {
@@ -50,17 +50,6 @@ public class Plane {
     }
 
     public String toString() {
-        return String.format("%s: %s (%d seats)", code, name, seats);
+        return String.format("%s: %s (%d seats)", iataCode, name, seats);
     }
-
-    public void setModel(String nextToken) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setModel'");
-    }
-
-    public void setCapacity(int int1) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setCapacity'");
-    }
-
 }

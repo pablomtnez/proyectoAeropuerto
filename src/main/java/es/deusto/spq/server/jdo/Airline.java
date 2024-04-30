@@ -1,48 +1,47 @@
 package es.deusto.spq.server.jdo;
 
-import java.util.List;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.client.domain.AirAlliance;
 import es.deusto.spq.client.domain.Country;
+import es.deusto.spq.client.domain.AirAlliance;
 
 @PersistenceCapable(detachable = "true")
 public class Airline {
     @PrimaryKey
-    private String code;
+    private String iataCode;
 
     @Persistent
     private String name;
 
     @Persistent
-    private Country pais;
+    private Country country;
 
     @Persistent
     private AirAlliance alliance;
 
-    @Persistent
-    private List<Flight> vuelos;
-
     public Airline() {
-
     }
 
-    public Airline(String code, String name, Country pais, AirAlliance alliance, List<Flight> vuelos) {
-        this.code = code;
+    public Airline(String iataCode, String name, Country country, AirAlliance alliance) {
+        this.iataCode = iataCode;
         this.name = name;
-        this.pais = pais;
+        this.country = country;
         this.alliance = alliance;
-        this.vuelos = vuelos;
     }
 
-    public String getCode() {
-        return code;
+    @Override
+    public String toString() {
+        return String.format("%s: %s [%s] (%s)", iataCode, name, alliance, country);
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public String getIataCode() {
+        return iataCode;
+    }
+
+    public void setIataCode(String iataCode) {
+        this.iataCode = iataCode;
     }
 
     public String getName() {
@@ -53,12 +52,12 @@ public class Airline {
         this.name = name;
     }
 
-    public Country getPais() {
-        return pais;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setPais(Country pais) {
-        this.pais = pais;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public AirAlliance getAlliance() {
@@ -67,17 +66,5 @@ public class Airline {
 
     public void setAlliance(AirAlliance alliance) {
         this.alliance = alliance;
-    }
-
-    public List<Flight> getVuelos() {
-        return vuelos;
-    }
-
-    public void setVuelo(List<Flight> vuelos) {
-        this.vuelos = vuelos;
-    }
-
-    public String toString() {
-        return String.format("%s: %s [%s] (%s)", code, name, alliance, pais);
     }
 }

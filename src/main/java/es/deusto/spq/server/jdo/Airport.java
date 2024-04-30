@@ -1,10 +1,5 @@
 package es.deusto.spq.server.jdo;
-/* 
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.jdo.annotations.Join;
-*/
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -14,7 +9,7 @@ import es.deusto.spq.client.domain.Country;
 @PersistenceCapable(detachable = "true")
 public class Airport {
     @PrimaryKey
-    private String code;
+    private String iataCode;
 
     @Persistent
     private String name;
@@ -23,33 +18,28 @@ public class Airport {
     private String city;
 
     @Persistent
-    private Country pais;
-
-    //@Persistent(mappedBy = "aeropuerto", dependentElement = "true")
-    //@Join
-    //Set<Message> messages = new HashSet<>();
+    private Country country;
 
     // Constructor sin argumentos
     public Airport() {
-
     }
 
     // Constructor con todos los atributos
-    public Airport(String code, String name, String city, Country pais) {
-        this.code = code;
+    public Airport(String iataCode, String name, String city, Country country) {
+        this.iataCode = iataCode;
         this.name = name;
         this.city = city;
-        this.pais = pais;
+        this.country = country;
     }
 
     // Getters y Setters
 
-    public String getCode() {
-        return code;
+    public String getIataCode() {
+        return iataCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setIataCode(String iataCode) {
+        this.iataCode = iataCode;
     }
 
     public String getName() {
@@ -59,7 +49,7 @@ public class Airport {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getCity() {
         return city;
     }
@@ -68,11 +58,11 @@ public class Airport {
         this.city = city;
     }
 
-    public Country getPais() {
-        return pais;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setPais(Country pais) {
-        this.pais = pais;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

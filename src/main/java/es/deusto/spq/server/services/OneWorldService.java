@@ -3,54 +3,46 @@ package es.deusto.spq.server.services;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
+import java.util.function.Consumer;
 
+import es.deusto.spq.client.domain.AirAlliance;
+import es.deusto.spq.client.domain.Country;
 import es.deusto.spq.server.dao.AirlineDAO;
 import es.deusto.spq.server.dao.AirportDAO;
 import es.deusto.spq.server.dao.FlightDAO;
 import es.deusto.spq.server.dao.PlaneDAO;
 import es.deusto.spq.server.dao.ReservationDAO;
-import es.deusto.spq.server.jdo.Flight;
-import es.deusto.spq.server.jdo.Airport;
 import es.deusto.spq.server.jdo.Airline;
+import es.deusto.spq.server.jdo.Airport;
+import es.deusto.spq.server.jdo.Flight;
 import es.deusto.spq.server.jdo.Plane;
 import es.deusto.spq.server.jdo.Reservation;
-import es.deusto.spq.server.jdo.Usuario;
 
 public class OneWorldService {
 
-    private FlightDAO flightDao;
-    private AirportDAO airportDao;
-    private AirlineDAO airlineDao;
-    private PlaneDAO planeDao;
-    private ReservationDAO reservationDao;
-
-    public OneWorldService() {
-        this.flightDao = new FlightDAO();
-        this.airportDao = new AirportDAO();
-        this.airlineDao = new AirlineDAO();
-        this.planeDao = PlaneDAO.getInstance(); // Assumiendo que PlaneDAO usa Singleton
-        this.reservationDao = new ReservationDAO();
-    }
+    private AirlineDAO airlineDao = AirlineDAO.getInstance();
+    private AirportDAO airportDao = AirportDAO.getInstance();
+    private FlightDAO flightDao = FlightDAO.getInstance();
+    private PlaneDAO planeDao = PlaneDAO.getInstance();
+    private ReservationDAO reservationDao = ReservationDAO.getInstance();
 
     public void loadAllData() {
-        loadAirports("src/main/resources/data/airports.csv");
-        loadAirlines("src/main/resources/data/airlines.csv");
-        loadPlanes("src/main/resources/data/planes.csv");
-        loadFlights("src/main/resources/data/flights.csv");
-        loadReservations("src/main/resources/data/reservations.csv");
+        loadFromCSV("src/main/resources/data/airports.csv", this::parseAndSaveAirport);
+        loadFromCSV("src/main/resources/data/airlines.csv", this::parseAndSaveAirline);
+        loadFromCSV("src/main/resources/data/flights.csv", this::parseAndSaveFlight);
+        loadFromCSV("src/main/resources/data/planes.csv", this::parseAndSavePlane);
+        loadFromCSV("src/main/resources/data/reservations.csv", this::parseAndSaveReservation);
     }
 
-    private void loadAirports(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get(filePath).toFile()))) {
+    private void loadFromCSV(String filePath, Consumer<String> parseFunction) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             reader.readLine(); // Skip header
             while ((line = reader.readLine()) != null) {
-                Airport airport = parseAirport(line);
-                if (airport != null) {
-                    airportDao.saveOrUpdate(airport);
-                }
+                parseFunction.accept(line);
             }
         } catch (IOException e) {
             System.err.println("Error reading the file: " + filePath);
@@ -58,163 +50,73 @@ public class OneWorldService {
         }
     }
 
-    private Airport parseAirport(String csvLine) {
-        StringTokenizer st = new StringTokenizer(csvLine, ",");
-        Airport airport = new Airport();
+    private void parseAndSaveAirport(String line) {
+        StringTokenizer st = new StringTokenizer(line, ",");
         if (st.hasMoreTokens()) {
-            airport.setCode(st.nextToken());
+            Airport airport = new Airport();
+            airport.setIataCode(st.nextToken());
             airport.setName(st.nextToken());
             airport.setCity(st.nextToken());
-            airport.setCountry(st.nextToken()); // Assuming setCountry accepts a String directly
-        }
-        return airport;
-    }
-
-    private void loadAirlines(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get(filePath).toFile()))) {
-            String line;
-            reader.readLine(); // Skip header
-            while ((line = reader.readLine()) != null) {
-                Airline airline = parseAirline(line);
-                if (airline != null) {
-                    airlineDao.saveOrUpdate(airline);
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading the file: " + filePath);
-            e.printStackTrace();
-        }
-    }
-
-    private Airline parseAirline(String csvLine) {
-        StringTokenizer st = new StringTokenizer(csvLine, ",");
-        Airline airline = new Airline();
-        if (st.hasMoreTokens()) {
-            airline.setCode(st.nextToken());
-            airline.setName(st.nextToken());
-            airline.setCountry(st.nextToken()); // Assuming setCountry accepts a String directly
-        }
-        return airline;
-    }
-
-    private void loadPlanes(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get(filePath).toFile()))) {
-            String line;
-            reader.readLine(); // Skip header
-            while ((line = reader.readLine()) != null) {
-                Plane plane = parsePlane(line);
-                if (plane != null) {
-                    planeDao.saveOrUpdate(plane);
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading the file: " + filePath);
-            e.printStackTrace();
-        }
-    }
-
-    private Plane parsePlane(String csvLine) {
-        StringTokenizer st = new StringTokenizer(csvLine, ",");
-        Plane plane = new Plane();
-        if (st.hasMoreTokens()) {
-            plane.setCode(st.nextToken());
-            plane.setModel(st.nextToken());
-            plane.setCapacity(Integer.parseInt(st.nextToken()));
-        }
-        return plane;
-    }
-
-    private void loadFlights(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get(filePath).toFile()))) {
-            String line;
-            reader.readLine(); // Skip header
-            while ((line = reader.readLine()) != null) {
-                Flight flight = parseFlight(line);
-                if (flight != null) {
-                    flightDao.saveOrUpdateFlight(flight);
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading the file: " + filePath);
-            e.printStackTrace();
-        }
-    }
-
-    private Flight parseFlight(String csvLine) {
-        StringTokenizer st = new StringTokenizer(csvLine, ",");
-        Flight flight = new Flight();
-        if (st.hasMoreTokens()) {
-            flight.setCode(st.nextToken());
-            flight.setOrigen(findOrCreateAirport(st.nextToken()));
-            flight.setDestino(findOrCreateAirport(st.nextToken()));
-            flight.setAerolinea(findOrCreateAirline(st.nextToken()));
-            flight.setAvion(findOrCreatePlane(st.nextToken()));
-            flight.setDuracion(Integer.parseInt(st.nextToken()));
-            flight.setSeats(Integer.parseInt(st.nextToken()));
-            flight.setPrecio(Double.parseDouble(st.nextToken()));
-        }
-        return flight;
-    }
-
-    private void loadReservations(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get(filePath).toFile()))) {
-            String line;
-            reader.readLine(); // Skip header
-            while ((line = reader.readLine()) != null) {
-                Reservation reservation = parseReservation(line);
-                if (reservation != null) {
-                    reservationDao.saveOrUpdate(reservation);
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading the file: " + filePath);
-            e.printStackTrace();
-        }
-    }
-
-    private Reservation parseReservation(String csvLine) {
-        StringTokenizer st = new StringTokenizer(csvLine, ",");
-        Reservation reservation = new Reservation();
-        if (st.hasMoreTokens()) {
-            reservation.setFlight(findOrCreateFlight(st.nextToken()));
-            reservation.setUser(findOrCreateUser(st.nextToken())); // Assuming that this method exists and is correctly implemented
-            reservation.setSeats(Integer.parseInt(st.nextToken()));
-            reservation.setPrice(Double.parseDouble(st.nextToken()));
-        }
-        return reservation;
-    }
-
-    // Example method stubs for finding or creating related entities
-    private Airport findOrCreateAirport(String airportName) {
-        Airport airport = airportDao.findByName(airportName);
-        if (airport == null) {
-            airport = new Airport();
-            airport.setName(airportName);
-            // Additional attributes setup
+            airport.setCountry(Country.valueOf(st.nextToken().toUpperCase())); // Convert string to enum
             airportDao.saveOrUpdate(airport);
         }
-        return airport;
     }
 
-    private Airline findOrCreateAirline(String airlineName) {
-        Airline airline = airlineDao.findByName(airlineName);
-        if (airline == null) {
-            airline = new Airline();
-            airline.setName(airlineName);
-            // Additional attributes setup
+
+    private void parseAndSaveAirline(String line) {
+        StringTokenizer st = new StringTokenizer(line, ",");
+        if (st.hasMoreTokens()) {
+            Airline airline = new Airline();
+            airline.setIataCode(st.nextToken());
+            airline.setName(st.nextToken());
+            airline.setCountry(Country.valueOf(st.nextToken().toUpperCase())); // Convierte String a Enum
+            airline.setAlliance(AirAlliance.valueOf(st.nextToken().toUpperCase())); // Convierte String a Enum
             airlineDao.saveOrUpdate(airline);
         }
-        return airline;
+    }   
+
+
+    private void parseAndSaveFlight(String line) {
+        StringTokenizer st = new StringTokenizer(line, ",");
+        if (st.hasMoreTokens()) {
+            Flight flight = new Flight();
+            flight.setCode(st.nextToken());
+            flight.setFrom(airportDao.find(st.nextToken())); // Find or create logic might be needed
+            flight.setTo(airportDao.find(st.nextToken()));
+            flight.setAirline(airlineDao.find(st.nextToken())); // This assumes the DAO has a find method by code
+            flight.setPlane(planeDao.find(st.nextToken()));
+            flight.setDuration(Integer.parseInt(st.nextToken()));
+            flight.setPrice(Double.parseDouble(st.nextToken()));
+            flightDao.saveOrUpdate(flight);
+        }
     }
 
-    private Plane findOrCreatePlane(String planeId) {
-        Plane plane = planeDao.find(planeId);
-        if (plane == null) {
-            plane = new Plane();
-            plane.setCode(planeId);
-            // Additional attributes setup
+    private void parseAndSavePlane(String line) {
+        StringTokenizer st = new StringTokenizer(line, ",");
+        if (st.hasMoreTokens()) {
+            Plane plane = new Plane();
+            plane.setIataCode(st.nextToken());
+            plane.setName(st.nextToken());
+            plane.setSeats(Integer.parseInt(st.nextToken()));
             planeDao.saveOrUpdate(plane);
         }
-        return plane;
+    }
+
+    private void parseAndSaveReservation(String line) {
+        // Utilizamos un delimitador más robusto, como comillas, si los nombres pueden contener comas.
+        String[] parts = line.split(",", -1);  // -1 para incluir campos vacíos al final si existen
+
+        if (parts.length >= 4) {
+            Reservation reservation = new Reservation();
+            reservation.setLocator(parts[0]);  // Asumimos que la primera columna es el Locator
+            reservation.setFlight(flightDao.find(parts[1]));  // Asumimos que la segunda columna es el Flight ID y lo buscamos
+            reservation.setDate(Long.parseLong(parts[2]));  // Asumimos que la tercera columna es la fecha en formato timestamp
+
+            // La cuarta columna contiene la lista de pasajeros, separados por punto y coma
+            List<String> passengers = Arrays.asList(parts[3].split(";"));
+            reservation.setPassengers(passengers);  // Set the list of passengers to the reservation
+
+            reservationDao.saveOrUpdate(reservation);  // Guardar o actualizar la reserva en la base de datos
+        }
     }
 }

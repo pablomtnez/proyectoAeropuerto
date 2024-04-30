@@ -77,43 +77,9 @@ public class ResourceServer {
         }
     }
 
-    @POST
-    @Path("/create")
-    public Response create(Flight flight) {
-        FlightDAO flightdao = FlightDAO.getInstance();
-        try {
-            if (flight.getCode() == null || flight.getOrigen() == null || flight.getDestino() == null) {
-                logger.error("creation failed: code, origin or destination are null");
-                return Response.status(Response.Status.BAD_REQUEST)
-                        .entity("code, origin and destination cannot be null").build();
-            }
-            flightdao.save(flight);
-            logger.info("creation succeeded");
-            return Response.ok().build();
-        } catch (Exception e) {
-            logger.error("creation failed: " + e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
     // Método auxiliar para validar el formato del correo electrónico
     private boolean isEmailValid(String email) {
         String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailPattern);
     }
-
-    @Path("/loadFlights")
-    @GET
-    public Response loadFlightsFromCSV() {
-        OneWorldService service = new OneWorldService();
-        try {
-            service.loadFlightsFromFile("src/main/resources/data/flights.csv"); // Asegúrate de especificar la ruta correcta del archivo CSV
-            logger.info("CSV file successfully loaded and flights have been updated.");
-            return Response.ok().build();
-        } catch (Exception e) {
-            logger.error("Error loading flights from CSV", e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error loading flights: " + e.getMessage()).build();
-        }
-    }
-
 }

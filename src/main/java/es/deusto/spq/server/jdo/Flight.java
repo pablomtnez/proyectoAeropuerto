@@ -1,18 +1,9 @@
 package es.deusto.spq.server.jdo;
 
-//import java.util.HashSet;
-import java.util.List;
-//import java.util.Set;
-
-//import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import es.deusto.spq.server.jdo.Airline;
-import es.deusto.spq.server.jdo.Airport;
-import es.deusto.spq.server.jdo.Plane;
-import es.deusto.spq.server.jdo.Reservation;
 
 @PersistenceCapable(detachable = "true")
 public class Flight {
@@ -20,47 +11,38 @@ public class Flight {
     private String code;
 
     @Persistent
-    private Airport origen;
+    private Airport from;
 
     @Persistent
-    private Airport destino;
+    private Airport to;
 
     @Persistent
-    private Airline aerolinea;
+    private Airline airline;
 
     @Persistent
-    private Plane avion;
+    private Plane plane;
 
     @Persistent
-    private List<Reservation> reservas;
+    private int duration;
 
     @Persistent
-    private int duracion;
-
-    @Persistent
-    private int seats;
-
-    @Persistent
-    private double precio;
-
-    // Constructor con todos los atributos
-    public Flight(String code, Airport origen, Airport destino, Airline aerolinea, Plane avion, List<Reservation> reservas, int duracion, int seats, float precio) {
-        this.code = code;
-        this.origen = origen;
-        this.destino = destino;
-        this.aerolinea = aerolinea;
-        this.avion = avion;
-        this.reservas = reservas;
-        this.duracion = duracion;
-        this.seats = seats;
-        this.precio = precio;
-    }
+    private double price;
 
     public Flight() {
-        //TODO Auto-generated constructor stub
     }
 
-    // Getters y Setters
+    public Flight(String code, Airport from, Airport to, Airline airline, Plane plane, int duration, double price) {
+        this.code = code;
+        this.from = from;
+        this.to = to;
+        this.airline = airline;
+        this.plane = plane;
+        this.duration = duration;
+        this.price = price;
+    }
+
+    // Getters and setters
+
     public String getCode() {
         return code;
     }
@@ -69,75 +51,51 @@ public class Flight {
         this.code = code;
     }
 
-    public Airport getOrigen() {
-        return origen;
+    public Airport getFrom() {
+        return from;
     }
 
-    public void setOrigen(Airport origen) {
-        this.origen = origen;
+    public void setFrom(Airport from) {
+        this.from = from;
     }
 
-    public Airport getDestino() {
-        return destino;
+    public Airport getTo() {
+        return to;
     }
 
-    public void setDestino(Airport destino) {
-        this.destino = destino;
+    public void setTo(Airport to) {
+        this.to = to;
     }
 
-    public Airline getAerolinea() {
-        return aerolinea;
+    public Airline getAirline() {
+        return airline;
     }
 
-    public void setAerolinea(Airline aerolinea) {
-        this.aerolinea = aerolinea;
-    }
-    
-    public Plane getAvion() {
-        return avion;
-    }
-    
-    public void setAvion(Plane avion) {
-        this.avion = avion;
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 
-    public List<Reservation> getReservas() {
-        return reservas;
+    public Plane getPlane() {
+        return plane;
     }
 
-    public void setReservas(List<Reservation> reservas) {
-        this.reservas = reservas;
+    public void setPlane(Plane plane) {
+        this.plane = plane;
     }
 
-    public int getDuracion() {
-        return duracion;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
-    public int getSeats() {
-        return seats;
+    public double getPrice() {
+        return price;
     }
 
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public void setPrice(double price) {
+        this.price = price;
     }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double d) {
-        this.precio = d;
-    }
-
-    @Override
-    public String toString() {
-        return "Flight [code=" + code + ", origen=" + origen + ", destino=" + destino + ", aerolinea=" + aerolinea
-                + ", avion=" + avion + ", reservas=" + reservas + ", duracion=" + duracion + ", seats=" + seats
-                + ", precio=" + precio + "]";
-    }
-    
 }

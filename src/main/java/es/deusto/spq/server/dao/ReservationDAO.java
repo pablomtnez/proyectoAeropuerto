@@ -81,5 +81,30 @@ public class ReservationDAO extends DataAccessObjectBase implements IDataAccessO
         }
         return result;
     }
+
+    public void saveOrUpdate(Reservation reservation) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        try {
+            tx.begin();
+            // Verificar si la reserva ya existe en la base de datos
+            Reservation existingReservation = pm.getObjectById(Reservation.class, reservation.getLocator());
+            if (existingReservation != null) {
+                // Actualizar datos existentes
+                pm.makePersistent(reservation);  // Esto actualizará la reserva existente
+            } else {
+                // Crear una nueva reserva
+                pm.makePersistent(reservation);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            System.err.println("Error saving or updating a reservation: " + e.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
+    }
 }
 
