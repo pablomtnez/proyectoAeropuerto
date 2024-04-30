@@ -115,7 +115,7 @@ public class AirlineDAO extends DataAccessObjectBase implements IDataAccessObjec
         Transaction tx = pm.currentTransaction();
         try {
             tx.begin();
-            if (airline.getCode() == null) { // Suponiendo que hay un método getId en la clase Airline
+            if (airline.getIataCode() == null) { // Suponiendo que hay un método getId en la clase Airline
                 pm.makePersistent(airline);
             } else {
                 pm.makePersistent(airline); // JDO automáticamente maneja las actualizaciones si el objeto ya está persistido

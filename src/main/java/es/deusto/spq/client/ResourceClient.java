@@ -99,36 +99,5 @@ public class ResourceClient {
             logger.error("Error connecting with the server. Code: {}", response.getStatus());
             return false;
         }
-    }
-
-    public static boolean createFlights(String code, Airport origin, Airport destination, Airline airline, Plane plane, int duration, float price) {
-        WebTarget registerUserWebTarget = webTarget.path("create");
-        Flight flight = new Flight(code, origin, destination, airline, plane, duration, price);
-        logger.debug("create new Flight: {}", flight);
-        Response response = registerUserWebTarget.request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(flight, MediaType.APPLICATION_JSON));
-
-        if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-            logger.info("flight inserted succesfully: {}", flight);
-            return true;
-        } else {
-            logger.error("Error connecting with the server. Code: {}", response.getStatus());
-            return false;
-        }
-    }
-
-    public static void loadFlights() {
-        WebTarget loadFlightsTarget = webTarget.path("loadFlights");
-        try {
-            Response response = loadFlightsTarget.request().get();
-            if (response.getStatus() == 200) {
-                logger.info("Flights loaded successfully.");
-            } else {
-                logger.error("Failed to load flights. Status: " + response.getStatus());
-            }
-        } catch (ProcessingException | WebApplicationException e) {
-            logger.error("Communication error when trying to load flights", e);
-        }
-    }
-    
+    }   
 }
