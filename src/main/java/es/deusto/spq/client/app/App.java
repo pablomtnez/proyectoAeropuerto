@@ -26,6 +26,8 @@ public class App {
         // boolean flight1 = ResourceClient.createFlights(0001, null, null, null, null,
         // 0, 0)
 
+        ResourceClient.loadData();
+
         // Mostrar ventana de inicio de sesión
         //ResourceClient.loadFlights();
         VentanaLogin login = new VentanaLogin();

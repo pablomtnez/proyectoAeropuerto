@@ -1,12 +1,9 @@
 package es.deusto.spq.server;
 
-import es.deusto.spq.server.jdo.Flight;
 import es.deusto.spq.server.jdo.Usuario;
 import es.deusto.spq.server.services.OneWorldService;
-import es.deusto.spq.server.dao.FlightDAO;
 import es.deusto.spq.server.dao.UsuarioDAO;
 
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,8 +16,22 @@ import org.apache.logging.log4j.LogManager;
 @Produces(MediaType.APPLICATION_JSON)
 public class ResourceServer {
     protected static final Logger logger = LogManager.getLogger();
+    private OneWorldService oneWorldService = new OneWorldService();
 
     public ResourceServer() {
+    }
+
+    @POST
+    @Path("/loadData")
+    public Response loadData() {
+        try {
+            oneWorldService.loadAllData();
+            logger.info("Data loading succeeded");
+            return Response.ok("Data loaded successfully").build();
+        } catch (Exception e) {
+            logger.error("Data loading failed: " + e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Data loading failed").build();
+        }
     }
 
     @Path("/login")
@@ -82,4 +93,5 @@ public class ResourceServer {
         String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailPattern);
     }
+
 }

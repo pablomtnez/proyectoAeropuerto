@@ -12,10 +12,6 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import es.deusto.spq.client.domain.Airline;
-import es.deusto.spq.client.domain.Airport;
-import es.deusto.spq.client.domain.Flight;
-import es.deusto.spq.client.domain.Plane;
 import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.MainWindow;
 
@@ -28,6 +24,37 @@ public class ResourceClient {
         webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
         logger.debug("ResourceClient initialized with hostname: {} and port: {}", hostname, port);
     }
+
+    public static boolean loadData() {
+        WebTarget loadDataTarget = webTarget.path("loadData");
+        logger.debug("Requesting to load data from server");
+        try {
+            Response response = loadDataTarget.request().post(Entity.json(""));
+    
+            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                logger.info("Data loaded successfully");
+                return true;
+            } else {
+                String errorMessage = "Failed to load data: Server returned status code " + response.getStatus();
+                mostrarMensajeError(errorMessage);
+                logger.error(errorMessage);
+                return false;
+            }
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Processing error: " + e.getMessage());
+            logger.error("Processing error: ", e);
+            return false;
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Web application error: " + e.getMessage());
+            logger.error("Web application error: ", e);
+            return false;
+        } catch (Exception e) {
+            mostrarMensajeError("Unknown error: " + e.getMessage());
+            logger.error("Unknown error: ", e);
+            return false;
+        }
+    }
+    
 
     public static boolean login(String email, String password) {
         WebTarget loginUserWebTarget = webTarget.path("login");
@@ -99,5 +126,7 @@ public class ResourceClient {
             logger.error("Error connecting with the server. Code: {}", response.getStatus());
             return false;
         }
-    }   
+    }
+    
+    
 }

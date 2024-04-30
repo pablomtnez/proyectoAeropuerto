@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.function.Consumer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import es.deusto.spq.client.domain.AirAlliance;
 import es.deusto.spq.client.domain.Country;
 import es.deusto.spq.server.dao.AirlineDAO;
@@ -28,14 +31,36 @@ public class OneWorldService {
     private FlightDAO flightDao = FlightDAO.getInstance();
     private PlaneDAO planeDao = PlaneDAO.getInstance();
     private ReservationDAO reservationDao = ReservationDAO.getInstance();
+    protected static final Logger logger = LogManager.getLogger();
 
     public void loadAllData() {
-        loadFromCSV("src/main/resources/data/airports.csv", this::parseAndSaveAirport);
-        loadFromCSV("src/main/resources/data/airlines.csv", this::parseAndSaveAirline);
-        loadFromCSV("src/main/resources/data/flights.csv", this::parseAndSaveFlight);
-        loadFromCSV("src/main/resources/data/planes.csv", this::parseAndSavePlane);
-        loadFromCSV("src/main/resources/data/reservations.csv", this::parseAndSaveReservation);
+        try {
+            loadFromCSV("src/main/resources/data/airports.csv", this::parseAndSaveAirport);
+        } catch (Exception e) {
+            logger.error("Failed to load airports: " + e.getMessage(), e);
+        }
+        try {
+            loadFromCSV("src/main/resources/data/airlines.csv", this::parseAndSaveAirline);
+        } catch (Exception e) {
+            logger.error("Failed to load airlines: " + e.getMessage(), e);
+        }
+        try {
+            loadFromCSV("src/main/resources/data/flights.csv", this::parseAndSaveFlight);
+        } catch (Exception e) {
+            logger.error("Failed to load flights: " + e.getMessage(), e);
+        }
+        try {
+            loadFromCSV("src/main/resources/data/planes.csv", this::parseAndSavePlane);
+        } catch (Exception e) {
+            logger.error("Failed to load planes: " + e.getMessage(), e);
+        }
+        try {
+            loadFromCSV("src/main/resources/data/reservations.csv", this::parseAndSaveReservation);
+        } catch (Exception e) {
+            logger.error("Failed to load reservations: " + e.getMessage(), e);
+        }
     }
+    
 
     private void loadFromCSV(String filePath, Consumer<String> parseFunction) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -79,17 +104,30 @@ public class OneWorldService {
     private void parseAndSaveFlight(String line) {
         StringTokenizer st = new StringTokenizer(line, ",");
         if (st.hasMoreTokens()) {
-            Flight flight = new Flight();
-            flight.setCode(st.nextToken());
-            flight.setFrom(airportDao.find(st.nextToken())); // Find or create logic might be needed
-            flight.setTo(airportDao.find(st.nextToken()));
-            flight.setAirline(airlineDao.find(st.nextToken())); // This assumes the DAO has a find method by code
-            flight.setPlane(planeDao.find(st.nextToken()));
-            flight.setDuration(Integer.parseInt(st.nextToken()));
-            flight.setPrice(Double.parseDouble(st.nextToken()));
-            flightDao.saveOrUpdate(flight);
+            try {
+                Flight flight = new Flight();
+                flight.setCode(st.nextToken());
+                flight.setFrom(airportDao.find(st.nextToken()));
+                flight.setTo(airportDao.find(st.nextToken()));
+                flight.setAirline(airlineDao.find(st.nextToken()));
+                flight.setPlane(planeDao.find(st.nextToken()));
+                // Asegurándonos que el siguiente token es un número entero válido
+                String durationStr = st.nextToken();
+                if (durationStr.matches("\\d+")) { // Solo números
+                    flight.setDuration(Integer.parseInt(durationStr));
+                } else {
+                    throw new NumberFormatException("Duración no es numérica: " + durationStr);
+                }
+                flight.setPrice(Double.parseDouble(st.nextToken()));
+                flightDao.saveOrUpdate(flight);
+            } catch (NumberFormatException e) {
+                logger.error("Error de formato numérico: " + e.getMessage(), e);
+            } catch (Exception e) {
+                logger.error("Error general al procesar la línea del vuelo: " + line, e);
+            }
         }
     }
+    
 
     private void parseAndSavePlane(String line) {
         StringTokenizer st = new StringTokenizer(line, ",");
