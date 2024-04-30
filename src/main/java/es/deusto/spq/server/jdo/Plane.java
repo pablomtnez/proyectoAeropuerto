@@ -53,4 +53,14 @@ public class Plane {
         return String.format("%s: %s (%d seats)", code, name, seats);
     }
 
+    public void setModel(String nextToken) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setModel'");
+    }
+
+    public void setCapacity(int int1) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCapacity'");
+    }
+
 }
