@@ -10,7 +10,7 @@ import es.deusto.spq.client.domain.AirAlliance;
 @PersistenceCapable(detachable = "true")
 public class Airline {
     @PrimaryKey
-    private String iataCode;
+    private String code;
 
     @Persistent
     private String name;
@@ -24,8 +24,8 @@ public class Airline {
     public Airline() {
     }
 
-    public Airline(String iataCode, String name, Country country, AirAlliance alliance) {
-        this.iataCode = iataCode;
+    public Airline(String code, String name, Country country, AirAlliance alliance) {
+        this.code = code;
         this.name = name;
         this.country = country;
         this.alliance = alliance;
@@ -33,15 +33,15 @@ public class Airline {
 
     @Override
     public String toString() {
-        return String.format("%s: %s [%s] (%s)", iataCode, name, alliance, country);
+        return String.format("%s: %s [%s] (%s)", code, name, alliance, country);
     }
 
     public String getIataCode() {
-        return iataCode;
+        return code;
     }
 
-    public void setIataCode(String iataCode) {
-        this.iataCode = iataCode;
+    public void setIataCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
