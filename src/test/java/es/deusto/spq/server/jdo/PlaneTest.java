@@ -16,15 +16,15 @@ public class PlaneTest {
 
     @Test
     public void testGetters() {
-        assertEquals("code", plane.getCode());
+        assertEquals("code", plane.getIataCode());
         assertEquals("name", plane.getName());
         assertEquals(200, plane.getSeats());
     }
 
     @Test
     public void testSetters() {
-        plane.setCode("newCode");
-        assertEquals("newCode", plane.getCode());
+        plane.setIataCode("newCode");
+        assertEquals("newCode", plane.getIataCode());
 
         plane.setName("newName");
         assertEquals("newName", plane.getName());

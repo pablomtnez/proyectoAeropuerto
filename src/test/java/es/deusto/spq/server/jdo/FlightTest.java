@@ -9,10 +9,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.deusto.spq.server.jdo.Reservation;
-import es.deusto.spq.server.jdo.Airport;
-import es.deusto.spq.server.jdo.Airline;
-import es.deusto.spq.server.jdo.Plane;
 
 public class FlightTest {
 
@@ -30,51 +26,43 @@ public class FlightTest {
         airlineMock = mock(Airline.class);
         planeMock = mock(Plane.class);
         reservationsMock = new ArrayList<>();
-        flight = new Flight("code", originMock, destinationMock, airlineMock, planeMock, reservationsMock, 60, 150, 100.0f);
+        flight = new Flight("code", originMock, destinationMock, airlineMock, planeMock, 60, 100);
     }
 
     @Test
     public void testGetters() {
         assertEquals("code", flight.getCode());
-        assertEquals(originMock, flight.getOrigen());
-        assertEquals(destinationMock, flight.getDestino());
-        assertEquals(airlineMock, flight.getAerolinea());
-        assertEquals(planeMock, flight.getAvion());
-        assertEquals(reservationsMock, flight.getReservas());
-        assertEquals(60, flight.getDuracion());
-        assertEquals(150, flight.getSeats());
-        assertEquals(100.0f, flight.getPrecio(), 0.001);
+        assertEquals(originMock, flight.getFrom());
+        assertEquals(destinationMock, flight.getTo());
+        assertEquals(airlineMock, flight.getAirline());
+        assertEquals(planeMock, flight.getPlane());
+        assertEquals(60, flight.getDuration());
+        assertEquals(100.0f, flight.getPrice(), 0.001);
     }
 
     @Test
     public void testSetters() {
         Airport newOrigin = mock(Airport.class);
-        flight.setOrigen(newOrigin);
-        assertEquals(newOrigin, flight.getOrigen());
+        flight.setFrom(newOrigin);
+        assertEquals(newOrigin, flight.getFrom());
 
         Airport newDestination = mock(Airport.class);
-        flight.setDestino(newDestination);
-        assertEquals(newDestination, flight.getDestino());
+        flight.setTo(newDestination);
+        assertEquals(newDestination, flight.getTo());
 
         Airline newAirline = mock(Airline.class);
-        flight.setAerolinea(newAirline);
-        assertEquals(newAirline, flight.getAerolinea());
+        flight.setAirline(newAirline);
+        assertEquals(newAirline, flight.getAirline());
 
         Plane newPlane = mock(Plane.class);
-        flight.setAvion(newPlane);
-        assertEquals(newPlane, flight.getAvion());
+        flight.setPlane(newPlane);
+        assertEquals(newPlane, flight.getPlane());
 
-        List<Reservation> newReservations = new ArrayList<>();
-        flight.setReservas(newReservations);
-        assertEquals(newReservations, flight.getReservas());
+        flight.setDuration(90);
+        assertEquals(90, flight.getDuration());
 
-        flight.setDuracion(90);
-        assertEquals(90, flight.getDuracion());
 
-        flight.setSeats(200);
-        assertEquals(200, flight.getSeats());
-
-        flight.setPrecio(150.5f);
-        assertEquals(150.5f, flight.getPrecio(), 0.001);
+        flight.setPrice(150.5f);
+        assertEquals(150.5f, flight.getPrice(), 0.001);
     }
 }

@@ -21,16 +21,16 @@ public class AirportTest {
 
     @Test
     public void testGetters() {
-        assertEquals("code", airport.getCode());
+        assertEquals("code", airport.getIataCode());
         assertEquals("name", airport.getName());
         assertEquals("city", airport.getCity());
-        assertEquals(countryMock, airport.getPais());
+        assertEquals(countryMock, airport.getCountry());
     }
 
     @Test
     public void testSetters() {
-        airport.setCode("newCode");
-        assertEquals("newCode", airport.getCode());
+        airport.setIataCode("newCode");
+        assertEquals("newCode", airport.getIataCode());
 
         airport.setName("newName");
         assertEquals("newName", airport.getName());
@@ -39,7 +39,7 @@ public class AirportTest {
         assertEquals("newCity", airport.getCity());
 
         Country newCountry = mock(Country.class);
-        airport.setPais(newCountry);
-        assertEquals(newCountry, airport.getPais());
+        airport.setCountry(newCountry);
+        assertEquals(newCountry, airport.getCountry());
     }
 }

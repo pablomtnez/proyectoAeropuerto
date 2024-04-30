@@ -24,37 +24,32 @@ public class AirlineTest {
         countryMock = mock(Country.class);
         allianceMock = mock(AirAlliance.class);
         flightsMock = new ArrayList<>();
-        airline = new Airline("code", "name", countryMock, allianceMock, flightsMock);
+        airline = new Airline("code", "name", countryMock, allianceMock);
     }
 
     @Test
     public void testGetters() {
-        assertEquals("code", airline.getCode());
+        assertEquals("code", airline.getIataCode());
         assertEquals("name", airline.getName());
-        assertEquals(countryMock, airline.getPais());
+        assertEquals(countryMock, airline.getCountry());
         assertEquals(allianceMock, airline.getAlliance());
-        assertEquals(flightsMock, airline.getVuelos());
     }
 
     @Test
     public void testSetters() {
-        airline.setCode("newCode");
-        assertEquals("newCode", airline.getCode());
+        airline.setIataCode("newCode");
+        assertEquals("newCode", airline.getIataCode());
         
         airline.setName("newName");
         assertEquals("newName", airline.getName());
         
         Country newCountry = mock(Country.class);
-        airline.setPais(newCountry);
-        assertEquals(newCountry, airline.getPais());
+        airline.setCountry(newCountry);
+        assertEquals(newCountry, airline.getCountry());
         
         AirAlliance newAlliance = mock(AirAlliance.class);
         airline.setAlliance(newAlliance);
         assertEquals(newAlliance, airline.getAlliance());
-        
-        List<Flight> newFlights = new ArrayList<>();
-        airline.setVuelo(newFlights);
-        assertEquals(newFlights, airline.getVuelos());
     }
 
     @Test
