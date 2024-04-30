@@ -21,6 +21,7 @@ public class VentanaRegistro extends JFrame {
     private JPanel contentPane;
     private JTextField textFieldUsuario, textFieldApellido, textFieldCorreo, textFieldPassword, textFieldConfirm;
     private JButton botonEntrar, botonVolver;
+    private ResourceClient resourceClient;
 
     public VentanaRegistro() {
         setTitle("Registro");
@@ -123,5 +124,9 @@ public class VentanaRegistro extends JFrame {
                 ventanaLogin.setVisible(true);
             }
         });
+    }
+
+    public VentanaRegistro(ResourceClient resourceClient) {
+        this.resourceClient = resourceClient;
     }
 }
