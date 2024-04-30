@@ -132,6 +132,32 @@ public class VentanaLogin extends JFrame {
         // Centra la ventana en la pantalla
         setLocationRelativeTo(null);
     }
+
+    public JTextField getTextFieldUsuario() {
+        return textFieldUsuario;
+    }
+
+    // Method to get the text field for the password
+    public JTextField getTextFieldPassword() {
+        return textFieldPassword;
+    }
+
+    // Method to get the login button
+    public JButton getBotonLogin() {
+        return botonLogin;
+    }
+
+    public void setTextFieldUsuario(JTextField textFieldUsuario) {
+        this.textFieldUsuario = textFieldUsuario;
+    }
+
+    public void setTextFieldPassword(JTextField textFieldPassword) {
+        this.textFieldPassword = textFieldPassword;
+    }
+
+    public void setBotonLogin(JButton botonLogin) {
+        this.botonLogin = botonLogin;
+    }
 }
 
 
