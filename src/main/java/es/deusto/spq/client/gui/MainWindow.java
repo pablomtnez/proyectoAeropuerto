@@ -42,12 +42,12 @@ public class MainWindow extends JFrame{
 	private List<Flight> flights = new ArrayList<>();
 	
 	//JTable de vuelos
-	private JTable jTableFlights = new JTable();	
+	JTable jTableFlights = new JTable();	
 	//JLabel para mensajes de información
 	private JLabel jLabelInfo = new JLabel("Selecciona un aeropuerto origen");
 	//JCombos de Origen y Destino
-	private JComboBox<String> jComboOrigin = new JComboBox<>();
-	private JComboBox<String> jComboDestination = new JComboBox<>();
+	JComboBox<String> jComboOrigin = new JComboBox<>();
+	JComboBox<String> jComboDestination = new JComboBox<>();
 
 	public static Usuario logged;
 

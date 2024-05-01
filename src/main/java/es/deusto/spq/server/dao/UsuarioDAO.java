@@ -17,7 +17,7 @@ public class UsuarioDAO extends DataAccessObjectBase implements IDataAccessObjec
     private static final Logger logger = LogManager.getLogger(UsuarioDAO.class);
     private static UsuarioDAO instance;
 
-    private UsuarioDAO(){}
+    UsuarioDAO(){}
 
     public static UsuarioDAO getInstance(){
         if(instance == null){

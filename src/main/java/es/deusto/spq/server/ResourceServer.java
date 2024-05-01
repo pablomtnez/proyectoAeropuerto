@@ -1,7 +1,7 @@
+
 package es.deusto.spq.server;
 
 import es.deusto.spq.server.jdo.Usuario;
-import es.deusto.spq.server.services.OneWorldService;
 import es.deusto.spq.server.services.OneWorldService;
 import es.deusto.spq.server.dao.UsuarioDAO;
 
@@ -17,9 +17,16 @@ import org.apache.logging.log4j.LogManager;
 @Produces(MediaType.APPLICATION_JSON)
 public class ResourceServer {
     protected static final Logger logger = LogManager.getLogger();
-    private OneWorldService oneWorldService = new OneWorldService();
+    private OneWorldService oneWorldService;
+    private UsuarioDAO usuarioDAO;
 
     public ResourceServer() {
+        this(new OneWorldService(), UsuarioDAO.getInstance());
+    }
+
+    public ResourceServer(OneWorldService oneWorldService, UsuarioDAO usuarioDAO) {
+        this.oneWorldService = oneWorldService;
+        this.usuarioDAO = usuarioDAO;
     }
 
     @POST
@@ -44,8 +51,7 @@ public class ResourceServer {
                 return Response.status(Response.Status.BAD_REQUEST).entity("Email or password cannot be null").build();
             }
 
-            UsuarioDAO dao = UsuarioDAO.getInstance();
-            Usuario u = dao.find(user.getEmail());
+            Usuario u = usuarioDAO.find(user.getEmail());
             if (u != null && u.getPassword() != null && u.getPassword().equals(user.getPassword())) {
                 logger.info("Login succeeded");
                 return Response.ok(u, MediaType.APPLICATION_JSON).build();
@@ -62,7 +68,6 @@ public class ResourceServer {
     @POST
     @Path("/register")
     public Response register(Usuario user) {
-        UsuarioDAO dao = UsuarioDAO.getInstance();
         try {
             if (user.getEmail() == null || user.getPassword() == null) {
                 logger.error("Registration failed: Email or password is null");
@@ -74,13 +79,13 @@ public class ResourceServer {
                 return Response.status(Response.Status.BAD_REQUEST).entity("Invalid email format").build();
             }
 
-            Usuario existingUser = dao.find(user.getEmail());
+            Usuario existingUser = usuarioDAO.find(user.getEmail());
             if (existingUser != null) {
                 logger.error("Registration failed: User already exists");
                 return Response.status(Response.Status.CONFLICT).entity("User already exists").build();
             }
 
-            dao.save(user); // Guardar el nuevo usuario
+            usuarioDAO.save(user); // Guardar el nuevo usuario
             logger.info("Registration succeeded");
             return Response.ok().build();
         } catch (Exception e) {

@@ -19,7 +19,7 @@ public class ReservationDAO extends DataAccessObjectBase implements IDataAccessO
     private static final Logger logger = LogManager.getLogger(ReservationDAO.class);
     private static ReservationDAO instance;
 
-    private ReservationDAO() {}
+    ReservationDAO() {}
 
     public static ReservationDAO getInstance() {
         if (instance == null) {
