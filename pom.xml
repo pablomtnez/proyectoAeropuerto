@@ -156,13 +156,7 @@
 					<props>${config.files.dir}/datanucleus.properties</props>
 				</configuration>
 				<executions>
-					<execution>
-						<!-- links the enhance to the compile phase -->
-						<phase>compile</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
+					<!-- Remove the execution of the enhance goal -->
 				</executions>
 			</plugin>
 
