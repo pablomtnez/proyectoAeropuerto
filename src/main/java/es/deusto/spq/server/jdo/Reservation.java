@@ -8,6 +8,7 @@ import java.util.List;
 
 @PersistenceCapable(detachable = "true")
 public class Reservation {
+    
     @PrimaryKey
     private String locator;
 

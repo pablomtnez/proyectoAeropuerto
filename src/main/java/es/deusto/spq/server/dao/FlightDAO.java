@@ -2,6 +2,7 @@ package es.deusto.spq.server.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
@@ -9,9 +10,11 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import es.deusto.spq.server.jdo.Flight;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject<Flight> {
-
+    private static final Logger logger = LogManager.getLogger(FlightDAO.class);
     private static FlightDAO instance;
 
     public FlightDAO() {}
@@ -81,16 +84,33 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
         return result;
     }
 
-    public void saveOrUpdate(Flight flight) {
+    // Método saveOrUpdate
+    public void saveOrUpdateFlights(Map<String, Flight> flightsMap) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
-
         try {
-            tx.begin();
-            pm.makePersistent(flight); // Save or update
-            tx.commit();
+           tx.begin();
+           for (Map.Entry<String, Flight> entry : flightsMap.entrySet()) {
+            Flight flight = entry.getValue();
+            Flight existing = find(flight.getCode());
+            if (existing == null) {
+                pm.makePersistent(flight);
+                System.out.println("Flight saved: " + flight.getCode());
+            } else {
+                existing.setAirline(flight.getAirline());
+                existing.setDuration(flight.getDuration());
+                existing.setFrom(flight.getFrom());
+                existing.setPlane(flight.getPlane());
+                existing.setPrice(flight.getPrice());
+                existing.setReservations(flight.getReservations());
+                existing.setSeats(flight.getSeats());
+                existing.setTo(flight.getTo());
+                System.out.println("Flight updated: " + flight.getCode());
+            }
+           }
+           tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error saving or updating a flight: " + ex.getMessage());
+            System.out.println("Error saving or updating Flight: " + ex.getMessage());
             if (tx.isActive()) {
                 tx.rollback();
             }

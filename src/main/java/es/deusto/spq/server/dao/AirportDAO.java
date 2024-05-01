@@ -2,6 +2,8 @@ package es.deusto.spq.server.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -80,22 +82,35 @@ public class AirportDAO extends DataAccessObjectBase implements IDataAccessObjec
         return result;
     }
 
-    public void saveOrUpdate(Airport airport) {
+    public void saveOrUpdateAirports(Map<String, Airport> airportsMap) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
         try {
-            tx.begin();
-            pm.makePersistent(airport); // Save or update
-            tx.commit();
+            tx.begin(); // Start transaction
+            for (Map.Entry<String, Airport> entry : airportsMap.entrySet()) {
+                Airport airport = entry.getValue();
+                Airport existing = find(airport.getIataCode());
+                if (existing == null) {
+                    pm.makePersistent(airport);
+                    System.out.println("Airport saved: " + airport.getIataCode());
+                } else {
+                    existing.setName(airport.getName());
+                    existing.setCity(airport.getCity());
+                    existing.setCountry(airport.getCountry());
+                    System.out.println("Airport updated: " + airport.getIataCode());
+                }
+            }
+            tx.commit(); // Commit transaction
         } catch (Exception ex) {
-            System.out.println("Error saving or updating an Airport: " + ex.getMessage());
+            System.out.println("Error saving or updating Airports: " + ex.getMessage());
             if (tx.isActive()) {
-                tx.rollback();
+                tx.rollback(); // Rollback if there's an error
             }
         } finally {
-            pm.close();
+            pm.close(); // Always close PersistenceManager
         }
     }
+    
 
     public Airport findByName(String name) {
         PersistenceManager pm = pmf.getPersistenceManager();

@@ -2,6 +2,7 @@ package es.deusto.spq.server.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
@@ -66,7 +67,7 @@ public class PlaneDAO extends DataAccessObjectBase implements IDataAccessObject<
    
         try {
             tx.begin();
-            Query query = pm.newQuery(Plane.class, "code == codeParam");
+            Query query = pm.newQuery(Plane.class, "iataCode == codeParam");
             query.declareParameters("String codeParam");
             query.setUnique(true);
             result = (Plane) query.execute(code);
@@ -83,21 +84,32 @@ public class PlaneDAO extends DataAccessObjectBase implements IDataAccessObject<
         return result;
     }
    
-    public void saveOrUpdate(Plane plane) {
+    public void saveOrUpdatePlanes(Map<String, Plane> planesMap) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
         try {
             tx.begin();
-            pm.makePersistent(plane);
+            for (Map.Entry<String, Plane> entry : planesMap.entrySet()){
+                Plane plane = entry.getValue();
+                Plane existing = find(plane.getIataCode());
+                if(existing == null){
+                    pm.makePersistent(plane);
+                    System.out.println("Plane saved: " + plane.getIataCode());
+                }else{
+                    existing.setName(plane.getName());
+                    existing.setSeats(plane.getSeats());
+                    System.out.println("Plane updated: " + plane.getIataCode());
+                }
+            }
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("Error saving or updating a Plane: " + ex.getMessage());
+            System.out.println("Error saving or updating Planes: " + ex.getMessage());
             if (tx.isActive()) {
                 tx.rollback();
             }
         } finally {
             pm.close();
         }
-    }    
+    }   
     
 }

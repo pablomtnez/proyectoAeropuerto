@@ -10,6 +10,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(detachable = "true")
 public class Flight {
+
     @PrimaryKey
     private String code;
 

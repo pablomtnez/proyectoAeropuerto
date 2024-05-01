@@ -15,6 +15,10 @@ import org.apache.logging.log4j.Logger;
 import es.deusto.spq.client.domain.AirAlliance;
 import es.deusto.spq.client.domain.Country;
 import es.deusto.spq.server.dao.AirlineDAO;
+import es.deusto.spq.server.dao.AirportDAO;
+import es.deusto.spq.server.dao.FlightDAO;
+import es.deusto.spq.server.dao.PlaneDAO;
+import es.deusto.spq.server.dao.ReservationDAO;
 import es.deusto.spq.server.jdo.Airline;
 import es.deusto.spq.server.jdo.Airport;
 import es.deusto.spq.server.jdo.Flight;
@@ -39,10 +43,18 @@ public class OneWorldService {
     public void loadAllData() {
         Map<String, Airline> airlinesMap = loadAirlinesCSV();
         AirlineDAO.getInstance().saveOrUpdateAirlines(airlinesMap);
-        loadAirportsCSV();
-        loadPlanesCSV();
-        loadFlights();
-        loadReservationsCSV();
+        Map<String, Airport> airportsMap =loadAirportsCSV();
+        AirportDAO.getInstance().saveOrUpdateAirports(airportsMap);
+        Map<String, Plane> planesMap = loadPlanesCSV();
+        PlaneDAO.getInstance().saveOrUpdatePlanes(planesMap);
+        Map<String, Flight> flightsMap = loadFlights();
+        FlightDAO.getInstance().saveOrUpdateFlights(flightsMap);
+        Map<String, List<Reservation>> reservationsMap = loadReservationsCSV();
+        ReservationDAO.getInstance().saveOrUpdate(reservationsMap);
+        
+        
+        
+        
     }
 
     public Map<String, Flight> loadFlights() {
