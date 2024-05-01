@@ -3,6 +3,7 @@ package es.deusto.spq.server.jdo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -26,7 +27,8 @@ public class Flight {
     @Persistent
     private Plane plane;
 
-    @Persistent
+    @Join
+    @Persistent(defaultFetchGroup = "true", mappedBy = "flight", dependentElement = "true")
     private List<Reservation> reservations;
 
     @Persistent

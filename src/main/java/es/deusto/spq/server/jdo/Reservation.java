@@ -1,5 +1,6 @@
 package es.deusto.spq.server.jdo;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -12,12 +13,13 @@ public class Reservation {
     @PrimaryKey
     private String locator;
 
-    @Persistent
+    @Persistent(defaultFetchGroup = "true")
     private Flight flight;
 
     @Persistent
     private long date;
 
+    @Join
     @Persistent
     private List<String> passengers;
 

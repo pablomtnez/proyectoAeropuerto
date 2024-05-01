@@ -36,32 +36,24 @@ public class OneWorldService {
     private static final String RESERVATIONS_FILE = "src/main/resources/data/reservations.csv";
 
     protected Map<String, Flight> flights = new HashMap<>();
+    protected Map<String, Airline> airlines = new HashMap<>();
+    protected Map<String, Airport> airports = new HashMap<>();
+    protected Map<String, Plane> planes = new HashMap<>();
 
     public OneWorldService() {
     }
 
     public void loadAllData() {
-        Map<String, Airline> airlinesMap = loadAirlinesCSV();
-        AirlineDAO.getInstance().saveOrUpdateAirlines(airlinesMap);
-        Map<String, Airport> airportsMap =loadAirportsCSV();
-        AirportDAO.getInstance().saveOrUpdateAirports(airportsMap);
-        Map<String, Plane> planesMap = loadPlanesCSV();
-        PlaneDAO.getInstance().saveOrUpdatePlanes(planesMap);
+        airlines = loadAirlinesCSV();
+        airports =loadAirportsCSV();
+        planes = loadPlanesCSV();
         Map<String, Flight> flightsMap = loadFlights();
-        FlightDAO.getInstance().saveOrUpdateFlights(flightsMap);
-        Map<String, List<Reservation>> reservationsMap = loadReservationsCSV();
-        ReservationDAO.getInstance().saveOrUpdate(reservationsMap);
-        
-        
-        
-        
+        List<Reservation> reservations = loadReservationsCSV();
+        for(Reservation r: reservations) flightsMap.get(r.getFlight().getCode()).getReservations().add(r);
+        FlightDAO.getInstance().saveOrUpdateFlights(flightsMap); 
     }
 
     public Map<String, Flight> loadFlights() {
-        Map<String, Airline> airlines = loadAirlinesCSV();
-        Map<String, Airport> airports = loadAirportsCSV();
-        Map<String, Plane> planes = loadPlanesCSV();
-        Map<String, List<Reservation>> reservationsMap = loadReservationsCSV();
         flights = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FLIGHTS_FILE))) {
             String line = reader.readLine();
@@ -70,9 +62,6 @@ public class OneWorldService {
             while ((line = reader.readLine()) != null) {
                 fields = line.split(",");
                 flight = new Flight(fields[0], airports.get(fields[1]), airports.get(fields[2]), airlines.get(fields[3]), planes.get(fields[5]), Integer.valueOf(fields[4]), Float.parseFloat(fields[6]));
-                if (reservationsMap.containsKey(flight.getCode())) {
-                    flight.setReservations(reservationsMap.get(flight.getCode()));
-                }
                 flights.put(flight.getCode(), flight);
             }
         } catch (Exception ex) {
@@ -137,15 +126,14 @@ public class OneWorldService {
         return planes;
     }
 
-    private Map<String, List<Reservation>> loadReservationsCSV() {
-        Map<String, List<Reservation>> reservations = new HashMap<>();
+    private List<Reservation> loadReservationsCSV() {
+        List<Reservation> reservations = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(RESERVATIONS_FILE))) {
             String line = reader.readLine(); // Skip header
             Reservation reservation;
             while ((line = reader.readLine()) != null) {
                 reservation = parseCSVReservation(line);
-                reservations.putIfAbsent(reservation.getFlight().getCode(), new ArrayList<>());
-                reservations.get(reservation.getFlight().getCode()).add(reservation);
+                reservations.add(reservation);
             }
         } catch (Exception ex) {
             logger.error(String.format("%s - Error cargando reservas: %s", ex.getMessage()));
@@ -153,7 +141,7 @@ public class OneWorldService {
         return reservations;
     }
 
-    public static Airline parseCSVAirline(String data) throws Exception {
+    public Airline parseCSVAirline(String data) throws Exception {
         try {
             String[] fields = data.split(",");
             return new Airline(fields[0], fields[1], Country.valueOf(fields[2]), AirAlliance.valueOf(fields[3]));
@@ -162,7 +150,7 @@ public class OneWorldService {
         }
     }
 
-    public static Airport parseCSVAirport(String data) throws Exception {
+    public Airport parseCSVAirport(String data) throws Exception {
         try {
             String[] fields = data.split(",");
             return new Airport(fields[0], fields[1], fields[2], Country.valueOf(fields[3]));
@@ -171,7 +159,7 @@ public class OneWorldService {
         }
     }
 
-    public static Plane parseCSVPlane(String data) throws Exception {
+    public Plane parseCSVPlane(String data) throws Exception {
         try {
             String[] fields = data.split(",");
             return new Plane(fields[0], fields[1], Integer.valueOf(fields[2]));
@@ -180,10 +168,10 @@ public class OneWorldService {
         }
     }
 
-    public static Reservation parseCSVReservation(String data) throws Exception {
+    public Reservation parseCSVReservation(String data) throws Exception {
         try {
             String[] fields = data.split("#");
-            return new Reservation(fields[0], new Flight(fields[1], null, null, null, null, 0, 0f), Long.valueOf(fields[2]), Arrays.asList(fields[3].split(";")));
+            return new Reservation(fields[0], flights.get(fields[1]), Long.valueOf(fields[2]), Arrays.asList(fields[3].split(";")));
         } catch (Exception ex) {
             throw new Exception(String.format("%s from CSV error: %s", Reservation.class, data));
         }

@@ -15,9 +15,15 @@ Para realizar los test ejecute el siguiente comando:
 
 Para realizar el performance test ejecuta el siguiente comando:
 
+<<<<<<< Updated upstream
       mvn test -Dtest=PlanePerformanceTest
 
 Ejecute el siguiente comando para compilar todo y mejorar las clases de base de datos:
+=======
+	mvn clean
+      
+Elimina los archivos y carpetas generados por una compilación previa de un proyecto Maven.
+>>>>>>> Stashed changes
 	
 	mvn compile
 
