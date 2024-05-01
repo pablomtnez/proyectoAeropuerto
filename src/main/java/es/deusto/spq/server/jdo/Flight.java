@@ -1,5 +1,8 @@
 package es.deusto.spq.server.jdo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -23,7 +26,13 @@ public class Flight {
     private Plane plane;
 
     @Persistent
+    private List<Reservation> reservations;
+
+    @Persistent
     private int duration;
+
+    @Persistent
+    private int seats;
 
     @Persistent
     private double price;
@@ -31,17 +40,18 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(String code, Airport from, Airport to, Airline airline, Plane plane, int duration, double price) {
-        this.code = code;
-        this.from = from;
-        this.to = to;
-        this.airline = airline;
-        this.plane = plane;
-        this.duration = duration;
-        this.price = price;
-    }
-
-    // Getters and setters
+    public Flight(String code, Airport from, Airport to,
+				  Airline airline, Plane plane, int duration, float price) {
+		this.code = code;
+		this.from = from;
+		this.to = to;
+		this.airline = airline;
+		this.plane = plane;
+		this.duration = duration;		
+		this.seats = (plane == null) ? 0 : plane.getSeats();
+		this.price = price;
+		this.reservations = new ArrayList<>();
+	}
 
     public String getCode() {
         return code;
@@ -83,12 +93,28 @@ public class Flight {
         this.plane = plane;
     }
 
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
     public int getDuration() {
         return duration;
     }
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
     public double getPrice() {
@@ -98,4 +124,14 @@ public class Flight {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Flight [code=" + code + ", from=" + from + ", to=" + to + ", airline=" + airline + ", plane=" + plane
+                + ", reservations=" + reservations + ", duration=" + duration + ", seats=" + seats + ", price=" + price
+                + "]";
+    }
+
+    
+
 }

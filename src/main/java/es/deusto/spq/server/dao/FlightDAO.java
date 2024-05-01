@@ -14,8 +14,7 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
 
     private static FlightDAO instance;
 
-    public FlightDAO() {
-    }
+    public FlightDAO() {}
 
     public static FlightDAO getInstance() {
         if (instance == null) {
@@ -30,8 +29,8 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
     }
 
     @Override
-    public void delete(Flight object) {
-        super.deleteObject(object);
+    public void delete(Flight flight) {
+        super.deleteObject(flight);
     }
 
     @Override
@@ -39,32 +38,30 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        List<Flight> Vuelos = new ArrayList<>();
+        List<Flight> vuelos = new ArrayList<>();
 
         try {
             tx.begin();
-
             Extent<Flight> extent = pm.getExtent(Flight.class, true);
             for (Flight category : extent) {
-                Vuelos.add(category);
+                vuelos.add(category);
             }
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error retrieving all the Vuelos: " + ex.getMessage());
+            System.out.println("  $ Error retrieving all the flights: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
             pm.close();
         }
-        return Vuelos;
+        return vuelos;
     }
 
     @Override
     public Flight find(String param) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
-
         Flight result = null;
 
         try {
@@ -74,34 +71,31 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
             result = (Flight) query.execute();
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error querying an Vuelo: " + ex.getMessage());
+            System.out.println("  $ Error querying a flight: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
-
             pm.close();
         }
         return result;
     }
-    
+
     public void saveOrUpdate(Flight flight) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
         try {
             tx.begin();
-            pm.makePersistent(flight);
+            pm.makePersistent(flight); // Save or update
             tx.commit();
         } catch (Exception ex) {
             System.out.println("  $ Error saving or updating a flight: " + ex.getMessage());
-        } finally {
-            if (tx != null && tx.isActive()) {
+            if (tx.isActive()) {
                 tx.rollback();
             }
+        } finally {
             pm.close();
         }
     }
-
-
 }

@@ -58,29 +58,31 @@ public class PlaneDAO extends DataAccessObjectBase implements IDataAccessObject<
         return Aviones;
     }
 
-    @Override
-    public Plane find(String param) {
+    public Plane find(String code) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
-
+   
         Plane result = null;
-
+   
         try {
             tx.begin();
-
-            Query query = pm.newQuery("SELECT FROM " + Plane.class.getName() + " WHERE code == '" + param+"'");
+            Query query = pm.newQuery(Plane.class, "code == codeParam");
+            query.declareParameters("String codeParam");
             query.setUnique(true);
-            result = (Plane) query.execute();
+            result = (Plane) query.execute(code);
+   
+            tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error querying an Avion: " + ex.getMessage());
-        }finally {
-            if (tx != null && tx.isActive()){
+            System.out.println("  $ Error querying a Plane: " + ex.getMessage());
+        } finally {
+            if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
+            pm.close();
         }
         return result;
     }
-
+   
     public void saveOrUpdate(Plane plane) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();

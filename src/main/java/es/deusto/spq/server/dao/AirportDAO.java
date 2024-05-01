@@ -2,7 +2,6 @@ package es.deusto.spq.server.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -10,14 +9,14 @@ import javax.jdo.Transaction;
 
 import es.deusto.spq.server.jdo.Airport;
 
-public class AirportDAO extends DataAccessObjectBase implements IDataAccessObject<Airport>{
+public class AirportDAO extends DataAccessObjectBase implements IDataAccessObject<Airport> {
 
     private static AirportDAO instance;
 
-    public AirportDAO(){}
+    public AirportDAO() {}
 
-    public static AirportDAO getInstance(){
-        if(instance==null){
+    public static AirportDAO getInstance() {
+        if (instance == null) {
             instance = new AirportDAO();
         }
         return instance;
@@ -38,46 +37,64 @@ public class AirportDAO extends DataAccessObjectBase implements IDataAccessObjec
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        List<Airport> Aeropuertos = new ArrayList<>();
+        List<Airport> aeropuertos = new ArrayList<>();
 
         try {
             tx.begin();
             Extent<Airport> extent = pm.getExtent(Airport.class, true);
-            for(Airport category : extent){
-                Aeropuertos.add(category);
+            for (Airport category : extent) {
+                aeropuertos.add(category);
             }
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error retrieving all the Aeropuertos: " + ex.getMessage());
-        }finally {
-            if(tx != null && tx.isActive()){
+            System.out.println("  $ Error retrieving all the Airports: " + ex.getMessage());
+        } finally {
+            if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
             pm.close();
         }
-        return Aeropuertos;
+        return aeropuertos;
     }
 
     @Override
     public Airport find(String param) {
-       PersistenceManager pm = pmf.getPersistenceManager();
-       Transaction tx = pm.currentTransaction();
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        Airport result = null;
 
-       Airport result = null;
-       try {
+        try {
             tx.begin();
-            Query query = pm.newQuery("SELECT FROM " + Airport.class.getName() + " WHERE code == '" + param+"'");
+            Query query = pm.newQuery("SELECT FROM " + Airport.class.getName() + " WHERE iataCode == '" + param + "'");
             query.setUnique(true);
             result = (Airport) query.execute();
-       } catch (Exception ex) {
-            System.out.println("  $ Error querying an Aeropuerto: " + ex.getMessage());
-       }finally{
-            if(tx != null && tx.isActive()){
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println("  $ Error querying an Airport: " + ex.getMessage());
+        } finally {
+            if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
             pm.close();
-       }
-       return result;
+        }
+        return result;
+    }
+
+    public void saveOrUpdate(Airport airport) {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        try {
+            tx.begin();
+            pm.makePersistent(airport); // Save or update
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println("Error saving or updating an Airport: " + ex.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
     }
 
     public Airport findByName(String name) {
@@ -100,23 +117,4 @@ public class AirportDAO extends DataAccessObjectBase implements IDataAccessObjec
         }
         return result;
     }   
-    
-    public void saveOrUpdate(Airport airport) {
-        PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx = pm.currentTransaction();
-        try {
-            tx.begin();
-            // Si el aeropuerto ya tiene un ID, se actualizará; si no, se guardará como nuevo
-            pm.makePersistent(airport);
-            tx.commit();
-        } catch (Exception ex) {
-            System.out.println("Error saving or updating an Airport: " + ex.getMessage());
-            if (tx.isActive()) {
-                tx.rollback();
-            }
-        } finally {
-            pm.close();
-        }
-    }
-    
 }
