@@ -67,4 +67,11 @@ public class Airport implements Serializable{
     public void setCountry(Country country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Airport [iataCode=" + iataCode + ", name=" + name + ", city=" + city + ", country=" + country + "]";
+    }
+
+    
 }
