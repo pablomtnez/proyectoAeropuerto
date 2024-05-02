@@ -5,10 +5,11 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.List;
 
 @PersistenceCapable(detachable = "true")
-public class Reservation {
+public class Reservation implements Serializable{
     
     @PrimaryKey
     private String locator;

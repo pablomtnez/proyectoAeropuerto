@@ -1,5 +1,6 @@
 package es.deusto.spq.server.jdo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 
 @PersistenceCapable(detachable = "true")
-public class Flight {
+public class Flight implements Serializable{
 
     @PrimaryKey
     private String code;

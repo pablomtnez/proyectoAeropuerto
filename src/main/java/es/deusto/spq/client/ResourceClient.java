@@ -59,25 +59,19 @@ public class ResourceClient {
         }
     }
 
-   public static Map<String, Object> getAllData() {
+    public static Map<String, Object> getAllData() {
         WebTarget allDataTarget = webTarget.path("allData");
         logger.debug("Requesting all data from server");
+    
         try {
             Response response = allDataTarget.request(MediaType.APPLICATION_JSON).get();
-
+            logger.debug("Server response: {}", response);
+    
             if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-                logger.debug("Server response: {}", response);
-
                 Map<String, Object> allData = response.readEntity(new GenericType<Map<String, Object>>() {});
-
-                // Verifica que el mapa no sea nulo
-                if (allData == null) {
-                    logger.error("Received empty data map from server.");
-                    mostrarMensajeError("Datos vacíos recibidos del servidor.");
-                    return new HashMap<>();
-                }
-
                 logger.info("Successfully retrieved all data");
+    
+                logger.debug("Received data: {}", allData);
                 return allData;
             } else {
                 String errorMessage = "Failed to retrieve all data: Server returned status code " + response.getStatus();
@@ -85,20 +79,13 @@ public class ResourceClient {
                 mostrarMensajeError(errorMessage);
                 return new HashMap<>();
             }
-        } catch (ProcessingException e) {
-            logger.error("Processing error: " + e.getMessage(), e);
-            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
-            return new HashMap<>();
-        } catch (WebApplicationException e) {
-            logger.error("Web application error: " + e.getMessage(), e);
-            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
-            return new HashMap<>();
         } catch (Exception e) {
-            logger.error("Unknown error: " + e.getMessage(), e);
-            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error retrieving data: " + e.getMessage(), e);
+            mostrarMensajeError("Error retrieving data: " + e.getMessage());
             return new HashMap<>();
         }
     }
+    
 
     public static boolean login(String email, String password) {
         WebTarget loginUserWebTarget = webTarget.path("login");

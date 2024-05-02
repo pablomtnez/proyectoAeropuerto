@@ -44,19 +44,23 @@ public class ResourceServer {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Data loading failed").build();
         }
     }
-
+    
     @GET
     @Path("/allData")
     public Response getAllData() {
+        logger.info("Handling request to get all data");
         try {
             Map<String, Object> allData = oneWorldService.getAllData();
             logger.info("Successfully retrieved all data");
+            logger.debug("Data retrieved: {}", allData);
+    
             return Response.ok(allData, MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {
             logger.error("Failed to retrieve all data: " + e.getMessage(), e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to retrieve all data").build();
         }
     }
+    
 
 
     @Path("/login")
