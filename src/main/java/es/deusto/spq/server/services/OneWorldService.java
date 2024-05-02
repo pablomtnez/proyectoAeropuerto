@@ -39,14 +39,31 @@ public class OneWorldService {
 
     public Map<String, Object> getAllData() {
         Map<String, Object> data = new HashMap<>();
-        data.put("airAlliances", getAllAirAlliances());
-        data.put("airlines", getAllAirlines());
-        data.put("airports", getAllAirports());
-        data.put("flights", FlightDAO.getInstance().getAllFlights());
-        data.put("planes", PlaneDAO.getInstance().getAllPlanes());
-        data.put("reservations", ReservationDAO.getInstance().getAllReservations());
+        try {
+            logger.info("Loading all data...");
+    
+            List<AirAlliance> airAlliances = getAllAirAlliances();
+            List<Airline> airlinesList = getAllAirlines();
+            List<Airport> airportsList = getAllAirports();
+            List<Flight> flightsList = FlightDAO.getInstance().getAllFlights();
+            List<Plane> planesList = PlaneDAO.getInstance().getAllPlanes();
+            List<Reservation> reservationsList = ReservationDAO.getInstance().getAllReservations();
+    
+            logger.info("Data loading successful.");
+            data.put("airAlliances", airAlliances);
+            data.put("airlines", airlinesList);
+            data.put("airports", airportsList);
+            data.put("flights", flightsList);
+            data.put("planes", planesList);
+            data.put("reservations", reservationsList);
+    
+        } catch (Exception e) {
+            logger.error("Error loading data: " + e.getMessage(), e);
+            throw new RuntimeException("Error loading data", e);
+        }
         return data;
     }
+    
 
     private List<AirAlliance> getAllAirAlliances() {
         // Implementar el código para obtener todas las alianzas aéreas

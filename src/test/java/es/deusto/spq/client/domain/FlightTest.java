@@ -40,8 +40,8 @@ public class FlightTest {
     @Test
     public void testGetters() {
         assertEquals("FL123", flight.getCode());
-        assertEquals(originMock, flight.getOrigin());
-        assertEquals(destinationMock, flight.getDestination());
+        assertEquals(originMock, flight.getFrom());
+        assertEquals(destinationMock, flight.getTo());
         assertEquals(airlineMock, flight.getAirline());
         assertEquals(planeMock, flight.getPlane());
         assertEquals(120, flight.getDuration());

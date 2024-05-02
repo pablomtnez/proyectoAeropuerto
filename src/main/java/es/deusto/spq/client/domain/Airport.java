@@ -6,20 +6,20 @@ import java.util.Objects;
 public class Airport implements Comparable<Airport>, Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String code;
+	private String iataCode;
 	private String name;
 	private String city;
 	private Country country;
 	
-	public Airport(String code, String name, String city, Country country) {
-		this.code = code;
+	public Airport(String iataCode, String name, String city, Country country) {
+		this.iataCode = iataCode;
 		this.name = name;
 		this.city = city;
 		this.country = country;
 	}
 
-	public String getCode() {
-		return code;
+	public String getIataCode() {
+		return iataCode;
 	}
 
 	public String getName() {
@@ -36,13 +36,13 @@ public class Airport implements Comparable<Airport>, Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(code);
+		return Objects.hash(iataCode);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj != null && getClass() == obj.getClass()) {
-			return ((Airport) obj).code.equals(this.code);
+			return ((Airport) obj).iataCode.equals(this.iataCode);
 		} else {
 			return false;
 		}
@@ -50,11 +50,11 @@ public class Airport implements Comparable<Airport>, Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%s: %s, %s (%s)", code, name, city, country);
+		return String.format("%s: %s, %s (%s)", iataCode, name, city, country);
 	}
 
 	@Override
 	public int compareTo(Airport o) {
-		return this.getCode().compareTo(o.getCode());
+		return this.getIataCode().compareTo(o.getIataCode());
 	}
 }

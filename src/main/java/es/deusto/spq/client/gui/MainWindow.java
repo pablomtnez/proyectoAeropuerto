@@ -9,10 +9,12 @@ import es.deusto.spq.client.ResourceClient;
 import es.deusto.spq.client.domain.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
+    private static final Logger logger = LogManager.getLogger(MainWindow.class);
 
     // Lista de vuelos que se muestra en la ventana
     private List<Flight> flights = new ArrayList<>();
@@ -26,14 +28,25 @@ public class MainWindow extends JFrame {
 
     public MainWindow() {
         // Cargar todos los datos usando ResourceClient
-        Map<String, Object> allData = ResourceClient.getAllData();
-        if (allData == null) {
+        Map<String, Object> allData = null;
+        try {
+            allData = ResourceClient.getAllData();
+        } catch (Exception e) {
+            logger.error("Error al obtener datos del servidor", e);
+            JOptionPane.showMessageDialog(this, "Error al obtener datos del servidor", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (allData == null || allData.isEmpty()) {
+            logger.warn("No se recibieron datos del servidor");
             JOptionPane.showMessageDialog(this, "No se pudieron cargar los datos del servidor", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         List<Airport> airports = (List<Airport>) allData.get("airports");
         flights = (List<Flight>) allData.get("flights");
+
+        logger.info("Datos recibidos: {} aeropuertos, {} vuelos", airports.size(), flights.size());
 
         // Configurar JComboBox de origen
         jComboOrigin.setPrototypeDisplayValue("Seleccione el aeropuerto origen");
@@ -46,8 +59,8 @@ public class MainWindow extends JFrame {
                 if (!origin.isEmpty()) {
                     Set<Airport> destinations = new HashSet<>();
                     for (Flight flight : flights) {
-                        if (flight.getOrigin().getCode().equals(origin)) {
-                            destinations.add(flight.getDestination());
+                        if (flight.getFrom().getIataCode().equals(origin)) {
+                            destinations.add(flight.getTo());
                         }
                     }
                     updateDestinations(new ArrayList<>(destinations));
@@ -71,7 +84,7 @@ public class MainWindow extends JFrame {
                 if (!destination.isEmpty() && jComboOrigin.getSelectedIndex() > 0) {
                     String origin = jComboOrigin.getSelectedItem().toString().substring(0, jComboOrigin.getSelectedItem().toString().indexOf(" - "));
                     for (Flight flight : flights) {
-                        if (flight.getOrigin().getCode().equals(origin) && flight.getDestination().getCode().equals(destination)) {
+                        if (flight.getFrom().getIataCode().equals(origin) && flight.getTo().getIataCode().equals(destination)) {
                             flights.add(flight);
                         }
                     }
@@ -113,24 +126,40 @@ public class MainWindow extends JFrame {
     }
 
     private void updateOrigins(List<Airport> airports) {
+        if (airports == null || airports.isEmpty()) {
+            logger.warn("No se encontraron aeropuertos");
+            return;
+        }
+
         this.jComboOrigin.removeAllItems();
         this.jComboOrigin.addItem("");
         Collections.sort(airports);
         for (Airport airport : airports) {
-            jComboOrigin.addItem(String.format("%s - %s (%s)", airport.getCode(), airport.getName(), airport.getCountry().getName()));
+            jComboOrigin.addItem(String.format("%s - %s (%s)", airport.getIataCode(), airport.getName(), airport.getCountry().getName()));
         }
     }
 
     private void updateDestinations(List<Airport> airports) {
+        if (airports == null || airports.isEmpty()) {
+            logger.warn("No se encontraron destinos");
+            return;
+        }
+
         this.jComboDestination.removeAllItems();
         this.jComboDestination.addItem("");
         Collections.sort(airports);
         for (Airport airport : airports) {
-            jComboDestination.addItem(String.format("%s - %s (%s)", airport.getCode(), airport.getName(), airport.getCountry().getName()));
+            jComboDestination.addItem(String.format("%s - %s (%s)", airport.getIataCode(), airport.getName(), airport.getCountry().getName()));
         }
     }
 
     public void updateFlights() {
+        if (flights == null || flights.isEmpty()) {
+            logger.warn("No se encontraron vuelos");
+            jLabelInfo.setText("No se encontraron vuelos");
+            return;
+        }
+
         Comparator<Flight> priceComparator = Comparator.comparingDouble(Flight::getPrice);
         Collections.sort(flights, priceComparator);
 
@@ -149,9 +178,5 @@ public class MainWindow extends JFrame {
         jTableFlights.getColumnModel().getColumn(lastColumn).setCellEditor(new BookRendererEditor(this));
 
         jLabelInfo.setText(String.format("%d vuelos", flights.size()));
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MainWindow());
     }
 }

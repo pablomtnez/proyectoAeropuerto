@@ -1,6 +1,6 @@
 package es.deusto.spq.client;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
@@ -16,13 +16,7 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import es.deusto.spq.client.domain.AirAlliance;
-import es.deusto.spq.client.domain.Airline;
-import es.deusto.spq.client.domain.Airport;
-import es.deusto.spq.client.domain.Flight;
-import es.deusto.spq.client.domain.Plane;
-import es.deusto.spq.client.domain.Reservation;
-import es.deusto.spq.client.domain.Usuario;
+import es.deusto.spq.client.domain.*;
 import es.deusto.spq.client.gui.MainWindow;
 
 public class ResourceClient {
@@ -40,7 +34,7 @@ public class ResourceClient {
         logger.debug("Requesting to load data from server");
         try {
             Response response = loadDataTarget.request().post(Entity.json(""));
-    
+
             if (response.getStatus() == Response.Status.OK.getStatusCode()) {
                 logger.info("Data loaded successfully");
                 return true;
@@ -70,17 +64,18 @@ public class ResourceClient {
         logger.debug("Requesting all data from server");
         try {
             Response response = allDataTarget.request(MediaType.APPLICATION_JSON).get();
-    
+
             if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                logger.debug("Server response: {}", response);
+
                 Map<String, Object> allData = response.readEntity(new GenericType<Map<String, Object>>() {});
 
-                // Extraer y mapear datos a clases de dominio
-                List<AirAlliance> airAlliances = (List<AirAlliance>) allData.get("airAlliances");
-                List<Airline> airlines = (List<Airline>) allData.get("airlines");
-                List<Airport> airports = (List<Airport>) allData.get("airports");
-                List<Flight> flights = (List<Flight>) allData.get("flights");
-                List<Plane> planes = (List<Plane>) allData.get("planes");
-                List<Reservation> reservations = (List<Reservation>) allData.get("reservations");
+                // Verifica que el mapa no sea nulo
+                if (allData == null) {
+                    logger.error("Received empty data map from server.");
+                    mostrarMensajeError("Datos vacíos recibidos del servidor.");
+                    return new HashMap<>();
+                }
 
                 logger.info("Successfully retrieved all data");
                 return allData;
@@ -88,20 +83,22 @@ public class ResourceClient {
                 String errorMessage = "Failed to retrieve all data: Server returned status code " + response.getStatus();
                 logger.error(errorMessage);
                 mostrarMensajeError(errorMessage);
-                return null;
+                return new HashMap<>();
             }
         } catch (ProcessingException e) {
             logger.error("Processing error: " + e.getMessage(), e);
-            return null;
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            return new HashMap<>();
         } catch (WebApplicationException e) {
             logger.error("Web application error: " + e.getMessage(), e);
-            return null;
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            return new HashMap<>();
         } catch (Exception e) {
             logger.error("Unknown error: " + e.getMessage(), e);
-            return null;
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            return new HashMap<>();
         }
     }
-    
 
     public static boolean login(String email, String password) {
         WebTarget loginUserWebTarget = webTarget.path("login");
@@ -173,5 +170,5 @@ public class ResourceClient {
             logger.error("Error connecting with the server. Code: {}", response.getStatus());
             return false;
         }
-    }   
+    }
 }

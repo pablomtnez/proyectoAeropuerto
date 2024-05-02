@@ -39,7 +39,7 @@ public class AirlineTest {
 
     @Test
     public void testGetters() {
-        assertEquals("AA", airline.getCode());
+        assertEquals("AA", airline.getIataCode());
         assertEquals("American Airlines", airline.getName());
         assertEquals(countryMock, airline.getCountry());
         assertEquals(allianceMock, airline.getAlliance());

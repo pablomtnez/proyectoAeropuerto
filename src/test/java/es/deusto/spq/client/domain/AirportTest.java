@@ -26,7 +26,7 @@ public class AirportTest {
 
     @Test
     public void testGetters() {
-        assertEquals("JFK", airport.getCode());
+        assertEquals("JFK", airport.getIataCode());
         assertEquals("John F. Kennedy International Airport", airport.getName());
         assertEquals("New York", airport.getCity());
         assertEquals(countryMock, airport.getCountry());
