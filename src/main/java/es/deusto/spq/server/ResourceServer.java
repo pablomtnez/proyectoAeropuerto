@@ -5,6 +5,9 @@ import es.deusto.spq.server.jdo.Usuario;
 import es.deusto.spq.server.services.OneWorldService;
 import es.deusto.spq.server.dao.UsuarioDAO;
 
+import java.util.Map;
+
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -41,6 +44,20 @@ public class ResourceServer {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Data loading failed").build();
         }
     }
+
+    @GET
+    @Path("/allData")
+    public Response getAllData() {
+        try {
+            Map<String, Object> allData = oneWorldService.getAllData();
+            logger.info("Successfully retrieved all data");
+            return Response.ok(allData, MediaType.APPLICATION_JSON).build();
+        } catch (Exception e) {
+            logger.error("Failed to retrieve all data: " + e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to retrieve all data").build();
+        }
+    }
+
 
     @Path("/login")
     @POST

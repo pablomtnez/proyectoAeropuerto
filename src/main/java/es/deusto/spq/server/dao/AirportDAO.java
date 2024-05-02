@@ -131,5 +131,28 @@ public class AirportDAO extends DataAccessObjectBase implements IDataAccessObjec
             pm.close();
         }
         return result;
-    }   
+    }
+    public List<Airport> getAllAirports() {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+
+        List<Airport> airports = new ArrayList<>();
+
+        try {
+            tx.begin();
+            Query query = pm.newQuery(Airport.class);
+            List<Airport> result = (List<Airport>) query.execute();
+            airports.addAll(result);
+            tx.commit();
+        } catch (Exception ex) {
+            System.out.println("Error retrieving all airports: " + ex.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
+
+        return airports;
+    }
 }

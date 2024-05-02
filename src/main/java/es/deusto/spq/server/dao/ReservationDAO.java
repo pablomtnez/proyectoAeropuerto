@@ -118,6 +118,25 @@ public class ReservationDAO extends DataAccessObjectBase implements IDataAccessO
             pm.close();
         }
     }
-    
+    public List<Reservation> getAllReservations() {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+        List<Reservation> reservations = new ArrayList<>();
+        try {
+            tx.begin();
+            Query query = pm.newQuery(Reservation.class);
+            List<Reservation> result = (List<Reservation>) query.execute();
+            reservations.addAll(result);
+            tx.commit();
+        } catch (Exception ex) {
+            logger.error("Error retrieving all reservations: " + ex.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
+        return reservations;
+    }
 
 }

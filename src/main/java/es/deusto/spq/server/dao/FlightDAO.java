@@ -118,4 +118,28 @@ public class FlightDAO extends DataAccessObjectBase implements IDataAccessObject
             pm.close();
         }
     }
+
+    public List<Flight> getAllFlights() {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx = pm.currentTransaction();
+    
+        List<Flight> flights = new ArrayList<>();
+    
+        try {
+            tx.begin();
+            Query query = pm.newQuery(Flight.class);
+            List<Flight> result = (List<Flight>) query.execute();
+            flights.addAll(result);
+            tx.commit();
+        } catch (Exception ex) {
+            logger.error("$ Error retrieving all flights: " + ex.getMessage());
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+        } finally {
+            pm.close();
+        }
+        return flights;
+    }
+    
 }

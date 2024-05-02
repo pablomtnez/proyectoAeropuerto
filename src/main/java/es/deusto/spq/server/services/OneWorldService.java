@@ -1,32 +1,17 @@
 package es.deusto.spq.server.services;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import es.deusto.spq.client.domain.AirAlliance;
 import es.deusto.spq.client.domain.Country;
-import es.deusto.spq.server.dao.AirlineDAO;
-import es.deusto.spq.server.dao.AirportDAO;
-import es.deusto.spq.server.dao.FlightDAO;
-import es.deusto.spq.server.dao.PlaneDAO;
-import es.deusto.spq.server.dao.ReservationDAO;
-import es.deusto.spq.server.jdo.Airline;
-import es.deusto.spq.server.jdo.Airport;
-import es.deusto.spq.server.jdo.Flight;
-import es.deusto.spq.server.jdo.Plane;
-import es.deusto.spq.server.jdo.Reservation;
+import es.deusto.spq.server.dao.*;
+import es.deusto.spq.server.jdo.*;
 
 public class OneWorldService {
-
     protected static final Logger logger = LogManager.getLogger();
 
     private static final String AIRLINES_FILE = "src/main/resources/data/airlines.csv";
@@ -40,20 +25,43 @@ public class OneWorldService {
     protected Map<String, Airport> airports = new HashMap<>();
     protected Map<String, Plane> planes = new HashMap<>();
 
-    public OneWorldService() {
-    }
+    public OneWorldService() {}
 
     public void loadAllData() {
         airlines = loadAirlinesCSV();
-        airports =loadAirportsCSV();
+        airports = loadAirportsCSV();
         planes = loadPlanesCSV();
         Map<String, Flight> flightsMap = loadFlights();
         List<Reservation> reservations = loadReservationsCSV();
-        for(Reservation r: reservations) flightsMap.get(r.getFlight().getCode()).getReservations().add(r);
+        for(Reservation r : reservations) flightsMap.get(r.getFlight().getCode()).getReservations().add(r);
         FlightDAO.getInstance().saveOrUpdateFlights(flightsMap); 
     }
 
-    public Map<String, Flight> loadFlights() {
+    public Map<String, Object> getAllData() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("airAlliances", getAllAirAlliances());
+        data.put("airlines", getAllAirlines());
+        data.put("airports", getAllAirports());
+        data.put("flights", FlightDAO.getInstance().getAllFlights());
+        data.put("planes", PlaneDAO.getInstance().getAllPlanes());
+        data.put("reservations", ReservationDAO.getInstance().getAllReservations());
+        return data;
+    }
+
+    private List<AirAlliance> getAllAirAlliances() {
+        // Implementar el código para obtener todas las alianzas aéreas
+        return new ArrayList<>();
+    }
+
+    private List<Airline> getAllAirlines() {
+        return new ArrayList<>(airlines.values());
+    }
+
+    private List<Airport> getAllAirports() {
+        return new ArrayList<>(airports.values());
+    }
+
+    private Map<String, Flight> loadFlights() {
         flights = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FLIGHTS_FILE))) {
             String line = reader.readLine();
@@ -69,16 +77,6 @@ public class OneWorldService {
         }
         logger.info(String.format("%s vuelos cargados correctamente", flights.values().size()));
         return flights;
-    }
-
-    public void storeReservation(Reservation reservation) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(RESERVATIONS_FILE, true))) {
-            String line = String.format("%s#%s#%s#%s", reservation.getLocator(), reservation.getFlight().getCode(), String.valueOf(reservation.getDate()), String.join(";", reservation.getPassengers()));
-            writer.write(line);
-            writer.newLine();
-        } catch (Exception ex) {
-            logger.error(String.format("%s - Error guardando reserva: %s", ex.getMessage()));
-        }
     }
 
     private Map<String, Airline> loadAirlinesCSV() {
