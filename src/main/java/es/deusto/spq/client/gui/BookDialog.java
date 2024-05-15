@@ -28,6 +28,7 @@ public class BookDialog extends JDialog{
 
 	private JSpinner jSpinnerSeats = new JSpinner();
 	private JComboBox<String> jComboPassengers = new JComboBox<>();
+	private JComboBox<String> jComboBaggage = new JComboBox<>(new String[] {"No", "Yes"});  // Nuevo JComboBox para el equipaje adicional
 	private JLabel jLabelAmount = new JLabel();
 	private JButton jButtonConfirm = new JButton("Confirmar");
 	private JButton jButtonCancel = new JButton("Cancelar");
@@ -36,11 +37,13 @@ public class BookDialog extends JDialog{
 	private int seats = 1;
 	//Nombres de la personas
 	private List<String> passengers = null;
+	// Variable para almacenar si hay equipaje adicional
+	private boolean additionalBaggage = false;
 	
 	public BookDialog(Flight flight) {
 		JPanel jPanelFlight = new JPanel();
 		jPanelFlight.setBorder(new TitledBorder("Datos del vuelo"));
-		jPanelFlight.setLayout(new GridLayout(5, 1));
+		jPanelFlight.setLayout(new GridLayout(6, 1));  // Ajustar el layout para incluir el nuevo campo
 
 		JLabel jLabelFlight = new JLabel(String.format("- %s", flight.getCode()));
 		jLabelFlight.setIcon(new ImageIcon(String.format("resources/images/%s.png", flight.getAirline().getCode())));
@@ -50,6 +53,8 @@ public class BookDialog extends JDialog{
 		jPanelFlight.add(new JLabel(String.format("Destino: %s - %s", flight.getDestination().getCode(), flight.getDestination().getName())));
 		jPanelFlight.add(new JLabel(String.format("Duración: %d m.", flight.getDuration())));
 		jPanelFlight.add(new JLabel(String.format("Precio: %.2f €", flight.getPrice())));
+		jPanelFlight.add(new JLabel("Equipaje adicional:"));  // Etiqueta para el nuevo campo
+		jPanelFlight.add(jComboBaggage);  // Añadir el nuevo JComboBox al panel
 		
 		JPanel jPanelPassengers = new JPanel();
 		jPanelPassengers.setBorder(new TitledBorder("Datos personales"));
@@ -159,6 +164,7 @@ public class BookDialog extends JDialog{
 		jButtonCancel.addActionListener((e) -> setVisible(false));
 		jButtonConfirm.addActionListener((e) -> {
 			updatePassengers();
+			additionalBaggage = jComboBaggage.getSelectedItem().equals("Yes");  // Obtener el valor del nuevo campo
 			setVisible(false);
 		});
 		
@@ -207,5 +213,10 @@ public class BookDialog extends JDialog{
 	public List<String> getPassengers() {
 		return passengers;
 	}
+
+    // Método para obtener si hay equipaje adicional
+    public boolean hasAdditionalBaggage() {
+        return additionalBaggage;
+    }
     
 }
