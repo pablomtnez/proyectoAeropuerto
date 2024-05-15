@@ -1,7 +1,5 @@
 package es.deusto.spq.server.jdo;
 
-import java.io.Serializable;
-
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -9,7 +7,7 @@ import javax.jdo.annotations.PrimaryKey;
 import es.deusto.spq.client.domain.Country;
 
 @PersistenceCapable(detachable = "true")
-public class Airport implements Serializable{
+public class Airport {
     @PrimaryKey
     private String iataCode;
 
@@ -67,11 +65,4 @@ public class Airport implements Serializable{
     public void setCountry(Country country) {
         this.country = country;
     }
-
-    @Override
-    public String toString() {
-        return "Airport [iataCode=" + iataCode + ", name=" + name + ", city=" + city + ", country=" + country + "]";
-    }
-
-    
 }

@@ -1,8 +1,5 @@
 package es.deusto.spq.client;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.JOptionPane;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.WebApplicationException;
@@ -10,13 +7,12 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import es.deusto.spq.client.domain.*;
+import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.MainWindow;
 
 public class ResourceClient {
@@ -34,7 +30,7 @@ public class ResourceClient {
         logger.debug("Requesting to load data from server");
         try {
             Response response = loadDataTarget.request().post(Entity.json(""));
-
+    
             if (response.getStatus() == Response.Status.OK.getStatusCode()) {
                 logger.info("Data loaded successfully");
                 return true;
@@ -56,33 +52,6 @@ public class ResourceClient {
             mostrarMensajeError("Unknown error: " + e.getMessage());
             logger.error("Unknown error: ", e);
             return false;
-        }
-    }
-
-    public static Map<String, Object> getAllData() {
-        WebTarget allDataTarget = webTarget.path("allData");
-        logger.debug("Requesting all data from server");
-    
-        try {
-            Response response = allDataTarget.request(MediaType.APPLICATION_JSON).get();
-            logger.debug("Server response: {}", response);
-    
-            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-                Map<String, Object> allData = response.readEntity(new GenericType<Map<String, Object>>() {});
-                logger.info("Successfully retrieved all data");
-    
-                logger.debug("Received data: {}", allData);
-                return allData;
-            } else {
-                String errorMessage = "Failed to retrieve all data: Server returned status code " + response.getStatus();
-                logger.error(errorMessage);
-                mostrarMensajeError(errorMessage);
-                return new HashMap<>();
-            }
-        } catch (Exception e) {
-            logger.error("Error retrieving data: " + e.getMessage(), e);
-            mostrarMensajeError("Error retrieving data: " + e.getMessage());
-            return new HashMap<>();
         }
     }
     
@@ -158,4 +127,6 @@ public class ResourceClient {
             return false;
         }
     }
+    
+    
 }

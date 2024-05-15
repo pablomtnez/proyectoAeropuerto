@@ -19,7 +19,7 @@ public class PlaneTest {
 
     @Test
     public void testGetters() {
-        assertEquals("PL123", plane.getIataCode());
+        assertEquals("PL123", plane.getCode());
         assertEquals("Boeing 737", plane.getName());
         assertEquals(150, plane.getSeats());
     }

@@ -8,22 +8,22 @@ import java.util.Objects;
 public class Airline implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private String iataCode;
+	private String code;
 	private String name;
 	private Country country;
 	private AirAlliance alliance;
 	private List<Flight> flights;
 	
-	public Airline(String iataCode, String name, Country country, AirAlliance alliance) {
-		this.iataCode = iataCode;
+	public Airline(String code, String name, Country country, AirAlliance alliance) {
+		this.code = code;
 		this.name = name;
 		this.country = country;
 		this.alliance = alliance;
 		this.flights = new ArrayList<>();
 	}
 
-	public String getIataCode() {
-		return iataCode;
+	public String getCode() {
+		return code;
 	}
 
 	public String getName() {
@@ -50,13 +50,13 @@ public class Airline implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(iataCode);
+		return Objects.hash(code);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj != null && getClass() == obj.getClass()) {
-			return ((Airline) obj).iataCode.equals(iataCode);
+			return ((Airline) obj).code.equals(code);
 		} else {
 			return false;
 		}
@@ -64,7 +64,7 @@ public class Airline implements Serializable{
 
 	@Override
 	public String toString() {
-		return String.format("%s: %s [%s] (%s)", iataCode, name, alliance, country);
+		return String.format("%s: %s [%s] (%s)", code, name, alliance, country);
 	}
 	
 }

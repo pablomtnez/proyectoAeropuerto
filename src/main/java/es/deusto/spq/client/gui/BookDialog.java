@@ -43,11 +43,11 @@ public class BookDialog extends JDialog{
 		jPanelFlight.setLayout(new GridLayout(5, 1));
 
 		JLabel jLabelFlight = new JLabel(String.format("- %s", flight.getCode()));
-		jLabelFlight.setIcon(new ImageIcon(String.format("resources/images/%s.png", flight.getAirline().getIataCode())));
+		jLabelFlight.setIcon(new ImageIcon(String.format("resources/images/%s.png", flight.getAirline().getCode())));
 		
 		jPanelFlight.add(jLabelFlight);
-		jPanelFlight.add(new JLabel(String.format("Origen: %s - %s", flight.getFrom().getIataCode(), flight.getFrom().getName())));
-		jPanelFlight.add(new JLabel(String.format("Destino: %s - %s", flight.getTo().getIataCode(), flight.getTo().getName())));
+		jPanelFlight.add(new JLabel(String.format("Origen: %s - %s", flight.getOrigin().getCode(), flight.getOrigin().getName())));
+		jPanelFlight.add(new JLabel(String.format("Destino: %s - %s", flight.getDestination().getCode(), flight.getDestination().getName())));
 		jPanelFlight.add(new JLabel(String.format("Duración: %d m.", flight.getDuration())));
 		jPanelFlight.add(new JLabel(String.format("Precio: %.2f €", flight.getPrice())));
 		

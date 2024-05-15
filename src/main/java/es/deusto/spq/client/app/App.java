@@ -27,7 +27,6 @@ public class App {
         // 0, 0)
 
         ResourceClient.loadData();
-        ResourceClient.getAllData();
 
         // Mostrar ventana de inicio de sesión
         //ResourceClient.loadFlights();

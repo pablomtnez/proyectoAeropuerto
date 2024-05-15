@@ -1,20 +1,32 @@
 package es.deusto.spq.server.services;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import es.deusto.spq.client.domain.AirAlliance;
 import es.deusto.spq.client.domain.Country;
-import es.deusto.spq.server.dao.*;
-import es.deusto.spq.server.jdo.*;
+import es.deusto.spq.server.dao.AirlineDAO;
+import es.deusto.spq.server.dao.AirportDAO;
+import es.deusto.spq.server.dao.FlightDAO;
+import es.deusto.spq.server.dao.PlaneDAO;
+import es.deusto.spq.server.dao.ReservationDAO;
+import es.deusto.spq.server.jdo.Airline;
+import es.deusto.spq.server.jdo.Airport;
+import es.deusto.spq.server.jdo.Flight;
+import es.deusto.spq.server.jdo.Plane;
+import es.deusto.spq.server.jdo.Reservation;
 
 public class OneWorldService {
+
     protected static final Logger logger = LogManager.getLogger();
 
     private static final String AIRLINES_FILE = "src/main/resources/data/airlines.csv";
@@ -23,191 +35,145 @@ public class OneWorldService {
     private static final String PLANES_FILE = "src/main/resources/data/planes.csv";
     private static final String RESERVATIONS_FILE = "src/main/resources/data/reservations.csv";
 
-    protected Map<String, Flight> flights = new ConcurrentHashMap<>();
-    protected Map<String, Airline> airlines = new ConcurrentHashMap<>();
-    protected Map<String, Airport> airports = new ConcurrentHashMap<>();
-    protected Map<String, Plane> planes = new ConcurrentHashMap<>();
+    protected Map<String, Flight> flights = new HashMap<>();
+    protected Map<String, Airline> airlines = new HashMap<>();
+    protected Map<String, Airport> airports = new HashMap<>();
+    protected Map<String, Plane> planes = new HashMap<>();
 
-    public OneWorldService() {}
+    public OneWorldService() {
+    }
 
     public void loadAllData() {
-        // Primero carga las aerolíneas y luego los aeropuertos, ya que son requeridos por otras entidades.
         airlines = loadAirlinesCSV();
-        airports = loadAirportsCSV();
-        
-        // Carga los aviones que pueden ser referenciados por los vuelos.
+        airports =loadAirportsCSV();
         planes = loadPlanesCSV();
-        
-        // Luego carga los vuelos, ya que dependen de aerolíneas, aeropuertos y aviones.
-        flights = loadFlights();
-        
-        // Por último, carga las reservas, ya que dependen de los vuelos.
+        Map<String, Flight> flightsMap = loadFlights();
         List<Reservation> reservations = loadReservationsCSV();
-        
-        // Asigna las reservas a los vuelos correspondientes.
-        for (Reservation r : reservations) {
-            Flight flight = flights.get(r.getFlight().getCode());
-            if (flight != null) {
-                flight.getReservations().add(r);
-            }
-        }
-    
-        // Guarda o actualiza los datos de los vuelos en la base de datos.
-        FlightDAO.getInstance().saveOrUpdateFlights(flights);
-    }
-    
-
-    public Map<String, Object> getAllData() {
-        Map<String, Object> data = new HashMap<>();
-        data.put("airlines", getAllAirlines());
-        data.put("airports", getAllAirports());
-        data.put("flights", FlightDAO.getInstance().getAllFlights());
-        data.put("planes", PlaneDAO.getInstance().getAllPlanes());
-        data.put("reservations", ReservationDAO.getInstance().getAllReservations());
-        return data;
+        for(Reservation r: reservations) flightsMap.get(r.getFlight().getCode()).getReservations().add(r);
+        FlightDAO.getInstance().saveOrUpdateFlights(flightsMap); 
     }
 
-    public List<Airline> getAllAirlines() {
-        return AirlineDAO.getInstance().getAll();
-    }
-
-    public List<Airport> getAllAirports() {
-        return AirportDAO.getInstance().getAll();
-    }
-
-    private Map<String, Flight> loadFlights() {
-        Map<String, Flight> flights = new ConcurrentHashMap<>();
-        if (!Files.exists(Paths.get(FLIGHTS_FILE))) {
-            logger.error("Flight file not found: {}", FLIGHTS_FILE);
-            return flights;
-        }
+    public Map<String, Flight> loadFlights() {
+        flights = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FLIGHTS_FILE))) {
-            String line = reader.readLine(); // Skip header
+            String line = reader.readLine();
+            String[] fields;
+            Flight flight;
             while ((line = reader.readLine()) != null) {
-                Flight flight = parseFlight(line, airports, airlines, planes);
+                fields = line.split(",");
+                flight = new Flight(fields[0], airports.get(fields[1]), airports.get(fields[2]), airlines.get(fields[3]), planes.get(fields[5]), Integer.valueOf(fields[4]), Float.parseFloat(fields[6]));
                 flights.put(flight.getCode(), flight);
             }
-        } catch (IOException | NumberFormatException ex) {
-            logger.error("Error loading flights: ", ex);
+        } catch (Exception ex) {
+            logger.error(String.format("%s - Error al cargar vuelos: %s", ex.getMessage()));
         }
-        logger.info("{} flights loaded successfully", flights.size());
+        logger.info(String.format("%s vuelos cargados correctamente", flights.values().size()));
         return flights;
     }
 
-    private Map<String, Airline> loadAirlinesCSV() {
-        Map<String, Airline> airlines = new ConcurrentHashMap<>();
-        if (!Files.exists(Paths.get(AIRLINES_FILE))) {
-            logger.error("Airlines file not found: {}", AIRLINES_FILE);
-            return airlines;
+    public void storeReservation(Reservation reservation) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(RESERVATIONS_FILE, true))) {
+            String line = String.format("%s#%s#%s#%s", reservation.getLocator(), reservation.getFlight().getCode(), String.valueOf(reservation.getDate()), String.join(";", reservation.getPassengers()));
+            writer.write(line);
+            writer.newLine();
+        } catch (Exception ex) {
+            logger.error(String.format("%s - Error guardando reserva: %s", ex.getMessage()));
         }
+    }
+
+    private Map<String, Airline> loadAirlinesCSV() {
+        Map<String, Airline> airlines = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(AIRLINES_FILE))) {
             String line = reader.readLine(); // Skip header
+            Airline airline;
             while ((line = reader.readLine()) != null) {
-                Airline airline = parseCSVAirline(line);
+                airline = parseCSVAirline(line);
                 airlines.put(airline.getIataCode(), airline);
             }
-        } catch (IOException | IllegalArgumentException ex) {
-            logger.error("Error loading airlines: ", ex);
+        } catch (Exception ex) {
+            logger.error(String.format("%s - Error cargando aerolineas: %s", ex.getMessage()));
         }
         return airlines;
     }
 
     private Map<String, Airport> loadAirportsCSV() {
-        Map<String, Airport> airports = new ConcurrentHashMap<>();
-        if (!Files.exists(Paths.get(AIRPORTS_FILE))) {
-            logger.error("Airports file not found: {}", AIRPORTS_FILE);
-            return airports;
-        }
+        Map<String, Airport> airports = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(AIRPORTS_FILE))) {
             String line = reader.readLine(); // Skip header
+            Airport airport;
             while ((line = reader.readLine()) != null) {
-                Airport airport = parseCSVAirport(line);
+                airport = parseCSVAirport(line);
                 airports.put(airport.getIataCode(), airport);
             }
-        } catch (IOException | IllegalArgumentException ex) {
-            logger.error("Error loading airports: ", ex);
+        } catch (Exception ex) {
+            logger.error(String.format("%s - Error cargando aeropuertos: %s", ex.getMessage()));
         }
         return airports;
     }
 
     private Map<String, Plane> loadPlanesCSV() {
-        Map<String, Plane> planes = new ConcurrentHashMap<>();
-        if (!Files.exists(Paths.get(PLANES_FILE))) {
-            logger.error("Planes file not found: {}", PLANES_FILE);
-            return planes;
-        }
+        Map<String, Plane> planes = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(PLANES_FILE))) {
             String line = reader.readLine(); // Skip header
+            Plane plane;
             while ((line = reader.readLine()) != null) {
-                Plane plane = parseCSVPlane(line);
+                plane = parseCSVPlane(line);
                 planes.put(plane.getIataCode(), plane);
             }
-        } catch (IOException | NumberFormatException ex) {
-            logger.error("Error loading planes: ", ex);
+        } catch (Exception ex) {
+            logger.error(String.format("%s - Error cargando aviones: %s", ex.getMessage()));
         }
         return planes;
     }
 
     private List<Reservation> loadReservationsCSV() {
         List<Reservation> reservations = new ArrayList<>();
-        if (!Files.exists(Paths.get(RESERVATIONS_FILE))) {
-            logger.error("Reservations file not found: {}", RESERVATIONS_FILE);
-            return reservations;
-        }
         try (BufferedReader reader = new BufferedReader(new FileReader(RESERVATIONS_FILE))) {
             String line = reader.readLine(); // Skip header
+            Reservation reservation;
             while ((line = reader.readLine()) != null) {
-                Reservation reservation = parseCSVReservation(line);
+                reservation = parseCSVReservation(line);
                 reservations.add(reservation);
             }
-        } catch (IOException | NumberFormatException ex) {
-            logger.error("Error loading reservations: ", ex);
+        } catch (Exception ex) {
+            logger.error(String.format("%s - Error cargando reservas: %s", ex.getMessage()));
         }
         return reservations;
     }
 
-    public Airline parseCSVAirline(String data) {
-        String[] fields = data.split(",");
-        if (fields.length < 4) {
-            throw new IllegalArgumentException("Invalid airline data: " + data);
+    public Airline parseCSVAirline(String data) throws Exception {
+        try {
+            String[] fields = data.split(",");
+            return new Airline(fields[0], fields[1], Country.valueOf(fields[2]), AirAlliance.valueOf(fields[3]));
+        } catch (Exception ex) {
+            throw new Exception(String.format("%s from CSV error: %s", Airline.class, data));
         }
-        return new Airline(fields[0], fields[1], Country.valueOf(fields[2]), AirAlliance.valueOf(fields[3]));
     }
 
-    public Airport parseCSVAirport(String data) {
-        String[] fields = data.split(",");
-        if (fields.length < 4) {
-            throw new IllegalArgumentException("Invalid airport data: " + data);
+    public Airport parseCSVAirport(String data) throws Exception {
+        try {
+            String[] fields = data.split(",");
+            return new Airport(fields[0], fields[1], fields[2], Country.valueOf(fields[3]));
+        } catch (Exception ex) {
+            throw new Exception(String.format("%s from CSV error: %s", Airport.class, data));
         }
-        return new Airport(fields[0], fields[1], fields[2], Country.valueOf(fields[3]));
     }
 
-    public Plane parseCSVPlane(String data) {
-        String[] fields = data.split(",");
-        if (fields.length < 3) {
-            throw new IllegalArgumentException("Invalid plane data: " + data);
+    public Plane parseCSVPlane(String data) throws Exception {
+        try {
+            String[] fields = data.split(",");
+            return new Plane(fields[0], fields[1], Integer.valueOf(fields[2]));
+        } catch (Exception ex) {
+            throw new Exception(String.format("%s from CSV error: %s", Plane.class, data));
         }
-        return new Plane(fields[0], fields[1], Integer.parseInt(fields[2]));
     }
 
-    private Flight parseFlight(String data, Map<String, Airport> airports, Map<String, Airline> airlines, Map<String, Plane> planes) {
-        String[] fields = data.split(",");
-        if (fields.length < 7) {
-            throw new IllegalArgumentException("Invalid flight data: " + data);
+    public Reservation parseCSVReservation(String data) throws Exception {
+        try {
+            String[] fields = data.split("#");
+            return new Reservation(fields[0], flights.get(fields[1]), Long.valueOf(fields[2]), Arrays.asList(fields[3].split(";")));
+        } catch (Exception ex) {
+            throw new Exception(String.format("%s from CSV error: %s", Reservation.class, data));
         }
-        return new Flight(fields[0], airports.get(fields[1]), airports.get(fields[2]), airlines.get(fields[3]), planes.get(fields[5]), Integer.parseInt(fields[4]), Float.parseFloat(fields[6]));
-    }
-
-    private Reservation parseCSVReservation(String data) {
-        String[] fields = data.split("#");
-        if (fields.length < 4) {
-            throw new IllegalArgumentException("Invalid reservation data: " + data);
-        }
-        Flight flight = flights.get(fields[1]);
-        if (flight == null) {
-            logger.error("Flight not found for reservation: {}", data);
-            return null;
-        }
-        return new Reservation(fields[0], flight, Long.parseLong(fields[2]), Arrays.asList(fields[3].split(";")));
     }
 }

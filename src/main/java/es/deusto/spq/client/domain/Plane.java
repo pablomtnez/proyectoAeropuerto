@@ -6,18 +6,18 @@ import java.util.Objects;
 public class Plane implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private String iataCode;
+	private String code;
 	private String name;
 	private int seats;
 	
-	public Plane(String iataCode, String name, int seats) {
-		this.iataCode = iataCode;
+	public Plane(String code, String name, int seats) {
+		this.code = code;
 		this.name = name;
 		this.seats = seats;
 	}
 
-	public String getIataCode() {
-		return iataCode;
+	public String getCode() {
+		return code;
 	}
 
 	public String getName() {
@@ -30,13 +30,13 @@ public class Plane implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(iataCode);
+		return Objects.hash(code);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj != null && getClass() == obj.getClass()) {
-			return ((Plane) obj).iataCode.equals(this.iataCode);
+			return ((Plane) obj).code.equals(this.code);
 		} else {
 			return false;
 		}
@@ -44,7 +44,7 @@ public class Plane implements Serializable{
 
 	@Override
 	public String toString() {
-		return String.format("%s: %s (%d seats)", iataCode, name, seats);
+		return String.format("%s: %s (%d seats)", code, name, seats);
 	}
 
 }

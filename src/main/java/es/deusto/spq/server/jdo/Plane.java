@@ -1,13 +1,11 @@
 package es.deusto.spq.server.jdo;
 
-import java.io.Serializable;
-
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(detachable = "true")
-public class Plane implements Serializable {
+public class Plane {
 
     @PrimaryKey
     private String iataCode;

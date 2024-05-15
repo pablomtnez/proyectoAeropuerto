@@ -107,26 +107,4 @@ public class AirlineDAO extends DataAccessObjectBase implements IDataAccessObjec
             pm.close();
         }
     }
-
-    public List<Airline> getAllAirlines() {
-        PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx = pm.currentTransaction();
-        List<Airline> airlines = new ArrayList<>();
-        try {
-            tx.begin();
-            Query query = pm.newQuery(Airline.class);
-            List<Airline> result = (List<Airline>) query.execute();
-            airlines.addAll(result);
-            tx.commit();
-        } catch (Exception ex) {
-            System.out.println("Error retrieving all airlines: " + ex.getMessage());
-            if (tx.isActive()) {
-                tx.rollback();
-            }
-        } finally {
-            pm.close();
-        }
-        return airlines;
-    }
-    
 }

@@ -110,30 +110,6 @@ public class PlaneDAO extends DataAccessObjectBase implements IDataAccessObject<
         } finally {
             pm.close();
         }
-    }
-    
-    public List<Plane> getAllPlanes() {
-        PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx = pm.currentTransaction();
-
-        List<Plane> planes = new ArrayList<>();
-
-        try {
-            tx.begin();
-            Query query = pm.newQuery(Plane.class);
-            List<Plane> result = (List<Plane>) query.execute();
-            planes.addAll(result);
-            tx.commit();
-        } catch (Exception ex) {
-            System.out.println("Error retrieving all planes: " + ex.getMessage());
-            if (tx.isActive()) {
-                tx.rollback();
-            }
-        } finally {
-            pm.close();
-        }
-
-        return planes;
-    }
+    }   
     
 }

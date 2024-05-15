@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import es.deusto.spq.client.domain.Airline;
+import es.deusto.spq.client.domain.Airport;
+
 public class Flight implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String code;
-	private Airport from;
-	private Airport to;
+	private Airport origin;
+	private Airport destination;
 	private Airline airline;
 	private Plane plane;
 	private List<Reservation> reservations;
@@ -18,11 +21,11 @@ public class Flight implements Serializable{
 	private int seats;
 	private float price;
 	
-	public Flight(String code, Airport from, Airport to,
+	public Flight(String code, Airport origin, Airport destination,
 				  Airline airline, Plane plane, int duration, float price) {
 		this.code = code;
-		this.from = from;
-		this.to = to;
+		this.origin = origin;
+		this.destination = destination;
 		this.airline = airline;
 		this.plane = plane;
 		this.duration = duration;		
@@ -35,12 +38,12 @@ public class Flight implements Serializable{
 		return code;
 	}
 
-	public Airport getFrom() {
-		return from;
+	public Airport getOrigin() {
+		return origin;
 	}
 
-	public Airport getTo() {
-		return to;
+	public Airport getDestination() {
+		return destination;
 	}
 
 	public Airline getAirline() {
@@ -104,7 +107,7 @@ public class Flight implements Serializable{
 	@Override
 	public String toString() {
 		return String.format("%s: %s -> %s (%04d min., %03d seats, %.2f€)", 
-			code, from.getIataCode(), to.getIataCode(),
+			code, origin.getCode(), destination.getCode(),
 			duration, (seats-reservations.size()), price);
 	}
 }
