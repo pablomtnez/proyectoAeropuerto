@@ -67,4 +67,13 @@ public class Airline {
     public void setAlliance(AirAlliance alliance) {
         this.alliance = alliance;
     }
+
+    public static Airline parseCSV(String data) throws Exception {
+        try {
+            String [] fields = data.split(",");
+            return new Airline(fields[0], fields[1], Country.valueOf(fields[2]), AirAlliance.valueOf(fields[3]));
+        } catch (Exception ex) {
+            throw new Exception(String.format("%s from CSV error: %s", Airline.class, data));
+        }
+    }
 }

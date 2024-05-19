@@ -52,4 +52,13 @@ public class Plane {
     public String toString() {
         return String.format("%s: %s (%d seats)", iataCode, name, seats);
     }
+
+    public static Plane parseCSV(String data) throws Exception{
+        try {
+            String[] fields = data.split(",");
+            return new Plane(fields[0], fields[1], Integer.valueOf(fields[2]));
+        } catch (Exception ex) {
+            throw new Exception(String.format("%s from CSV error: %s", Plane.class, data));
+        }
+    }
 }

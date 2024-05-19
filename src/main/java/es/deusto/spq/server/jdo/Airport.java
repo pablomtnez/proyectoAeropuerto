@@ -65,4 +65,15 @@ public class Airport {
     public void setCountry(Country country) {
         this.country = country;
     }
+
+    public static Airport parseCSV(String data) throws Exception {
+        try {
+            String[] fields = data.split(";");
+
+            return new Airport(fields[0], fields[1], fields[2], Country.valueOf(fields[3]));
+
+        } catch (Exception ex) {
+            throw new Exception(String.format("%s from CSV error: %s", Airport.class, data));
+        }
+    }
 }

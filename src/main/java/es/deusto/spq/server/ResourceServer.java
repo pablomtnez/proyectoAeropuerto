@@ -1,10 +1,9 @@
-
 package es.deusto.spq.server;
 
-import es.deusto.spq.server.jdo.Usuario;
+import es.deusto.spq.server.jdo.*;
 import es.deusto.spq.server.services.OneWorldService;
 import es.deusto.spq.server.dao.UsuarioDAO;
-
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -12,6 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/resource")
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,8 +43,8 @@ public class ResourceServer {
         }
     }
 
-    @Path("/login")
     @POST
+    @Path("/login")
     public Response login(Usuario user) {
         try {
             if (user == null || user.getEmail() == null || user.getPassword() == null) {
@@ -100,4 +101,65 @@ public class ResourceServer {
         return email.matches(emailPattern);
     }
 
+    // Métodos para obtener datos de aerolíneas, aeropuertos, aviones, vuelos y reservas
+
+    @GET
+    @Path("/airlines")
+    public Response getAirlines() {
+        try {
+            List<Airline> airlines = new ArrayList<>(oneWorldService.loadAirlinesCSV().values());
+            return Response.ok(airlines).build();
+        } catch (Exception e) {
+            logger.error("Failed to get airlines: " + e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to get airlines").build();
+        }
+    }
+
+    @GET
+    @Path("/airports")
+    public Response getAirports() {
+        try {
+            List<Airport> airports = new ArrayList<>(oneWorldService.loadAirportsCSV().values());
+            return Response.ok(airports).build();
+        } catch (Exception e) {
+            logger.error("Failed to get airports: " + e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to get airports").build();
+        }
+    }
+
+    @GET
+    @Path("/planes")
+    public Response getPlanes() {
+        try {
+            List<Plane> planes = new ArrayList<>(oneWorldService.loadPlanesCSV().values());
+            return Response.ok(planes).build();
+        } catch (Exception e) {
+            logger.error("Failed to get planes: " + e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to get planes").build();
+        }
+    }
+
+    @GET
+    @Path("/flights")
+    public Response getFlights() {
+        try {
+            List<Flight> flights = new ArrayList<>(oneWorldService.loadFlights().values());
+            return Response.ok(flights).build();
+        } catch (Exception e) {
+            logger.error("Failed to get flights: " + e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to get flights").build();
+        }
+    }
+
+    @GET
+    @Path("/reservations")
+    public Response getReservations() {
+        try {
+            List<Reservation> reservations = oneWorldService.loadReservationsCSV();
+            return Response.ok(reservations).build();
+        } catch (Exception e) {
+            logger.error("Failed to get reservations: " + e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to get reservations").build();
+        }
+    }
 }

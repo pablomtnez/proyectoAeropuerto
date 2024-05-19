@@ -5,6 +5,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import java.util.Arrays;
 import java.util.List;
 
 @PersistenceCapable(detachable = "true")
@@ -70,5 +71,19 @@ public class Reservation {
     public String toString() {
         return "Reservation [locator=" + locator + ", flight=" + flight + ", date=" + date + ", passengers="
                 + passengers + "]";
+    }
+
+    public static Reservation parseCSV(String data) throws Exception {
+        try {
+           String[] fields = data.split("#");			
+			//El vuelo sólo tiene el código porque el resto de datos son desconocidos.
+			return new Reservation(fields[0], 
+								   new Flight(fields[1], null, null, null, null, 0, 0f), 
+								   Long.valueOf(fields[2]), 
+								   Arrays.asList(fields[3].split(";")));	
+        } catch (Exception ex) {
+            ex.printStackTrace();
+			throw new Exception(String.format("%s from CSV error: %s", Reservation.class, data));
+        }
     }
 }

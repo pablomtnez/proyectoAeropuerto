@@ -23,7 +23,9 @@ public class VentanaRegistro extends JFrame {
     private JButton botonEntrar, botonVolver;
     private ResourceClient resourceClient;
 
-    public VentanaRegistro() {
+    public VentanaRegistro(ResourceClient resourceClient) {
+        this.resourceClient = resourceClient;
+
         setTitle("Registro");
         setBounds(100, 100, 600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,26 +89,26 @@ public class VentanaRegistro extends JFrame {
         botonEntrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(textFieldUsuario.getText().isEmpty() || textFieldApellido.getText().isEmpty() || textFieldCorreo.getText().isEmpty() || textFieldPassword.getText().isEmpty() || textFieldConfirm.getText().isEmpty()){
+                if (textFieldUsuario.getText().isEmpty() || textFieldApellido.getText().isEmpty() || textFieldCorreo.getText().isEmpty() || textFieldPassword.getText().isEmpty() || textFieldConfirm.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
                 String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-                if(!textFieldCorreo.getText().matches(emailPattern)){
+                if (!textFieldCorreo.getText().matches(emailPattern)) {
                     JOptionPane.showMessageDialog(null, "Introduce un correo electrónico válido.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                if(!textFieldPassword.getText().equals(textFieldConfirm.getText())){
+                if (!textFieldPassword.getText().equals(textFieldConfirm.getText())) {
                     JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                if(ResourceClient.register(textFieldUsuario.getText(), textFieldApellido.getText(), textFieldCorreo.getText(), textFieldPassword.getText())){
+                if (resourceClient.register(textFieldUsuario.getText(), textFieldApellido.getText(), textFieldCorreo.getText(), textFieldPassword.getText())) {
                     JOptionPane.showMessageDialog(null, "Usuario registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                    VentanaLogin VentanaLogin = new VentanaLogin();
-                    VentanaLogin.setVisible(true);
+                    VentanaLogin ventanaLogin = new VentanaLogin(resourceClient);  // Pasar ResourceClient a VentanaLogin
+                    ventanaLogin.setVisible(true);
                     setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo registrar al usuario", "Error", JOptionPane.ERROR_MESSAGE);
@@ -120,13 +122,9 @@ public class VentanaRegistro extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                VentanaLogin ventanaLogin = new VentanaLogin();
+                VentanaLogin ventanaLogin = new VentanaLogin(resourceClient);  // Pasar ResourceClient a VentanaLogin
                 ventanaLogin.setVisible(true);
             }
         });
-    }
-
-    public VentanaRegistro(ResourceClient resourceClient) {
-        this.resourceClient = resourceClient;
     }
 }

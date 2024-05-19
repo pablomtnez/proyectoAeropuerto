@@ -7,11 +7,19 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
+import es.deusto.spq.client.domain.Airline;
+import es.deusto.spq.client.domain.Airport;
+import es.deusto.spq.client.domain.Flight;
+import es.deusto.spq.client.domain.Plane;
+import es.deusto.spq.client.domain.Reservation;
 import es.deusto.spq.client.domain.Usuario;
 import es.deusto.spq.client.gui.MainWindow;
 
@@ -25,7 +33,7 @@ public class ResourceClient {
         logger.debug("ResourceClient initialized with hostname: {} and port: {}", hostname, port);
     }
 
-    public static boolean loadData() {
+    public boolean loadData() {
         WebTarget loadDataTarget = webTarget.path("loadData");
         logger.debug("Requesting to load data from server");
         try {
@@ -54,9 +62,8 @@ public class ResourceClient {
             return false;
         }
     }
-    
 
-    public static boolean login(String email, String password) {
+    public boolean login(String email, String password) {
         WebTarget loginUserWebTarget = webTarget.path("login");
         Usuario user = new Usuario(null, null, email, password);
         logger.debug("Attempting login with user: Email={}, Password=[PROTECTED]", email);
@@ -67,7 +74,7 @@ public class ResourceClient {
             switch (response.getStatus()) {
                 case 200: // OK
                     Usuario u = response.readEntity(Usuario.class);
-                    mostrarVentanaPrincipal(u);
+                    mostrarVentanaPrincipal(u, this);
                     return true;
                 case 401: // Unauthorized
                     mostrarMensajeError("Credenciales inválidas. Por favor, intenta nuevamente.");
@@ -81,7 +88,6 @@ public class ResourceClient {
                 case 500: // Internal Server Error
                     mostrarMensajeError("Error interno del servidor. Intenta de nuevo más tarde.");
                     return false;
-                // Agrega otros códigos de estado específicos si es necesario
                 default:
                     mostrarMensajeError("Error de conexión con el servidor. Código de estado: " + response.getStatus());
                     return false;
@@ -101,8 +107,8 @@ public class ResourceClient {
         }
     }
 
-    private static void mostrarVentanaPrincipal(Usuario usuario) {
-        MainWindow vp = new MainWindow();
+    private void mostrarVentanaPrincipal(Usuario usuario, ResourceClient resourceClient) {
+        MainWindow vp = new MainWindow(resourceClient);
         vp.setVisible(true);
         logger.info("Mostrando la Ventana Principal para el usuario: {}", usuario.getEmail());
     }
@@ -112,7 +118,7 @@ public class ResourceClient {
         logger.error(mensaje);
     }
 
-    public static boolean register(String nombre, String apellido, String email, String password) {
+    public boolean register(String nombre, String apellido, String email, String password) {
         WebTarget registerUserWebTarget = webTarget.path("register");
         Usuario user = new Usuario(nombre, apellido, email, password);
         logger.debug("Registering new user: {}", user);
@@ -127,6 +133,101 @@ public class ResourceClient {
             return false;
         }
     }
-    
-    
+
+    // Métodos para obtener listas de entidades desde el servidor
+
+    public List<Airline> getAirlines() {
+        WebTarget target = webTarget.path("airlines");
+        try {
+            return target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Airline>>() {});
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            logger.error("Error de procesamiento: ", e);
+            return null;
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            logger.error("Error de aplicación web: ", e);
+            return null;
+        } catch (Exception e) {
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error desconocido: ", e);
+            return null;
+        }
+    }
+
+    public List<Airport> getAirports() {
+        WebTarget target = webTarget.path("airports");
+        try {
+            return target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Airport>>() {});
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            logger.error("Error de procesamiento: ", e);
+            return null;
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            logger.error("Error de aplicación web: ", e);
+            return null;
+        } catch (Exception e) {
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error desconocido: ", e);
+            return null;
+        }
+    }
+
+    public List<Plane> getPlanes() {
+        WebTarget target = webTarget.path("planes");
+        try {
+            return target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Plane>>() {});
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            logger.error("Error de procesamiento: ", e);
+            return null;
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            logger.error("Error de aplicación web: ", e);
+            return null;
+        } catch (Exception e) {
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error desconocido: ", e);
+            return null;
+        }
+    }
+
+    public List<Flight> getFlights() {
+        WebTarget target = webTarget.path("flights");
+        try {
+            return target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Flight>>() {});
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            logger.error("Error de procesamiento: ", e);
+            return null;
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            logger.error("Error de aplicación web: ", e);
+            return null;
+        } catch (Exception e) {
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error desconocido: ", e);
+            return null;
+        }
+    }
+
+    public List<Reservation> getReservations() {
+        WebTarget target = webTarget.path("reservations");
+        try {
+            return target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Reservation>>() {});
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            logger.error("Error de procesamiento: ", e);
+            return null;
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            logger.error("Error de aplicación web: ", e);
+            return null;
+        } catch (Exception e) {
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error desconocido: ", e);
+            return null;
+        }
+    }
 }

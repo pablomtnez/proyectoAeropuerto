@@ -16,21 +16,19 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.ProcessingException;
 
 public class VentanaLogin extends JFrame {
     
     private JPanel contentPane;
     private JTextField textFieldUsuario, textFieldPassword;
     private JButton botonLogin, botonRegistro;
+    private ResourceClient resourceClient;  // Añadir instancia de ResourceClient
 
-    public VentanaLogin() {
+    public VentanaLogin(ResourceClient resourceClient) {
+        this.resourceClient = resourceClient;  // Inicializar instancia de ResourceClient
         
         // Configuración básica de la ventana
         setTitle("Login");
@@ -101,7 +99,7 @@ public class VentanaLogin extends JFrame {
         botonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean loggedIn = ResourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText());
+                boolean loggedIn = resourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText());
                 if (loggedIn) {
                     // Si el login es exitoso, muestra un mensaje informativo
                     JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso.", "Sesión Iniciada", JOptionPane.INFORMATION_MESSAGE);
@@ -122,7 +120,7 @@ public class VentanaLogin extends JFrame {
                 // Oculta la ventana de login
                 setVisible(false);
                 // Muestra la ventana de registro
-                VentanaRegistro ventanaRegistro = new VentanaRegistro();
+                VentanaRegistro ventanaRegistro = new VentanaRegistro(resourceClient);  // Pasar ResourceClient a VentanaRegistro
                 ventanaRegistro.setVisible(true);
             }
         });
@@ -137,12 +135,10 @@ public class VentanaLogin extends JFrame {
         return textFieldUsuario;
     }
 
-    // Method to get the text field for the password
     public JTextField getTextFieldPassword() {
         return textFieldPassword;
     }
 
-    // Method to get the login button
     public JButton getBotonLogin() {
         return botonLogin;
     }
@@ -159,5 +155,3 @@ public class VentanaLogin extends JFrame {
         this.botonLogin = botonLogin;
     }
 }
-
-

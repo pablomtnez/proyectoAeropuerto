@@ -14,11 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import es.deusto.spq.client.domain.AirAlliance;
 import es.deusto.spq.client.domain.Country;
-import es.deusto.spq.server.dao.AirlineDAO;
-import es.deusto.spq.server.dao.AirportDAO;
 import es.deusto.spq.server.dao.FlightDAO;
-import es.deusto.spq.server.dao.PlaneDAO;
-import es.deusto.spq.server.dao.ReservationDAO;
 import es.deusto.spq.server.jdo.Airline;
 import es.deusto.spq.server.jdo.Airport;
 import es.deusto.spq.server.jdo.Flight;
@@ -81,7 +77,7 @@ public class OneWorldService {
         }
     }
 
-    private Map<String, Airline> loadAirlinesCSV() {
+    public Map<String, Airline> loadAirlinesCSV() {
         Map<String, Airline> airlines = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(AIRLINES_FILE))) {
             String line = reader.readLine(); // Skip header
@@ -96,7 +92,7 @@ public class OneWorldService {
         return airlines;
     }
 
-    private Map<String, Airport> loadAirportsCSV() {
+    public Map<String, Airport> loadAirportsCSV() {
         Map<String, Airport> airports = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(AIRPORTS_FILE))) {
             String line = reader.readLine(); // Skip header
@@ -111,7 +107,7 @@ public class OneWorldService {
         return airports;
     }
 
-    private Map<String, Plane> loadPlanesCSV() {
+    public Map<String, Plane> loadPlanesCSV() {
         Map<String, Plane> planes = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(PLANES_FILE))) {
             String line = reader.readLine(); // Skip header
@@ -126,7 +122,7 @@ public class OneWorldService {
         return planes;
     }
 
-    private List<Reservation> loadReservationsCSV() {
+    public List<Reservation> loadReservationsCSV() {
         List<Reservation> reservations = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(RESERVATIONS_FILE))) {
             String line = reader.readLine(); // Skip header

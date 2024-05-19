@@ -16,21 +16,17 @@ public class App {
         }
 
         // Agregar registro de usuario
-        boolean registered = ResourceClient.register("Pablo", "Martinez", "pablo@gmail.com", "pablo1234");
+        boolean registered = res.register("Pablo", "Martinez", "pablo@gmail.com", "pablo1234");
         if (registered) {
             System.out.println("User registered successfully");
         } else {
             System.out.println("Failed to register user");
         }
 
-        // boolean flight1 = ResourceClient.createFlights(0001, null, null, null, null,
-        // 0, 0)
-
-        ResourceClient.loadData();
+        res.loadData();
 
         // Mostrar ventana de inicio de sesión
-        //ResourceClient.loadFlights();
-        VentanaLogin login = new VentanaLogin();
+        VentanaLogin login = new VentanaLogin(res);
         login.setVisible(true);
     }
 }
