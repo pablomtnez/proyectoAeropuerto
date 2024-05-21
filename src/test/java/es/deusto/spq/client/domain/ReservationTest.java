@@ -15,12 +15,14 @@ public class ReservationTest {
 
     private Reservation reservation;
     private Flight flightMock;
+    private FlightClass flightClassMock;
     private List<String> passengers;
 
     @Before
     public void setUp() {
         // Create a mock flight object
         flightMock = Mockito.mock(Flight.class);
+        flightClassMock = Mockito.mock(FlightClass.class);
 
         // Initialize passengers list
         passengers = new ArrayList<>();
@@ -28,7 +30,7 @@ public class ReservationTest {
         passengers.add("Jane Doe");
 
         // Create a reservation object
-        reservation = new Reservation("ABC123", flightMock, 1632530400L, passengers);
+        reservation = new Reservation("ABC123", flightMock, 1632530400L, passengers, flightClassMock);
     }
 
     @Test
@@ -37,12 +39,13 @@ public class ReservationTest {
         assertEquals(flightMock, reservation.getFlight());
         assertEquals(1632530400L, reservation.getDate());
         assertEquals(passengers, reservation.getPassengers());
+        assertEquals(flightClassMock, reservation.getflightclass());
     }
 
     @Test
     public void testEquals() {
-        Reservation sameReservation = new Reservation("ABC123", flightMock, 1632530400L, passengers);
-        Reservation differentReservation = new Reservation("XYZ789", flightMock, 1632530400L, passengers);
+        Reservation sameReservation = new Reservation("ABC123", flightMock, 1632530400L, passengers, flightClassMock);
+        Reservation differentReservation = new Reservation("XYZ789", flightMock, 1632530400L, passengers, flightClassMock);
 
         assertTrue(reservation.equals(sameReservation));
         assertFalse(reservation.equals(differentReservation));
@@ -54,7 +57,7 @@ public class ReservationTest {
 
     @Test
     public void testHashCode() {
-        Reservation sameReservation = new Reservation("ABC123", flightMock, 1632530400L, passengers);
+        Reservation sameReservation = new Reservation("ABC123", flightMock, 1632530400L, passengers, flightClassMock);
         assertEquals(reservation.hashCode(), sameReservation.hashCode());
     }
 
