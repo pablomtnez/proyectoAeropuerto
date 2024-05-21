@@ -3,14 +3,17 @@ package es.deusto.spq.server;
 import es.deusto.spq.server.jdo.*;
 import es.deusto.spq.server.services.OneWorldService;
 import es.deusto.spq.server.dao.UsuarioDAO;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,13 +98,10 @@ public class ResourceServer {
         }
     }
 
-    // Método auxiliar para validar el formato del correo electrónico
     private boolean isEmailValid(String email) {
         String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailPattern);
     }
-
-    // Métodos para obtener datos de aerolíneas, aeropuertos, aviones, vuelos y reservas
 
     @GET
     @Path("/airlines")
@@ -141,9 +141,14 @@ public class ResourceServer {
 
     @GET
     @Path("/flights")
-    public Response getFlights() {
+    public Response getFlights(@QueryParam("origin") String origin, @QueryParam("destination") String destination) {
         try {
-            List<Flight> flights = new ArrayList<>(oneWorldService.loadFlights().values());
+            List<Flight> flights;
+            if (origin != null && destination != null) {
+                flights = oneWorldService.getFlightsByOriginAndDestination(origin, destination);
+            } else {
+                flights = new ArrayList<>(oneWorldService.loadFlights().values());
+            }
             return Response.ok(flights).build();
         } catch (Exception e) {
             logger.error("Failed to get flights: " + e.getMessage(), e);

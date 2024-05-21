@@ -21,11 +21,7 @@ public class VentanaRegistro extends JFrame {
     private JPanel contentPane;
     private JTextField textFieldUsuario, textFieldApellido, textFieldCorreo, textFieldPassword, textFieldConfirm;
     private JButton botonEntrar, botonVolver;
-    private ResourceClient resourceClient;
-
     public VentanaRegistro(ResourceClient resourceClient) {
-        this.resourceClient = resourceClient;
-
         setTitle("Registro");
         setBounds(100, 100, 600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

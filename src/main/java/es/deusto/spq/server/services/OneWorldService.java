@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -171,5 +172,11 @@ public class OneWorldService {
         } catch (Exception ex) {
             throw new Exception(String.format("%s from CSV error: %s", Reservation.class, data));
         }
+    }
+
+    public List<Flight> getFlightsByOriginAndDestination(String origin, String destination) {
+        return flights.values().stream()
+            .filter(flight -> flight.getFrom().getName().equals(origin) && flight.getTo().getName().equals(destination))
+            .collect(Collectors.toList());
     }
 }

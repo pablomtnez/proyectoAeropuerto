@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaLogin extends JFrame {
-    
+
     private JPanel contentPane;
     private JTextField textFieldUsuario, textFieldPassword;
     private JButton botonLogin, botonRegistro;
@@ -29,7 +29,7 @@ public class VentanaLogin extends JFrame {
 
     public VentanaLogin(ResourceClient resourceClient) {
         this.resourceClient = resourceClient;  // Inicializar instancia de ResourceClient
-        
+
         // Configuración básica de la ventana
         setTitle("Login");
         setPreferredSize(new Dimension(600, 400)); // Tamaño preferido de la ventana
@@ -101,11 +101,12 @@ public class VentanaLogin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 boolean loggedIn = resourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText());
                 if (loggedIn) {
-                    // Si el login es exitoso, muestra un mensaje informativo
-                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso.", "Sesión Iniciada", JOptionPane.INFORMATION_MESSAGE);
+                    // Si el login es exitoso, muestra la ventana principal
+                    mostrarVentanaPrincipal();
+                    dispose(); // Cerrar la ventana de inicio de sesión
                 } else {
                     // Si el login falla, muestra un mensaje de error
-                    JOptionPane.showMessageDialog(null, "Error al iniciar sesión.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(VentanaLogin.this, "Error al iniciar sesión.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -129,6 +130,12 @@ public class VentanaLogin extends JFrame {
         pack();
         // Centra la ventana en la pantalla
         setLocationRelativeTo(null);
+    }
+
+    // Método para mostrar la ventana principal
+    private void mostrarVentanaPrincipal() {
+        MainWindow mainWindow = new MainWindow(resourceClient);  // Pasar ResourceClient a MainWindow
+        mainWindow.setVisible(true);
     }
 
     public JTextField getTextFieldUsuario() {

@@ -11,12 +11,13 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
+    protected static final Logger logger = LogManager.getLogger();
 
     private ResourceClient resourceClient;
     private List<Flight> flights;
@@ -29,9 +30,11 @@ public class MainWindow extends JFrame {
 
     public MainWindow(ResourceClient resourceClient) {
         this.resourceClient = resourceClient;
-        this.flights = resourceClient.getFlights();
-        
+        this.flights = new ArrayList<>(); // Initialize flights list
+
         initialize();
+        loadOrigins();
+        loadFlights();
     }
 
     private void initialize() {
@@ -43,13 +46,13 @@ public class MainWindow extends JFrame {
         jComboDestination = new JComboBox<>();
         jLabelInfo = new JLabel("Selecciona un aeropuerto origen");
         jTableFlights = new JTable();
-        
+
         jComboOrigin.setPrototypeDisplayValue("Seleccione el nombre del aeropuerto origen");
         jComboOrigin.addActionListener((e) -> onOriginSelected());
-        
+
         jComboDestination.setPrototypeDisplayValue("Seleccione el nombre del aeropuerto destino");
         jComboDestination.addActionListener((e) -> onDestinationSelected());
-        
+
         JPanel pOrigin = new JPanel();
         pOrigin.add(new JLabel("Origen: "));
         pOrigin.add(this.jComboOrigin);
@@ -69,31 +72,32 @@ public class MainWindow extends JFrame {
         add(jLabelInfo, BorderLayout.SOUTH);
 
         setLocationRelativeTo(null);
-
-        // Load initial data
-        loadOrigins();
-        loadFlights();
     }
 
     private void loadOrigins() {
-        Set<Airport> origins = new HashSet<>(resourceClient.getAirports());
-        updateOrigins(new ArrayList<>(origins));
+        List<Airport> origins = resourceClient.getAirports();
+        logger.debug("Loaded origins: {}", origins);
+        updateOrigins(origins);
     }
 
     private void updateOrigins(List<Airport> airports) {
-        this.jComboOrigin.removeAllItems();
-        this.jComboOrigin.addItem("");
-        Collections.sort(airports);
-        airports.forEach(a -> jComboOrigin.addItem(String.format("%s - %s (%s)",
-                a.getCode(), a.getName(), a.getCountry().getName())));
+        jComboOrigin.removeAllItems();
+        jComboOrigin.addItem("");
+        Collections.sort(airports, Comparator.comparing(Airport::getName));
+        for (Airport a : airports) {
+            jComboOrigin.addItem(String.format("%s - %s (%s)", a.getCode(), a.getName(), a.getCountry().getName()));
+        }
+        logger.debug("Updated origin combo box with: {}", airports);
     }
 
     private void updateDestinations(List<Airport> airports) {
-        this.jComboDestination.removeAllItems();
-        this.jComboDestination.addItem("");
-        Collections.sort(airports);
-        airports.forEach(a -> jComboDestination.addItem(String.format("%s - %s (%s)",
-                a.getCode(), a.getName(), a.getCountry().getName())));
+        jComboDestination.removeAllItems();
+        jComboDestination.addItem("");
+        Collections.sort(airports, Comparator.comparing(Airport::getName));
+        for (Airport a : airports) {
+            jComboDestination.addItem(String.format("%s - %s (%s)", a.getCode(), a.getName(), a.getCountry().getName()));
+        }
+        logger.debug("Updated destination combo box with: {}", airports);
     }
 
     private void loadFlights() {
@@ -126,14 +130,18 @@ public class MainWindow extends JFrame {
 
         if (fromItem != null && !fromItem.toString().isEmpty()) {
             String origin = fromItem.toString().split(" - ")[0];
-            Set<Airport> destinations = new HashSet<>(resourceClient.getAirports());
-            updateDestinations(new ArrayList<>(destinations));
+            List<Airport> destinations = resourceClient.getAirports(); // Fetch destinations
+            updateDestinations(destinations);
+
+            // Only fetch flights if destination is also selected
+            if (jComboDestination.getSelectedIndex() > 0) {
+                String destination = jComboDestination.getSelectedItem().toString().split(" - ")[0];
+                flights = resourceClient.getFlightsByOriginAndDestination(origin, destination);
+                updateFlights();
+            }
         } else {
             jComboDestination.removeAllItems();
         }
-
-        updateFlights();
-        jLabelInfo.setText("Selecciona un aeropuerto origen");
     }
 
     private void onDestinationSelected() {
@@ -145,10 +153,9 @@ public class MainWindow extends JFrame {
 
             if (!destination.isEmpty() && jComboOrigin.getSelectedIndex() > 0) {
                 String origin = jComboOrigin.getSelectedItem().toString().split(" - ")[0];
-                flights = resourceClient.getFlights(); // This should be filtered by origin and destination
+                flights = resourceClient.getFlightsByOriginAndDestination(origin, destination);
+                updateFlights();
             }
         }
-
-        updateFlights();
     }
 }

@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collections;
 import java.util.List;
 
 import es.deusto.spq.client.domain.Airline;
@@ -158,21 +159,24 @@ public class ResourceClient {
     public List<Airport> getAirports() {
         WebTarget target = webTarget.path("airports");
         try {
-            return target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Airport>>() {});
+            List<Airport> airports = target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Airport>>() {});
+            logger.debug("Fetched airports: {}", airports);
+            return airports;
         } catch (ProcessingException e) {
             mostrarMensajeError("Error de procesamiento: " + e.getMessage());
             logger.error("Error de procesamiento: ", e);
-            return null;
+            return Collections.emptyList();
         } catch (WebApplicationException e) {
             mostrarMensajeError("Error de aplicación web: " + e.getMessage());
             logger.error("Error de aplicación web: ", e);
-            return null;
+            return Collections.emptyList();
         } catch (Exception e) {
             mostrarMensajeError("Error desconocido: " + e.getMessage());
             logger.error("Error desconocido: ", e);
-            return null;
+            return Collections.emptyList();
         }
     }
+    
 
     public List<Plane> getPlanes() {
         WebTarget target = webTarget.path("planes");
@@ -230,4 +234,28 @@ public class ResourceClient {
             return null;
         }
     }
+
+    public List<Flight> getFlightsByOriginAndDestination(String origin, String destination) {
+        WebTarget target = webTarget.path("flights")
+                .queryParam("origin", origin)
+                .queryParam("destination", destination);
+        try {
+            List<Flight> flights = target.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Flight>>() {});
+            logger.debug("Fetched flights by origin and destination: {}", flights);
+            return flights;
+        } catch (ProcessingException e) {
+            mostrarMensajeError("Error de procesamiento: " + e.getMessage());
+            logger.error("Error de procesamiento: ", e);
+            return Collections.emptyList();
+        } catch (WebApplicationException e) {
+            mostrarMensajeError("Error de aplicación web: " + e.getMessage());
+            logger.error("Error de aplicación web: ", e);
+            return Collections.emptyList();
+        } catch (Exception e) {
+            mostrarMensajeError("Error desconocido: " + e.getMessage());
+            logger.error("Error desconocido: ", e);
+            return Collections.emptyList();
+        }
+    }
+    
 }
