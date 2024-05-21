@@ -29,6 +29,7 @@ public class BookDialog extends JDialog{
 	private JSpinner jSpinnerSeats = new JSpinner();
 	private JComboBox<String> jComboPassengers = new JComboBox<>();
 	private JComboBox<String> jComboBaggage = new JComboBox<>(new String[] {"No", "Yes"});  // Nuevo JComboBox para el equipaje adicional
+	private JComboBox<String> jComboClase = new JComboBox<>(new String[] {"business", "turista","primera"});
 	private JLabel jLabelAmount = new JLabel();
 	private JButton jButtonConfirm = new JButton("Confirmar");
 	private JButton jButtonCancel = new JButton("Cancelar");
@@ -43,7 +44,7 @@ public class BookDialog extends JDialog{
 	public BookDialog(Flight flight) {
 		JPanel jPanelFlight = new JPanel();
 		jPanelFlight.setBorder(new TitledBorder("Datos del vuelo"));
-		jPanelFlight.setLayout(new GridLayout(6, 1));  // Ajustar el layout para incluir el nuevo campo
+		jPanelFlight.setLayout(new GridLayout(7, 1));  // Ajustar el layout para incluir el nuevo campo
 
 		JLabel jLabelFlight = new JLabel(String.format("- %s", flight.getCode()));
 		jLabelFlight.setIcon(new ImageIcon(String.format("resources/images/%s.png", flight.getAirline().getCode())));
@@ -55,6 +56,8 @@ public class BookDialog extends JDialog{
 		jPanelFlight.add(new JLabel(String.format("Precio: %.2f €", flight.getPrice())));
 		jPanelFlight.add(new JLabel("Equipaje adicional:"));  // Etiqueta para el nuevo campo
 		jPanelFlight.add(jComboBaggage);  // Añadir el nuevo JComboBox al panel
+		jPanelFlight.add(new JLabel("Clase de vuelo:"));
+		jPanelFlight.add(jComboClase);
 		
 		JPanel jPanelPassengers = new JPanel();
 		jPanelPassengers.setBorder(new TitledBorder("Datos personales"));
@@ -218,5 +221,9 @@ public class BookDialog extends JDialog{
     public boolean hasAdditionalBaggage() {
         return additionalBaggage;
     }
+
+	public String getClase() {
+		return (String) jComboClase.getSelectedItem();
+	}
     
 }
