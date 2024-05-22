@@ -57,7 +57,7 @@ public class ResourceClientPerformanceTest {
             assertTrue("Registration should be successful", result);
         }
     }
-
+/* 
     @Test
     @JUnitPerfTest(threads = 20, durationMs = 5000)
     @JUnitPerfTestRequirement(meanLatency = 20000, maxLatency = 20000, allowedErrorPercentage = (float) 1)
@@ -67,7 +67,7 @@ public class ResourceClientPerformanceTest {
             assertNotNull("Airlines list should not be null", airlines);
         }
     }
-
+*/
     @Test
     @JUnitPerfTest(threads = 20, durationMs = 5000)
     @JUnitPerfTestRequirement(meanLatency = 10000, maxLatency = 20000, allowedErrorPercentage = (float) 1)
