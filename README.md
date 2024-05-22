@@ -17,6 +17,10 @@ Para realizar el performance test ejecuta el siguiente comando:
 
       mvn test -Dtest=PlanePerformanceTest
 
+Para realizar el performance test de ResourceClient ejecuta el siguiente comando:
+
+      mvn test -Dtest=ResourceClientPerformanceTest
+
 Ejecute el siguiente comando para compilar todo y mejorar las clases de base de datos:
 
 	mvn clean
