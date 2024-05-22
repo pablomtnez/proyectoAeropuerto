@@ -2,7 +2,8 @@ package es.deusto.spq.client.gui;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.awt.Component;
 
@@ -24,11 +25,12 @@ public class FlightRendererTest {
 
     @Before
     public void setUp() {
-        //renderer = new FlightRenderer();
         table = mock(JTable.class);
         when(table.getBackground()).thenReturn(java.awt.Color.WHITE);
         when(table.getSelectionBackground()).thenReturn(java.awt.Color.BLUE);
         when(table.getSelectionForeground()).thenReturn(java.awt.Color.WHITE);
+
+        renderer = new FlightRenderer(null); // La lista de vuelos no es necesaria para estas pruebas
     }
 
     @Test
@@ -72,7 +74,7 @@ public class FlightRendererTest {
 
         assertTrue(comp instanceof JLabel);
         JLabel label = (JLabel) comp;
-        assertEquals("180 m.", label.getText());
+        assertEquals("180 min", label.getText());
         assertEquals(JLabel.RIGHT, label.getHorizontalAlignment());
     }
 
@@ -105,3 +107,4 @@ public class FlightRendererTest {
         assertEquals("Reservar", button.getText());
     }
 }
+
