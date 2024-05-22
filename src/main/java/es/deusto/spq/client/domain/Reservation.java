@@ -11,14 +11,12 @@ public class Reservation implements Serializable{
 	private Flight flight;
 	private long date;
 	private List<String> passengers;
-	private FlightClass flightclass;
 	
-	public Reservation(String locator, Flight flight, long date, List<String> passengers, FlightClass flightclass) {
+	public Reservation(String locator, Flight flight, long date, List<String> passengers) {
 		this.locator = locator;
 		this.flight = flight;
 		this.date = date;
 		this.passengers = passengers;
-		this.flightclass = flightclass;
 	}
 	
 	public String getLocator() {
@@ -37,9 +35,6 @@ public class Reservation implements Serializable{
 		return passengers;
 	}
 
-	public FlightClass getflightclass(){
-		return flightclass;
-	}
 	
 	@Override
 	public int hashCode() {
