@@ -111,7 +111,7 @@ public class MainWindow extends JFrame {
 
         jTableFlights.setModel(new FlightsTableModel(flights));
 
-        FlightRenderer defaultRenderer = new FlightRenderer();
+        FlightRenderer defaultRenderer = new FlightRenderer(flights);
 
         for (int i = 0; i < jTableFlights.getColumnModel().getColumnCount() - 1; i++) {
             jTableFlights.getColumnModel().getColumn(i).setCellRenderer(defaultRenderer);

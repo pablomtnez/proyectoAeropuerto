@@ -1,16 +1,27 @@
 package es.deusto.spq.client.gui;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
+import es.deusto.spq.client.domain.Flight;
 import es.deusto.spq.server.jdo.Airline;
 import es.deusto.spq.server.jdo.Airport;
 
 public class FlightRenderer implements TableCellRenderer {
+
+    private List<Flight> flights; // Lista de todos los vuelos.
+
+    public FlightRenderer(List<Flight> flights) {
+        this.flights = flights;
+    }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -43,7 +54,7 @@ public class FlightRenderer implements TableCellRenderer {
 
         // DURACIÓN se alinea a la derecha y se añade "m."
         if (column == 4) {
-            label.setText(String.format("%s m.", value.toString()));
+            label.setText(String.format("%s min", value.toString()));
             label.setHorizontalAlignment(JLabel.RIGHT);
         }
 
@@ -74,17 +85,22 @@ public class FlightRenderer implements TableCellRenderer {
         // RESERVAR se renderiza como un botón
         if (column == 9) {
             JButton button = new JButton("Reservar");
-            button.setBackground(table.getBackground());
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Obtiene el vuelo correspondiente a la fila del botón presionado
+                    Flight selectedFlight = flights.get(table.convertRowIndexToModel(row));
+                    // Abre el diálogo de reserva pasando el vuelo seleccionado
+                    BookDialog dialog = new BookDialog(selectedFlight);
+                    dialog.setVisible(true);
+                }
+            });
+        
             button.setOpaque(true);
-            button.setEnabled(true);
-
-            if (isSelected) {
-                button.setBackground(table.getSelectionBackground());
-                button.setForeground(table.getSelectionForeground());
-            }
-
+            button.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
             return button;
         }
+        
 
         // Si la celda está seleccionada se usa el color por defecto de selección de la tabla
         if (isSelected) {

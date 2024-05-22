@@ -24,7 +24,7 @@ public class FlightRendererTest {
 
     @Before
     public void setUp() {
-        renderer = new FlightRenderer();
+        //renderer = new FlightRenderer();
         table = mock(JTable.class);
         when(table.getBackground()).thenReturn(java.awt.Color.WHITE);
         when(table.getSelectionBackground()).thenReturn(java.awt.Color.BLUE);

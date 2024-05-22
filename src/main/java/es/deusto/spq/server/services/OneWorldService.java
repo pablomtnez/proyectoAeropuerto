@@ -42,13 +42,21 @@ public class OneWorldService {
 
     public void loadAllData() {
         airlines = loadAirlinesCSV();
-        airports =loadAirportsCSV();
+        airports = loadAirportsCSV();
         planes = loadPlanesCSV();
         Map<String, Flight> flightsMap = loadFlights();
         List<Reservation> reservations = loadReservationsCSV();
-        for(Reservation r: reservations) flightsMap.get(r.getFlight().getCode()).getReservations().add(r);
-        FlightDAO.getInstance().saveOrUpdateFlights(flightsMap); 
+        for (Reservation r : reservations) {
+            Flight flight = flightsMap.get(r.getFlight() != null ? r.getFlight().getCode() : null);
+            if (flight != null) {
+                flight.getReservations().add(r);
+            } else {
+                logger.warn("No se encontró vuelo para la reserva con localizador " + r.getLocator());
+            }
+        }
+        FlightDAO.getInstance().saveOrUpdateFlights(flightsMap);
     }
+    
 
     public Map<String, Flight> loadFlights() {
         flights = new HashMap<>();

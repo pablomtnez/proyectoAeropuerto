@@ -102,7 +102,7 @@ public class VentanaLogin extends JFrame {
                 boolean loggedIn = resourceClient.login(textFieldUsuario.getText(), textFieldPassword.getText());
                 if (loggedIn) {
                     // Si el login es exitoso, muestra la ventana principal
-                    mostrarVentanaPrincipal();
+                    //mostrarVentanaPrincipal();
                     dispose(); // Cerrar la ventana de inicio de sesión
                 } else {
                     // Si el login falla, muestra un mensaje de error
@@ -110,6 +110,7 @@ public class VentanaLogin extends JFrame {
                 }
             }
         });
+        
 
         botonRegistro = new JButton("Registro");
         panelSur.add(botonRegistro);

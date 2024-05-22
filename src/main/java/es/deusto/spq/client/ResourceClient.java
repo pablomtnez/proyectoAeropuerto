@@ -78,7 +78,7 @@ public class ResourceClient {
                     mostrarVentanaPrincipal(u, this);
                     return true;
                 case 401: // Unauthorized
-                    //mostrarMensajeError("Credenciales inválidas. Por favor, intenta nuevamente.");
+                    mostrarMensajeError("Credenciales inválidas. Por favor, intenta nuevamente.");
                     return false;
                 case 403: // Forbidden
                     mostrarMensajeError("Acceso prohibido. No tienes permiso para acceder al recurso solicitado.");
