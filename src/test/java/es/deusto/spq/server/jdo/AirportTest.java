@@ -1,6 +1,10 @@
 package es.deusto.spq.server.jdo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 
 import org.junit.Before;
@@ -42,4 +46,31 @@ public class AirportTest {
         airport.setCountry(newCountry);
         assertEquals(newCountry, airport.getCountry());
     }
+
+    @Test
+    public void testParseCSV_ValidInput() {
+        String csvData = "JFK;John F Kennedy International;New York;US";
+        try {
+            Airport airport = Airport.parseCSV(csvData);
+            assertNotNull(airport);
+            assertEquals("JFK", airport.getIataCode());
+            assertEquals("John F Kennedy International", airport.getName());
+            assertEquals("New York", airport.getCity());
+            assertEquals(Country.US, airport.getCountry());
+        } catch (Exception e) {
+            fail("Exception should not be thrown for valid input");
+        }
+    }
+
+    @Test
+    public void testParseCSV_InvalidInput() {
+        String csvData = "JFK;John F Kennedy International;New York;UNKNOWN_COUNTRY";
+        Exception exception = assertThrows(Exception.class, () -> {
+            Airport.parseCSV(csvData);
+        });
+        String expectedMessage = "class es.deusto.spq.server.jdo.Airport from CSV error: " + csvData;
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 }
