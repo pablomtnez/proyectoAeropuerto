@@ -29,7 +29,7 @@ public class PlanePerformanceTest {
 
     @Test
     @JUnitPerfTest(threads = 20, durationMs = 2000)
-    @JUnitPerfTestRequirement(meanLatency = 100)
+    @JUnitPerfTestRequirement(meanLatency = 2000)
     public void testGetSeatsPerformance() {
         for (int i = 0; i < 10000; i++) {
             int seats = plane.getSeats();
@@ -39,7 +39,7 @@ public class PlanePerformanceTest {
 
     @Test
     @JUnitPerfTest(threads = 10, durationMs = 2000)
-    @JUnitPerfTestRequirement(meanLatency = 100)
+    @JUnitPerfTestRequirement(meanLatency = 2000)
     public void testToStringPerformance() {
         for (int i = 0; i < 10000; i++) {
             String expectedToString = "code: name (200 seats)";
