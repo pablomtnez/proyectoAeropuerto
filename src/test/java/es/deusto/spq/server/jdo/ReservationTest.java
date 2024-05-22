@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -65,4 +66,33 @@ public class ReservationTest {
         assertNotNull(reservation.getDate());
         assertEquals(newPassengers, reservation.getPassengers());
     }
+
+    @Test
+    public void testParseCSV_ValidInput() {
+        String csvData = "ABC123#FL123#1622548800000#John Doe;Jane Doe";
+        try {
+            Reservation reservation = Reservation.parseCSV(csvData);
+            assertNotNull(reservation);
+            assertEquals("ABC123", reservation.getLocator());
+            assertNotNull(reservation.getFlight());
+            assertEquals("FL123", reservation.getFlight().getCode());
+            assertEquals(1622548800000L, reservation.getDate());
+            List<String> expectedPassengers = Arrays.asList("John Doe", "Jane Doe");
+            assertEquals(expectedPassengers, reservation.getPassengers());
+        } catch (Exception e) {
+            fail("Exception should not be thrown for valid input");
+        }
+    }
+
+    @Test
+    public void testParseCSV_InvalidInput() {
+        String csvData = "ABC123#FL123#invalid_date#John Doe;Jane Doe";
+        Exception exception = assertThrows(Exception.class, () -> {
+            Reservation.parseCSV(csvData);
+        });
+        String expectedMessage = "class es.deusto.spq.server.jdo.Reservation from CSV error: " + csvData;
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 }
