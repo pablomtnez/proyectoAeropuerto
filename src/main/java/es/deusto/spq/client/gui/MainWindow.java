@@ -105,6 +105,10 @@ public class MainWindow extends JFrame {
         updateFlights();
     }
 
+    public JTable getJTableFlights() {
+        return jTableFlights;
+    }
+
     public void updateFlights() {
         Comparator<Flight> priceComparator = Comparator.comparing(Flight::getPrice);
         Collections.sort(flights, priceComparator);

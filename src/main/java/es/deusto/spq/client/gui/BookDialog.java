@@ -217,6 +217,10 @@ public class BookDialog extends JDialog{
 		return passengers;
 	}
 
+	public JComboBox<String> getJComboPassengers() {
+		return jComboPassengers;
+	}	
+
     // Método para obtener si hay equipaje adicional
     public boolean hasAdditionalBaggage() {
         return additionalBaggage;
