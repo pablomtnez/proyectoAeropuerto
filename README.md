@@ -23,9 +23,14 @@ Ejecute el archivo Doxyfile
 
 Si quiere revisar los resultados debe dirigirse a \target\doxygen\html\index.html
 
+Para ejecutar después el resto del programa debe volver al directorio proyectoAeropuerto
+Para poder salir de la carpeta actual y regresar a la carpeta anterior
+
+      cd..
+
 Elimina los archivos y carpetas generados por una compilación previa de un proyecto Maven.
 
-  mvn clean
+      mvn clean
 
 Para realizar los test ejecute el siguiente comando:
 
